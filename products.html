@@ -10,9 +10,11 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/style-products.css" rel="stylesheet">
 </head>
 
 <body>
+  <!---NAV-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -36,13 +38,100 @@
       </div>
     </div>
   </nav>
-  <main class="pb-5 container">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+
+  <div class="products-container">
+    <aside class="filtros-container">
+      <p>Filtros:</p>
+      <div class="filtros-activos"></div>
+      <div class="filtros">
+        <ul>
+          <li>
+            <h4>Condicion</h4>
+          </li>
+          <li>
+            <p>Nuevo</p>
+          </li>
+          <li>
+            <p>Usado</p>
+          </li>
+          <li>
+            <p>Partes</p>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <h4>Color</h4>
+          </li>
+          <li>
+            <p>Rojo</p>
+          </li>
+          <li>
+            <p>Azul</p>
+          </li>
+          <li>
+            <p>Violeta</p>
+          </li>
+          <li>
+            <p>Amarillo</p>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <h4>Km</h4>
+          </li>
+          <li class="filtros-inputs">
+            <input type="text" name="minKm" placeholder="Mínimo"> <p>-</p> <input type="text" name="maxKm" placeholder="Máximo"> <button><p>></p></button>
+          </li>
+        </ul>
       </div>
+    </aside>
+    <div class="list-container">
+      <h1>Resultados para "Autos":</h1>
+      <p>Cantidad de resultados: 2</p>
+    <div class="list-item-container">
+      <img src="img/cars_index.jpg" alt="Imagen">
+      <div class="contenido">
+        <div class="contenido-1">
+          <h3>Ferrari LaFerrari (Usado)</h3>
+          <hr>
+          <p>Ferrari LaFerrari usado con 15.000 kilometros recorridos, 5 services oficiales de ferrari y sin pintar de otro color (puedo probar que no tengo demandas por parte de la empresa)</p>
+        </div>
+        <div class="contenido-2">
+          <p class="light">Cant. Vendidos: 1</p>
+          <div class="monedas">
+            <p class="moneda">USD</p>
+            <div class="resaltado">
+              <p class="precio">300.000</p>
+            </div>
+          </div>
+        </div>
+      </div> 
     </div>
-  </main>
+     
+  <div class="list-item-container">
+    <img src="img/cars_index.jpg" alt="Imagen">
+    <div class="contenido">
+      <div class="contenido-1">
+        <h3>Ferrari LaFerrari (Usado)</h3>
+        <hr>
+        <p>Ferrari LaFerrari usado con 15.000 kilometros recorridos, 5 services oficiales de ferrari y sin pintar de otro color (puedo probar que no tengo demandas por parte de la empresa)</p>
+      </div>
+      <div class="contenido-2">
+        <p class="light">Cant. Vendidos: 1</p>
+        <div class="monedas">
+          <p class="moneda">USD</p>
+          <div class="resaltado">
+            <p class="precio">300.000</p>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+    </div>
+  </div>
+
+
+  <!---FOOTER-->
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

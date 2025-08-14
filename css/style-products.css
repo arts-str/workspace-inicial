@@ -1,0 +1,153 @@
+@font-face {
+    font-family: HankenGrotesk;
+    src: url('../webfonts/Hanken_Grotesk/HankenGrotesk-VariableFont_wght.ttf');
+}
+body{
+    background: #EAEEFF;
+    font-family: HankenGrotesk;
+}
+.products-container{
+    display: flex;
+    gap: 50px;
+}
+.list-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 3rem;
+}
+.list-item-container{
+    position: relative;
+    width: 1006px;
+    height: 182px;
+    display: flex;
+    flex-direction: row;
+    border: 1px black solid;
+    border-radius: 12px;
+    overflow: hidden;
+}
+hr{
+    color: #F09100;
+    width: 100%;
+    height: 2px !important;
+    opacity: 1;
+    margin-top: -10px;
+}
+h3{
+    font-weight: bold;
+    font-size: 30pt;
+}
+.light{
+    font-weight: 300!important;
+    font-size: 12pt!important;
+}
+.abajo{
+    position: absolute;
+    bottom: 0;
+
+}
+.contenido{
+    display: flex;
+    flex-direction: column;
+}
+.contenido-1{
+    width: 100%;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.contenido-1 p{
+    font-weight: normal;
+    font-size: 12pt;
+}
+.contenido-2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    bottom: 0;
+    right: 0;
+    padding-left: 50px;
+    justify-content: space-between;
+}
+.contenido-2 p{
+    font-weight: normal;
+    margin: 0;
+}
+.precio{
+    margin-top: -.5rem!important;
+    font-size: 26pt;
+}
+.moneda{
+    font-size: 20pt;
+    margin-right: .5rem!important;
+    margin-top: .5rem!important;
+}
+.monedas{
+    display: flex;
+}
+.resaltado{
+    padding: 10px;
+    border-radius: 32px 0 12px 0;
+    background: #F09100;
+}
+.filtros-container{
+    margin-top: 3rem;
+    max-width: 25%;
+}
+.filtros-container p{
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 3rem;
+}
+.filtros{
+    background-color: #000C13;
+    border-radius: 0 32px 32px 0;
+    list-style: none;
+    padding: 50px 0 50px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.filtros ul{
+    list-style: none;
+}
+.filtros ul li p{
+    margin: 0!important;
+}
+h4{
+    font-size: 26px;
+    color: #EAEEFF;
+}
+.filtros p{
+    font-size: 15px;
+    color: #577284;
+}
+.filtros-inputs{
+    display: flex;
+    color: #000C13;
+}
+.filtros-inputs input{
+    max-width: 30%;
+    border: none;
+    border-radius: 3px;
+    background-color: #577284;
+}
+.filtros-inputs button{
+    width: 2rem;
+    background-color: #1A2B35;
+    padding: 0;
+    margin-left: 10px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    border: none;
+}
+.filtros-inputs button p{
+    font-weight: 800;
+}
+.filtros-inputs button:hover{
+    background-color: #344f5f;
+}
+.filtros-inputs p{
+    padding: 0 5px 0 5px;
+}
