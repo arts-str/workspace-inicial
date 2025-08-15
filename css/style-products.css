@@ -17,15 +17,27 @@ body{
     gap: 6px;
     margin-top: 3rem;
 }
+.list-items-container{
+    margin-top: 3rem;
+}
+.list-item-container:nth-child(1){
+    margin-top: 0;
+
+}
 .list-item-container{
+    background-color: #EAEEFF;
     position: relative;
     width: 1006px;
-    height: 182px;
+    height: fit-content;
     display: flex;
     flex-direction: row;
     border: 1px black solid;
     border-radius: 12px;
     overflow: hidden;
+    margin-top: .5rem;
+}
+.list-item-container img{
+    max-height: 13rem;
 }
 hr{
     color: #F09100;
@@ -35,6 +47,7 @@ hr{
     margin-top: -10px;
 }
 h3{
+    margin-top: 1rem;
     font-weight: bold;
     font-size: 30pt;
 }
@@ -93,7 +106,7 @@ h3{
 }
 .filtros-container{
     margin-top: 3rem;
-    max-width: 25%;
+    width: 20rem;
 }
 .filtros-container p{
     font-size: 20px;
@@ -120,8 +133,12 @@ h4{
     color: #EAEEFF;
 }
 .filtros p{
+    cursor: pointer;
     font-size: 15px;
     color: #577284;
+}
+.filtros p:hover{
+    color: #EAEEFF;
 }
 .filtros-inputs{
     display: flex;
@@ -132,6 +149,9 @@ h4{
     border: none;
     border-radius: 3px;
     background-color: #577284;
+}
+.filtros-inputs input:focus{
+    outline: 1px #EAEEFF solid;
 }
 .filtros-inputs button{
     width: 2rem;
@@ -148,6 +168,43 @@ h4{
 .filtros-inputs button:hover{
     background-color: #344f5f;
 }
+
 .filtros-inputs p{
-    padding: 0 5px 0 5px;
+    font-weight: 800;
+    font-size: 16pt;
+    padding: 0 .3rem 0 .3rem;
+}
+.filtros-inputs p:hover{
+    cursor: default;
+    color: #577284;
+}
+.filtros-activos{
+    min-height: 3.8rem;
+    margin: 0 0 3rem 3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+.filtros-activos .tag p{
+    margin: 0 .5rem 0 .3rem;
+    font-size: 12pt;
+}
+.filtros-activos .tag{
+    padding: 5px;
+    background-color: #577284;
+    min-width: fit-content;
+    max-width: 100px;
+    max-height: 30px;
+    border-radius: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: .5rem .5rem .5rem 0;
+}
+.filtros-activos svg:hover {
+   cursor: pointer;
+}
+.filtros-activos svg:hover path{
+   stroke: #EAEEFF;
 }
