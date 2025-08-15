@@ -63,6 +63,7 @@ h3{
 .contenido{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 .contenido-1{
     width: 100%;
@@ -82,6 +83,7 @@ h3{
     right: 0;
     padding-left: 50px;
     justify-content: space-between;
+    align-items: end;
 }
 .contenido-2 p{
     font-weight: normal;
@@ -98,9 +100,10 @@ h3{
 }
 .monedas{
     display: flex;
+    line-height: 26pt;
 }
 .resaltado{
-    padding: 10px;
+    padding: 1rem 1rem .3rem 1rem;
     border-radius: 32px 0 12px 0;
     background: #F09100;
 }
