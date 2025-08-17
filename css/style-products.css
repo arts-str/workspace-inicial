@@ -22,13 +22,13 @@ body{
 }
 .list-item-container:nth-child(1){
     margin-top: 0;
-
 }
 .list-item-container{
     background-color: #EAEEFF;
     position: relative;
-    width: 1006px;
-    height: fit-content;
+    max-width: 1006px;
+    min-width: 750px;
+    height: max-content;
     display: flex;
     flex-direction: row;
     border: 1px black solid;
@@ -37,7 +37,9 @@ body{
     margin-top: .5rem;
 }
 .list-item-container img{
-    max-height: 13rem;
+    width: 30%;
+    min-width: 300px;
+    object-fit: cover;
 }
 hr{
     color: #F09100;
@@ -60,20 +62,24 @@ h3{
     bottom: 0;
 
 }
+
 .contenido{
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: space-between;
 }
 .contenido-1{
-    width: 100%;
     padding-left: 50px;
     display: flex;
     flex-direction: column;
 }
 .contenido-1 p{
     font-weight: normal;
+    word-wrap: break-word;
+    text-align: justify;
     font-size: 12pt;
+    margin-right: 20px;
 }
 .contenido-2{
     width: 100%;
@@ -87,7 +93,7 @@ h3{
 }
 .contenido-2 p{
     font-weight: normal;
-    margin: 0;
+    margin-bottom: 0;
 }
 .precio{
     margin-top: -.5rem!important;
@@ -206,8 +212,8 @@ h4{
     margin: .5rem .5rem .5rem 0;
 }
 .filtros-activos svg:hover {
-   cursor: pointer;
+    cursor: pointer;
 }
 .filtros-activos svg:hover path{
-   stroke: #EAEEFF;
+    stroke: #EAEEFF;
 }
