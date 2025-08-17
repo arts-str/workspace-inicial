@@ -12,6 +12,15 @@
 </head>
 
 <body>
+
+  <script>
+  // ver  si hay sesión iniciada
+  if (localStorage.getItem("sesionIniciada") !== "true") {
+    window.location.href = "login.html"; // manda al login si no hay sesión
+  }
+</script>
+
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"

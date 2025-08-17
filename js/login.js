@@ -9,3 +9,20 @@ btnSignUp.addEventListener('click', () => {
 btnSignIn.addEventListener('click', () => {
     container.classList.add('toggle');
 });
+
+const btnLogin = document.getElementById("btn-login");
+
+btnLogin.addEventListener("click", (e) => {
+  e.preventDefault(); // para que no se envie el form
+
+  const usuario = document.getElementById("usuario").value;
+  const contraseña = document.getElementById("contraseña").value;
+
+  if (usuario.trim() !== "" && contraseña.trim() !== "") {
+    localStorage.setItem("sesionIniciada", "true");
+    localStorage.setItem("usuario", usuario); // para guardar el nombre de usuario
+    window.location.href = "index.html"; // redirige al index
+  } else {
+    alert("Por favor, completá todos los campos.");
+  }
+});
