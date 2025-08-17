@@ -1,0 +1,219 @@
+@font-face {
+    font-family: HankenGrotesk;
+    src: url('../webfonts/Hanken_Grotesk/HankenGrotesk-VariableFont_wght.ttf');
+}
+body{
+    background: #EAEEFF;
+    font-family: HankenGrotesk;
+}
+.products-container{
+    display: flex;
+    gap: 50px;
+}
+.list-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 3rem;
+}
+.list-items-container{
+    margin-top: 3rem;
+}
+.list-item-container:nth-child(1){
+    margin-top: 0;
+}
+.list-item-container{
+    background-color: #EAEEFF;
+    position: relative;
+    max-width: 1006px;
+    min-width: 750px;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    border: 1px black solid;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: .5rem;
+}
+.list-item-container img{
+    width: 30%;
+    min-width: 300px;
+    object-fit: cover;
+}
+hr{
+    color: #F09100;
+    width: 100%;
+    height: 2px !important;
+    opacity: 1;
+    margin-top: -10px;
+}
+h3{
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 30pt;
+}
+.light{
+    font-weight: 300!important;
+    font-size: 12pt!important;
+}
+.abajo{
+    position: absolute;
+    bottom: 0;
+
+}
+
+.contenido{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.contenido-1{
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.contenido-1 p{
+    font-weight: normal;
+    word-wrap: break-word;
+    text-align: justify;
+    font-size: 12pt;
+    margin-right: 20px;
+}
+.contenido-2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    bottom: 0;
+    right: 0;
+    padding-left: 50px;
+    justify-content: space-between;
+    align-items: end;
+}
+.contenido-2 p{
+    font-weight: normal;
+    margin-bottom: 0;
+}
+.precio{
+    margin-top: -.5rem!important;
+    font-size: 26pt;
+}
+.moneda{
+    font-size: 20pt;
+    margin-right: .5rem!important;
+    margin-top: .5rem!important;
+}
+.monedas{
+    display: flex;
+    line-height: 26pt;
+}
+.resaltado{
+    padding: 1rem 1rem .3rem 1rem;
+    border-radius: 32px 0 12px 0;
+    background: #F09100;
+}
+.filtros-container{
+    margin-top: 3rem;
+    width: 20rem;
+}
+.filtros-container p{
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 3rem;
+}
+.filtros{
+    background-color: #000C13;
+    border-radius: 0 32px 32px 0;
+    list-style: none;
+    padding: 50px 0 50px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.filtros ul{
+    list-style: none;
+}
+.filtros ul li p{
+    margin: 0!important;
+}
+h4{
+    font-size: 26px;
+    color: #EAEEFF;
+}
+.filtros p{
+    cursor: pointer;
+    font-size: 15px;
+    color: #577284;
+}
+.filtros p:hover{
+    color: #EAEEFF;
+}
+.filtros-inputs{
+    display: flex;
+    color: #000C13;
+}
+.filtros-inputs input{
+    max-width: 30%;
+    border: none;
+    border-radius: 3px;
+    background-color: #577284;
+}
+.filtros-inputs input:focus{
+    outline: 1px #EAEEFF solid;
+}
+.filtros-inputs button{
+    width: 2rem;
+    background-color: #1A2B35;
+    padding: 0;
+    margin-left: 10px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    border: none;
+}
+.filtros-inputs button p{
+    font-weight: 800;
+}
+.filtros-inputs button:hover{
+    background-color: #344f5f;
+}
+
+.filtros-inputs p{
+    font-weight: 800;
+    font-size: 16pt;
+    padding: 0 .3rem 0 .3rem;
+}
+.filtros-inputs p:hover{
+    cursor: default;
+    color: #577284;
+}
+.filtros-activos{
+    min-height: 3.8rem;
+    margin: 0 0 3rem 3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+.filtros-activos .tag p{
+    margin: 0 .5rem 0 .3rem;
+    font-size: 12pt;
+}
+.filtros-activos .tag{
+    padding: 5px;
+    background-color: #577284;
+    min-width: fit-content;
+    max-width: 100px;
+    max-height: 30px;
+    border-radius: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: .5rem .5rem .5rem 0;
+}
+.filtros-activos svg:hover {
+    cursor: pointer;
+}
+.filtros-activos svg:hover path{
+    stroke: #EAEEFF;
+}
