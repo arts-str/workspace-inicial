@@ -1,11 +1,3 @@
-@font-face {
-    font-family: HankenGrotesk;
-    src: url('../webfonts/Hanken_Grotesk/HankenGrotesk-VariableFont_wght.ttf');
-}
-body{
-    background: #EAEEFF;
-    font-family: HankenGrotesk;
-}
 .products-container{
     display: flex;
     gap: 50px;
@@ -36,12 +28,15 @@ body{
     overflow: hidden;
     margin-top: .5rem;
 }
+.list-item-container:hover{
+    background-color: #d8ddf3;
+}
 .list-item-container img{
     width: 30%;
     min-width: 300px;
     object-fit: cover;
 }
-hr{
+.list-item-container hr{
     color: #F09100;
     width: 100%;
     height: 2px !important;

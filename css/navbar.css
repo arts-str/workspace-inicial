@@ -30,6 +30,7 @@ nav{
 .links a{
     padding: 1rem;
     color: #EAEEFF;
+    text-decoration: none;
 }
 .links-left, .links-right{
     display: flex;
