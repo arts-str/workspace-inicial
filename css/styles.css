@@ -1,3 +1,16 @@
+@font-face {
+  font-family: HankenGrotesk;
+  src: url('../webfonts/Hanken_Grotesk/HankenGrotesk-VariableFont_wght.ttf');
+}
+body{
+  background: #EAEEFF;
+  font-family: HankenGrotesk, sans-serif;
+}
+
+h1{
+  margin-top: 20px; 
+}
+
 .jumbotron,
 .card-body,
 .container,
@@ -7,10 +20,6 @@
 
 .jumbotron .display-4 {
   font-weight: bold;
-}
-
-nav a {
-  text-decoration: none;
 }
 
 .bd-placeholder-img {
@@ -32,7 +41,6 @@ nav a {
   height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
-  background-color: #53C0FB;
   background: url('../img/cover_back.png');
   background-size: cover;
   background-position: center;
@@ -97,7 +105,7 @@ footer p {
 
 .alert {
   position: fixed;
-  top: 80px;
+  top: 200px;
   width: 50%;
   left: 50%;
   transform: translate(-50%, 0);
@@ -155,13 +163,6 @@ footer p {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
 }
 
 #spinner-wrapper {
