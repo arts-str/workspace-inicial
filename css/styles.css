@@ -84,15 +84,6 @@ footer p {
   margin-bottom: .25rem;
 }
 
-.site-header a {
-  color: white;
-  transition: ease-in-out color .15s;
-}
-
-.site-header .dropdown-menu a {
-  color: black;
-}
-
 .dropzone {
   border: 2px dashed #0087F7;
   border-radius: 5px;
