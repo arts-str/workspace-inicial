@@ -175,3 +175,144 @@ body {
 .container.toggle .welcome-sign-up {
     transform: translateX(-100%);
 }
+
+/*TABLET (768px - 1024px)*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  body {
+    height: auto;
+    padding: 150px;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 700px;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .container-form {
+    width: 100%;
+    padding: 30px 30px;
+  }
+
+  .container-welcome {
+    position: relative;
+    width: 100%;
+    height: auto;
+    transform: translateX(0) !important;
+    border-radius: 0;
+  }
+
+  .container-welcome .welcome {
+    position: relative;
+    transform: translateX(0) !important;
+    padding: 20px;
+    text-align: center;
+  }
+}
+
+/* pantalla de celulares hasta 768px */
+@media (max-width: 767px) {
+  body {
+    height: auto;
+    display: flex;
+    padding: 3px;
+  }
+
+  .container {
+    width: 98%;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .container-form {
+    width: 100%;
+    padding: 10px;
+    height: auto;
+    display: block;
+  }
+
+  .container-form h2 {
+    font-size: 20px;
+    padding-top: 10px;
+  }
+
+  .container-welcome h3 {
+    font-size: 24px;
+  }
+
+  .container-welcome p {
+    font-size: 14px;
+  }
+
+  .container-welcome,
+  .container-welcome{
+    position: relative;
+    width: 100%;
+    height: 90%;
+    border-radius: 0;
+    transform: translateX(0) !important;
+    text-align: center;
+    padding: 5px;
+  }
+
+  .container-welcome .button {
+    font-size: 13px;
+    width: 100px;
+  }
+}
+
+
+/* TABLET & MOBILE FIX (para que desaparezcan las card y elimine transición a hasta los 1024px)*/
+@media (max-width: 1024px) {
+
+    .container {
+    flex-direction: column;
+    height: auto;
+      }
+
+  .container-welcome {
+    position:relative;
+    width: 100%;
+    height: auto;
+    border-radius: 80px 80px 0 0 !important;
+    transform: none !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container-welcome .welcome {
+    position:relative;
+    width: 100%;
+    text-align: center;
+    transform: none !important;
+    
+  }
+/* este bloque es para ocultar todos los form, mensajes y que no se hagan transiciones que esten definidas previamente*/
+  .sign-in,
+  .sign-up,
+  .welcome-sign-in,
+  .welcome-sign-up {
+    display: none !important;
+    transform: none !important;
+    transition: none !important;
+    width: 100%;
+  }
+/* para que cuando el contenedor no tenga la clase toggle se interprete que tiene que mostrar el sign_in y welcome-sig-up solamente */
+  .container:not(.toggle) .sign-in {
+    display: flex !important;
+  }
+
+  .container:not(.toggle) .welcome-sign-up {
+    display: block !important;
+  }
+/* aca interpreta lo contrario al bloque anterior, para mostrar sign-up y welcome-sign-in*/
+  .container.toggle .sign-up {
+    display: flex !important;
+  }
+
+  .container.toggle .welcome-sign-in {
+    display: block !important;
+  }
+}
