@@ -1,8 +1,10 @@
 // Mostrar nombre de usuario en el nav de perfil
         const userName = localStorage.getItem("usuario");
         if (userName) {
-            const userNameElement = document.querySelector(".username");
+            const userNameElement = document.querySelectorAll(".username");
             if (userNameElement) {
-                userNameElement.textContent = userName;
+                for (const element of userNameElement) {
+                    element.textContent = userName;
+                }
             }
         }
