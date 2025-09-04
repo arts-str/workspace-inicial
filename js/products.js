@@ -53,7 +53,8 @@ function showProductsList(){
 }
 
 document.addEventListener("DOMContentLoaded", (e) => {
-    getJSONData(PRODUCTS_CARS_URL).then( 
+    
+    getJSONData(PRODUCTS_URL + localStorage.getItem('catID')+'.json').then( 
         (resultObj) => {
             if (resultObj.status === "ok"){
                 currentProductArray = resultObj.data.products;
