@@ -1,4 +1,8 @@
 let currentProductArray = [];
+let backupProductArray = [];
+
+const ORDER_COST = 'cost'
+const ORDER_REL = 'soldCount'
 
 /**
  * Colocar en el HTML la cantidad de resultados obtenidos
@@ -18,13 +22,19 @@ function setProductID(id){
 }
 
 /**
+ * Colocar el título de producto
+ */
+function setProductTitle(name){
+    document.getElementById("product-title").innerHTML = `Resultados para ${name}`;
+}
+
+/**
  * Desplegar el listado de productos
  */
 function showProductsList(){
     let htmlContentToAppend = "";
 
     for (let product of currentProductArray){
-        console.log(product.name)
         htmlContentToAppend += `
             <div onclick="setProductID(${product.id})" class="list-item-container cursor-active">
                 <img src= ${product.image} alt="Imagen">
@@ -53,13 +63,109 @@ function showProductsList(){
 }
 
 document.addEventListener("DOMContentLoaded", (e) => {
-    
+
     getJSONData(PRODUCTS_URL + localStorage.getItem('catID')+'.json').then( 
         (resultObj) => {
             if (resultObj.status === "ok"){
+                setProductTitle(resultObj.data.catName);
+
                 currentProductArray = resultObj.data.products;
+                backupProductArray = [...currentProductArray] // Copiar resultado original de productos
                 showProductsList();
             }
         }
     );
+
+    /**
+     * Ordenar de menor a mayor: precios
+     */
+    document.getElementById("sortAscCost").addEventListener("click", () => {
+        orderAscNumber(currentProductArray, ORDER_COST); // Ordenar de forma ascendente los productos por nombre
+        showProductsList(); // Mostrar currentProductArray alterado
+    });
+
+    /**
+     * Ordenar de mayor a menor: precios
+     */
+    document.getElementById("sortDescCost").addEventListener("click", () => {
+        orderDescNumber(currentProductArray, ORDER_COST); // Ordenar de forma descendente los productos por nombre
+        showProductsList();
+    });
+
+    /**
+     * Ordenar de mayor a menor: relevancia (cantidad de vendidos)
+     */
+    document.getElementById("sortByRel").addEventListener("click", () => {
+        orderAscNumber(currentProductArray, ORDER_REL); // Ordenar por la relevancia (conteo de productos)
+        showProductsList();
+    });
+
+    /**
+     * Ordenar por rango de precios: min - max
+     */
+    document.getElementById("rangeFilterCost").addEventListener("click", function(){
+        // Traer la lista original de productos
+        currentProductArray = backupProductArray;
+
+        //Obtener el mínimo y máximo de los intervalos para filtrar por precio
+        const min = document.getElementById("rangeFilterCostMin").value;
+        const max = document.getElementById("rangeFilterCostMax").value;
+
+        //Convertir a número
+        const minNum = parseInt(min);
+        const maxNum = parseInt(max);
+
+        currentProductArray = orderByMinMax(currentProductArray, ORDER_COST, minNum, maxNum);
+        showProductsList();
+    });
+
+    document.getElementById("clearRangeFilterCost").addEventListener("click", function(){
+        // Limpiar campos de filtro
+        document.getElementById("rangeFilterCostMin").value = "";
+        document.getElementById("rangeFilterCostMax").value = "";
+
+        // Traer de vuelta a todos los productos originales
+        currentProductArray = backupProductArray;
+
+        showProductsList();
+    });
 })
+
+/**
+ * Auxiliares
+ */
+function orderAscString(array, key) { // Orden ascendente por campo de string
+    array.sort((a, b) => {
+        return (a[key]).localeCompare(b[key]);
+    });
+}
+
+function orderDescString(array, key) { // Orden descendente por campo de string
+    array.sort((a, b) => {
+        return (b[key]).localeCompare(a[key]);
+    });
+}
+
+function orderAscNumber(array, key) {// Orden ascendente por campo de number
+    array.sort((a, b) => {
+        return b[key] - a[key];
+    });
+}
+
+function orderDescNumber(array, key) { // Orden descendente por campo de number
+    array.sort((a, b) => {
+        return a[key] - b[key];
+    });
+}
+
+function orderByMinMax(array, key, minNum, maxNum) {
+    if(minNum > maxNum){
+        alert('¡El mínimo no puede ser mayor al máximo!');
+    }
+    else {
+        const result = array.filter(
+        (p) => (!minNum || p[key] >= minNum) && (!maxNum || p[key] <= maxNum)
+        );
+        return result;
+    }
+}

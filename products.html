@@ -137,7 +137,7 @@
           </svg>
         </div>
       </div>
-      <div class="filtros">
+      <div class="filtros-static">
         <ul>
           <li>
             <h4>Condicion</h4>
@@ -166,19 +166,38 @@
       </div>
     </aside>
     <section class="list-container">
-      <h2>Resultados para "Autos":</h2>
+      <h2 id="product-title">Resultados</h2>
       <p id="product-result-count"></p>
       
-      <div class="product-filter-order">
-        <button class="order-filter filter-toggle" id="filterToggle">
-          <i class="fas fa-filter"></i> Filtrar
-        </button>
-        <button class="order-filter order-toggle" id="orderToggle">
-          <i class="fas fa-sort"></i> Ordenar
-        </button>
-      </div>
-      
-      <div id="product-list-container" class="list-items-container">
+      <div class="result-container">
+        <div class="product-filter">
+          <button class="order-filter filter-toggle" id="filterToggle">
+            <i class="fas fa-filter"></i> Filtrar
+          </button>
+        </div>
+
+        <div class="order-container">
+          <div class="btn-order btn-group-toggle" data-bs-toggle="buttons">
+            <input type="radio" class="btn-check" name="options" id="sortAscCost">
+            <label class="btn btn-secondary" for="sortAscCost"><i class="fas fa-sort-amount-down mr-1"></i>$</label>
+            <input type="radio" class="btn-check" name="options" id="sortDescCost">
+            <label class="btn btn-secondary" for="sortDescCost"><i class="fas fa-sort-amount-up mr-1"></i>$</label>
+            <input type="radio" class="btn-check" name="options" id="sortByRel" checked>
+            <label class="btn btn-secondary" for="sortByRel"><i class="fas fa-sort-amount-down mr-1"></i>Rel</label>
+          </div>
+          <div class="order-minmax">
+            <p class="font-weight-normal text-end my-2">Precio</p>
+            <input class="form-control" min="0" type="number" placeholder="min." id="rangeFilterCostMin">
+            <input class="form-control" min="0" type="number" placeholder="máx." id="rangeFilterCostMax">
+            <div class="group" role="group">
+              <button class="btn btn-outline-dark" id="rangeFilterCost">Buscar</button>
+              <button class="btn btn-outline-danger" id="clearRangeFilterCost">Limpiar</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="product-list-container" class="list-items-container">
+        </div>
       </div>
     </section>
   </main>
@@ -190,15 +209,14 @@
           <i class="fas fa-arrow-left"></i> Volver
       </button>
     </div>
-    <div class="filtros">
+    <div class="filtros-static">
       <h2>Filtros</h2>
       <ul>
         <li>
           <h4>Condicion</h4>
         </li>
         <li>Nuevo</li>
-        <li>Usado
-        </li>
+        <li>Usado</li>
         <li>Partes</li>
       </ul>
       <ul>
@@ -206,7 +224,7 @@
           <h4>Color</h4>
         </li>
         <li>Rojo</li>
-        <li>Azul </li>
+        <li>Azul</li>
         <li>Violeta</li>
         <li>Amarillo</li>
       </ul>

@@ -180,3 +180,31 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+/* Ordenar productos/categorías */
+.order-container {
+  justify-items: right;
+  align-self: flex-end;
+  margin: 10px 0;
+}
+
+.order-container .order-minmax {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0 10px 0;
+}
+
+.order-container .group {
+  gap: 5px;
+  display: flex;
+}
+
+.order-container .order-minmax button {
+  width: 100%;
+}
+
+@media screen and (max-width: 670px) {
+  .order-container .order-minmax {
+    display: grid;
+  }
+}

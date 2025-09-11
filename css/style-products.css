@@ -9,7 +9,7 @@
     font-weight: 500;
     margin-left: 3rem;
 }
-.filtros{
+.filtros-static{
     background-color: #000C13;
     border-radius: 0 32px 32px 0;
     list-style: none;
@@ -21,22 +21,22 @@
     position: relative;
     top: 20px;
 }
-.filtros ul{
+.filtros-static ul{
     list-style: none;
 }
-.filtros ul li{
+.filtros-static ul li{
     margin: 0!important;
 }
 h4{
     font-size: 26px;
     color: #EAEEFF;
 }
-.filtros li{
+.filtros-static li{
     cursor: pointer;
     font-size: 15px;
     color: #577284;
 }
-.filtros li:hover{
+.filtros-static li:hover{
     color: #EAEEFF;
 }
 .filtros-inputs{
@@ -112,12 +112,18 @@ h4{
 }
 
 /* Botón de filtros para móvil */
-.product-filter-order{
+.product-filter{
     flex-direction: row;
     justify-content: space-between;
     display: flex;
+    width: 100%;
+    margin: 10px 0;
 }
-.product-filter-order button:hover{
+.product-filter button {
+    margin: 0;
+}
+
+.product-filter button:hover{
     background-color: #bcbcbc;
 }
 
@@ -137,7 +143,7 @@ h4{
     margin-bottom: 2rem;
 }
 
-.filter-toggle{
+.filter-toggle, .order-toggle{
     display: none;
 }
 
@@ -162,7 +168,7 @@ h4{
     border-bottom: 2px solid #F09100;
 }
 
-.filtros-overlay .filtros h2 {
+.filtros-overlay .filtros-static h2 {
     font-size: xx-large;
     margin-left: 2rem;
     color: #c8c7c7;
@@ -199,11 +205,20 @@ h4{
     width: 100%;
 }
 
+/* Contendeor de list-items-container y filtros */
+.result-container {
+    place-self: start;
+    display: flex;
+    align-items: flex-start;
+    flex-flow: column;
+    width: auto;
+}
+
 /* Es en donde se despliegan cada una de las tarjetas de producto*/
 .list-items-container{
     display: grid;
     grid-template-columns: repeat(2, minmax(200px, 1fr));
-    width: 100%;
+    width: fit-content;
     gap: 2rem;
 }
 
@@ -328,7 +343,7 @@ h3{
     .filtros-overlay.active {
         display: block;
     }
-    .filtros li{
+    .filtros-static li{
         font-size: 20px;
     }
 
@@ -412,6 +427,9 @@ h3{
         font-size: small;
         margin-bottom: 1rem;
     }
+    .order-toggle {
+        display: block;
+    }
     #product-list-container {
         justify-content: center;
         grid-template-columns: 1fr;
@@ -430,7 +448,7 @@ h3{
     .contenido-1 {
         padding-right: 1rem;
     }
-    .filtros li{
+    .filtros-static li{
         font-size: 12px;
     }
     .close-filters {
