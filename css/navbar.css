@@ -124,11 +124,12 @@ nav{
 .menu-icon span {
     position: absolute;
     display: block;
-    height: 5px;
+    height: 6px;
     width: 40px;
     background-color: #F09100;
     transform: rotate(0);
     transition: all 200ms cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    border-radius: 3px;
 }
 
 .menu-icon span.one {
