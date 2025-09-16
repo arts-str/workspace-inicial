@@ -39,7 +39,9 @@ function showProductsList(){
                     <div class="monedas">
                         <p class="moneda">${product.currency}</p>
                         <div class="resaltado">
-                        <p class="precio">${product.cost}</p>
+                        <p class="precio"> ${product.cost.toLocaleString('es-UY', { style: 'currency', currency: product.currency })}
+</p>
+
                         </div>
                     </div>
                     </div>
