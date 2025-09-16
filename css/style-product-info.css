@@ -230,9 +230,16 @@ h5 {
   color: var(--dark);
 }
 
+#buy-now:hover {
+  transform: scale(1.05);
+}
 #add-to-cart {
   background: var(--dark);
   color: var(--page-bg);
+}
+
+#add-to-cart:hover {
+  transform: scale(1.05);
 }
 
 #product-description {
