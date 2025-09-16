@@ -11,6 +11,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/navbar.css" rel="stylesheet">
+  <link href="css/style-product-info.css" rel="stylesheet">
   <script src="js/responsive-header.js" defer></script>
   <script src="js/redireccion.js"></script>
 </head>
@@ -117,13 +118,63 @@
         <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
     </div>
   </header>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+<main class="product-info-container">
+  <div class="product-info">
+
+    <!-- columna izquierda -->
+    <div class="left-column">
+      <div class="title-row">
+        <div>
+          <p id="pre-categ"> Categorías &gt; <a id="product-category" href="#"></a> </p>
+          <h2 id="product-name"></h2>
+        </div>
+        <!-- Ícono de corazón -->
+       <div class="icon-corazon-wrapper"> <svg class="icon-corazon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#d32f2f" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round"> <path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8l-3.4-3.4c-1.5-1.4-3.9-1.4-5.4 0s-1.4 3.9 0 5.4L12 20l8.8-10c1.4-1.5 1.4-3.9 0-5.4z"/> 
+      </svg> </div>
       </div>
+
+      <!-- carrusel de img -->
+      <div class="image-carousel">
+        <img id="main-image" alt="Imagen del producto">
+        <div class="carousel-controls">
+          <button id="prev" class="arrow">&#10094;</button>
+          <button id="next" class="arrow">&#10095;</button>
+        </div>
+      </div>
+
+     <!-- Ícono de compartir abajo --> <div class="icon-compartir-wrapper">
+       <div id="dots"></div>
+       <svg class="icon-compartir" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" 
+        stroke-linecap="round" stroke-linejoin="round"> <circle cx="18" cy="5" r="3" /> <circle cx="6" cy="12" r="3" /> <circle cx="18" cy="19" r="3" /> <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /> <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /> 
+      </svg> </div>
     </div>
-  </main>
+
+    <!-- columna derecha -->
+    <div class="right-column">
+      <div class="price-sold">
+        <span id="product-sold"></span>
+        <span id="product-price">
+          <span id="currency"></span>
+          <span id="cost"></span>
+        </span>
+        
+      </div>
+        <!--botones de compra y venta-->
+      <div class="btn">
+        <button id="buy-now">Comprar ahora</button>
+        <button id="add-to-cart">Agregar al carrito</button>
+      </div>
+
+      <!--descripción-->
+      <h5>Descripción:</h5>
+      <p id="product-description"></p>
+    </div>
+
+  </div>
+</main>
+
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
