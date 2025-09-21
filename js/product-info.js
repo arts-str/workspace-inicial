@@ -1,5 +1,7 @@
 const productID = localStorage.getItem("productID");
 const commentContainer = document.getElementById("comments");
+const commentsLeft = document.getElementById("commentsLeft");
+let allComments;
 let productData = {};
 let currentIndex = 0;
 
@@ -70,9 +72,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getJSONData(PRODUCT_INFO_COMMENTS_URL + productID + ".json").then(resultObj => { //Fetch a los comentarios del producto
         if (resultObj.status === "ok") { 
-            resultObj.data.forEach(comment => { //Para cada comentario
-                addComment(comment); //Agregarlo a la lista
-            });
+            if (resultObj.data.length > 0) { 
+                allComments = resultObj.data;
+                allComments.forEach(comment => { //Para cada comentario
+                    addComment(comment); //Agregarlo a la lista
+                });
+                addCommentsLeft()
+            }else{
+                commentContainer.innerHTML = '<p class="no-comments">No hay comentarios</p>'
+            }
         } else {
             console.error("Error al obtener los comentarios del producto"); //Si no puede cargar la function, muestra este error en la pantalla
         }
@@ -89,14 +97,14 @@ document.addEventListener("DOMContentLoaded", () => {
  * }
  */
 
-function calculateStars(commentObj) {
+function calculateStars(score, size) {
     let starsArray = [];
-    for (let i = 0; i < commentObj.score; i++) {  //Por cada punto
-        starsArray.push('<i class="bi bi-star-fill"></i>'); //Agregar estrella llena
+    for (let i = 0; i < Math.round(score); i++) {  //Por cada punto
+        starsArray.push(`<i class="bi bi-star-fill ${size}"></i>`); //Agregar estrella llena
     }
     if (starsArray.length != 5) { //Si no llega a 5 puntos
         for (let i = starsArray.length; i < 5; i++) {
-            starsArray.push('<i class="bi bi-star"></i>'); //Agregar estrella vacía
+            starsArray.push(`<i class="bi bi-star ${size}"></i>`); //Agregar estrella vacía
         }
     }
     let stars = starsArray.join(" "); //Transformar array a string
@@ -104,7 +112,7 @@ function calculateStars(commentObj) {
 }
 
 function addComment(commentObj) {
-    let stars = calculateStars(commentObj); //String con las estrellas del producto
+    let stars = calculateStars(commentObj.score, ''); //String con las estrellas del producto
 
     //Agregar al container de comentarios uno nuevo
     commentContainer.innerHTML += `
@@ -114,9 +122,9 @@ function addComment(commentObj) {
         <span id="stars">
             ${stars}
         </span>
+        <p class="time">${formatTimestamp(commentObj.dateTime)}</p>
       </span>
       <p class="description">${commentObj.description}</p>
-      <p class="time">${formatTimestamp(commentObj.dateTime)}</p>
     </li>
     `
 }
@@ -135,4 +143,112 @@ function formatTimestamp(ts) {
   };
 
   return date.toLocaleString(undefined, options).replace(',', ''); //Devolver la timestamp en formato "Dia dd Mes, yyy, hh:mm"
+}
+
+function scoreAverage(allComments) {
+    let sum = 0;
+    for (const comment of allComments) {
+        sum += comment.score;
+    }
+    return (sum/allComments.length).toFixed(2);
+}
+
+function calculateBarsWidth(allComments) {
+  let all5 = 0;
+  let all4 = 0;
+  let all3 = 0;
+  let all2 = 0;
+  let all1 = 0;
+  
+  for (const comment of allComments) {
+    switch (comment.score) {
+      case 5:
+        all5++
+        break;
+      case 4:
+        all4++
+        break;
+      case 3:
+        all3++
+        break;
+      case 2:
+        all2++
+        break;
+      case 1:
+        all1++
+        break;
+      default:
+        break;
+    }
+  }
+  return {bar5:all5/allComments.length*100,bar4:all4/allComments.length*100,bar3:all3/allComments.length*100,bar2:all2/allComments.length*100,bar1:all1/allComments.length*100}
+}
+
+function addCommentsLeft() {
+  let score = scoreAverage(allComments)
+  let stars = calculateStars(score, 'h5');
+  let barWidthObject = calculateBarsWidth(allComments);
+  commentsLeft.innerHTML += `
+    <div class="comments-score">
+        <div class="comments-score-top">
+          <h2>${score}</h2>
+          <div class="stars-amount">
+            <div class="stars">
+              ${stars}
+
+            </div>
+
+            <p>(${allComments.length} calificaciones)</p>
+          </div>
+        </div>
+        <div class="score-bars">
+          <div class="score-bar">
+            <div class="bar">
+              <div class="bar-filled" style="width:${barWidthObject.bar5}%"></div>
+            </div>
+            <div class="bar-legend">
+              <p>5</p>
+              <i class="bi bi-star-fill h7"></i>
+            </div>
+          </div>
+          <div class="score-bar">
+            <div class="bar">
+              <div class="bar-filled" style="width:${barWidthObject.bar4}%"></div>
+            </div>
+            <div class="bar-legend">
+              <p>4</p>
+              <i class="bi bi-star-fill h7"></i>
+            </div>
+          </div>
+          <div class="score-bar">
+            <div class="bar">
+              <div class="bar-filled" style="width:${barWidthObject.bar3}%"></div>
+            </div>
+            <div class="bar-legend">
+              <p>3</p>
+              <i class="bi bi-star-fill h7"></i>
+            </div>
+          </div>
+          <div class="score-bar">
+            <div class="bar">
+              <div class="bar-filled" style="width:${barWidthObject.bar2}%"></div>
+            </div>
+            <div class="bar-legend">
+              <p>2</p>
+              <i class="bi bi-star-fill h7"></i>
+            </div>
+          </div>
+          <div class="score-bar">
+            <div class="bar">
+              <div class="bar-filled" style="width:${barWidthObject.bar1}%"></div>
+            </div>
+            <div class="bar-legend">
+              <p>1</p>
+              <i class="bi bi-star-fill h7"></i>
+            </div>
+          </div>
+        </div>
+    </div>
+  `
+  
 }
