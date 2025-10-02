@@ -1,0 +1,133 @@
+/* COLORES */
+:root {
+  --accent: #f09100;
+  --hover: rgb(209, 82, 32);
+  --dark: #000C14;
+  --grey: #c5c5c5;
+  --light-gray: rgba(255, 255, 255, 0.65);
+  --page-bg: #eaeeff;
+  --font-family: "Raleway", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Formulario de calificación de producto */
+.comment-form {
+    max-width: 410px;
+    border-radius: 5px;
+    border: 1px solid var(--accent);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-form form {
+    width: 320px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.comment-form form > label {
+    color: #000;
+    font-family: "Hanken Grotesk", 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 121.27%; /* 19.403px */
+    letter-spacing: 0.8px;
+    margin: 20px 0;
+}
+
+.comment-form h3{
+    color: #1E1E1E;
+    font-family: "Hanken Grotesk", 'Arial Narrow', Arial, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 121.27%; /* 29.105px */
+    letter-spacing: 1.2px;
+}
+
+.comment-form hr {
+    opacity: unset;
+    margin: 0 0 24px 0;
+    width: 170px;
+    height: 1px;
+    background: var(--accent);
+}
+
+.star-published {
+    width: 35px;
+    height: 35px;
+}
+
+.comment-form textarea {
+    border-radius: 5px;
+    border: 1px solid var(--accent);
+    background: var(--light-gray);
+    width: 100%;
+    padding: 10px 20px;
+    min-height: 88px;
+    max-height: 200px;
+}
+
+.comment-form input[type="submit"] {
+    margin: 20px 0;
+    justify-self: right;
+    border: none;
+    border-radius: 7px;
+    background: var(--accent);
+    transition: .3s;
+    width: 113px;
+    height: 42px;
+    flex-shrink: 0;
+}
+
+.comment-form input[type="submit"]:hover {
+    color: var(--page-bg);
+    font-weight: bold;
+    background: var(--hover);
+}
+
+/* Funcionamiento de estrellas */
+.star-rating {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.star-rating label i, .star-published {
+    font-size: 25px;
+}
+
+.star-rating input {
+    position:absolute;
+    top:0px;
+    left:0px;
+    opacity:0;
+}
+
+.star-rating label {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    transition: .3s;
+    color: var(--grey);
+}
+
+/* Dejar estrella seleccionada y anteriores */
+.star-rating input:checked ~ label,
+.star-rating input:hover ~ label,
+.star-rating input:checked + label {
+    color: var(--accent);
+}
+
+/* Hover por las estrellas */
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label:hover ~ label {
+    color: var(--hover)
+}
