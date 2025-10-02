@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       showProductInfo();
+      productosRelacionados();
     } else {
       console.error("Error al obtener la info del producto"); //si no puede cargar la function, muestra este error en la pantalla
     }
@@ -397,4 +398,38 @@ function addCommentsLeft() {
         </div>
     </div>
   `;
+}
+
+
+
+// Productos Relacionados
+function productosRelacionados() {
+    const container = document.querySelector('.productos-relacionados');
+    container.innerHTML = '<h4>Productos relacionados</h4><div class="relacionados-list"></div>';
+    const list = container.querySelector('.relacionados-list');
+    if (!productData.relatedProducts || !productData.relatedProducts.length) {
+        list.innerHTML = '<p>No hay productos relacionados.</p>';
+        return;
+    }
+    productData.relatedProducts.forEach(prod => {
+        const item = document.createElement('div');
+        item.className = 'relacionado-item';
+        item.innerHTML = `
+            <div class="relacionado-img">
+                <img src="${prod.image}" alt="${prod.name}">
+            </div>
+            <div class="relacionado-info">
+                <h5>${prod.name}</h5>
+                <button onclick="verProductoRelacionado(${prod.id})">Ver producto</button>
+            </div>
+        `;
+        list.appendChild(item);
+    });
+}
+
+
+// Función para navegar al producto relacionado
+function verProductoRelacionado(id) {
+    localStorage.setItem('productID', id);
+    window.location.reload();
 }
