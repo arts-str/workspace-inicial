@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
             addComment(comment); //Agregarlo a la lista
           });
           addCommentsLeft();
+          addStarsTop();
         } else {
           commentContainer.innerHTML =
             '<p class="no-comments">No hay comentarios</p>';
@@ -180,7 +181,7 @@ function sendCommentForm() {
 
     addComment(commentObj); // Ahora al html
     addCommentsLeft(); // Actualizar el resumen de calificaciones de la izquierda
-
+    addStarsTop();
     clearForm(); // Limpiar formulario
   });
 }
@@ -343,7 +344,6 @@ function addCommentsLeft() {
           <div class="stars-amount">
             <div class="stars">
               ${stars}
-
             </div>
 
             <p>(${allComments.length} calificaciones)</p>
@@ -432,4 +432,28 @@ function productosRelacionados() {
 function verProductoRelacionado(id) {
     localStorage.setItem('productID', id);
     window.location.reload();
+}
+
+
+function addStarsTop() {
+  let score = scoreAverage(allComments);
+  let stars = calculateStars(score, "h5");
+  document.getElementById('stars').innerHTML = `
+
+    <div class="comments-score-top">
+      <div class="stars-amount-inline">
+        <div class="stars">
+          ${stars}
+        </div>
+        <p>${allComments.length} calificaciones</p>
+      </div>
+    </div>
+    `
+
+    document.getElementById('stars').addEventListener('click', () =>{
+      document.getElementById('comment-section').scrollIntoView();
+    });
+    document.getElementById('stars').addEventListener('touchstart', () =>{
+      document.getElementById('comment-section').scrollIntoView();
+    });
 }
