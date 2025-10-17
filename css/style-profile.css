@@ -1,0 +1,196 @@
+:root {
+  --accent: #f09100;
+  --camera-color: rgb(66, 126, 172);
+  --dark: #000C14;
+  --page-bg: #eaeeff;
+  --user-data-card: #D9D9D9;
+  --element-light: #D9D9D9;
+  --font-family: "HankenGrotesk", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Botón para activar la edición de datos */
+#btnEditarPerfil {
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    border: none;
+    background-color: unset;
+    border-radius: 50%;
+    transition: all .3s ease-out;
+}
+
+#btnEditarPerfil:hover{
+    color: var(--accent);
+}
+
+#btnEditarPerfil i {
+    font-size: 2em;
+}
+
+.container{
+    position: relative;
+    max-width: 800px;
+    font-family: var(--font-family) !important;
+}
+
+/* Ubicar foto perfil y datos nombre y apellido */
+.basic-info{
+    height: 10.5rem;
+    position: relative;
+}
+
+.profile-image {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+}
+
+.full-name {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    left: 170px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all .3s ease-out;
+}
+
+.full-name .group-name {
+    display: inline-block;
+}
+
+.full-name .group-name input[type="text"].disabled-input{
+    font-size: x-large;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+/* Más especificos del estilo upload de imagen*/
+.profile-image img {
+    border-radius: 50%;
+    border: 6px solid var(--accent);
+    transition: all .3s ease-out;
+}
+
+.profile-image .add-photo {
+    display: none;
+    border: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--camera-color);
+    width: 40px;
+    height: 40px;
+    line-height: 39px;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 100%;
+}
+
+.profile-image .add-photo input[type="file"]{
+    position: absolute;
+    transform: scale(2);
+    opacity: 0;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    cursor: pointer;
+}
+
+
+/* Tarjetas de datos de cuenta: email, teléfono, nombre de usuario*/
+.account-info {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.account-info div {
+    background-color: var(--user-data-card);
+    padding: 1.5rem;
+    border-radius: 20px;
+}
+
+.account-info i {
+    margin-top: 3.5px;
+    position: absolute;
+}
+
+.account-info label {
+    font-size: medium;
+    width: 100%;
+    border-bottom: 2px solid var(--accent);
+    text-indent: 25px;
+}
+
+/* Campos de ingreso de datos */
+.basic-info .full-name input,
+.account-info input {
+    border: none;
+    display: block;
+    width: 100%;
+}
+
+input.disabled-input::placeholder{
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.disabled-input {
+    padding: 10px 0;
+    background-color: transparent;
+}
+
+.available-input {
+    padding: 10px;
+    border-bottom: 2px solid var(--accent);
+    background-color: white;
+}
+
+/* Botones */
+input[type="submit"],
+input[type="button"]  {
+    margin-top: 1rem;
+    border: none;
+    font-size: 1.05rem;
+    border-radius: 5px;
+    padding: 0.9rem;
+}
+
+input[type="submit"] {
+    background: var(--accent);
+    margin-right: .5rem;
+}
+
+input[type="button"],
+input[type="submit"][disabled] {
+    background: var(--element-light);
+}
+
+input[type="submit"]:not([disabled]):hover,
+input[type="button"]:not([disabled]):hover  {
+    transform: scale(1.04);
+}
+
+@media screen and (max-width: 660px){
+    .full-name {
+        grid-template-columns: repeat(1, 1fr);
+        gap: .5rem;
+        left: 8.4rem;
+    }
+    .basic-info {
+        margin-bottom: .5rem;
+    }
+    .profile-image img{
+        margin-top: .5rem;
+        width: 120px;
+    }
+    #btnEditarPerfil i {
+        font-size: 1.5em;
+    }
+}

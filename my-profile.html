@@ -11,24 +11,9 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/navbar.css" rel="stylesheet">
+  <link href="css/style-profile.css" rel="stylesheet">
   <script src="js/responsive-header.js" defer></script>
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
-    <script src="js/redireccion.js"></script>
+  <script src="js/redireccion.js"></script>
 </head>
 
 <body>
@@ -135,9 +120,50 @@
   </header>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+      <button id="btnEditarPerfil" type="button" aria-label="Actualizar información">
+        <i class="fas fa-edit"></i>
+      </button>
+
+      <form id="perfilForm" action="" method="put">
+        <fieldset class="basic-info">
+          <div class="profile-image">
+            <img src="img/user-icon/user.png" width="150" alt="Upload profile">
+            <div class="add-photo">
+              <input type="file" accept="image/png, image/jpeg" name="profileImage" id="inputProfileImage">
+              <i class="fas fa-camera fa-lg" style="color: aliceblue;"></i>
+            </div>
+          </div>
+          <div class="full-name">
+            <div class="group-name">
+              <label for="inputNombre">Nombre</label>
+              <input class="disabled-input" type="text" id="inputNombre" name="nombre" placeholder="ej: Ana" required disabled>
+            </div>
+            <div class="group-name">
+              <label for="inputApellido">Apellido</label>
+              <input class="disabled-input" type="text" id="inputApellido" name="apellido" placeholder="ej: Gómez" required disabled>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="account-info">
+          <div>
+            <i class="fas fa-envelope"></i>
+            <label for="inputEmail">Email</label>
+            <input class="disabled-input" type="email" name="email" id="inputEmail" placeholder="ej: example@example.com" required disabled>
+          </div>
+          <div>
+            <i class="fas fa-phone"></i>
+            <label for="inputTelefono">Teléfono</label>
+            <input class="disabled-input" type="tel" name="telefono" id="inputTelefono" placeholder="ej: 099999999" required disabled>
+          </div>
+          <div>
+            <i class="fas fa-address-card"></i>
+            <label for="inputNombreUsuario">Nombre de usuario</label>
+            <input class="disabled-input" type="text" name="nombreUsuario" id="inputNombreUsuario" placeholder="ej: anaGomez" required disabled>
+          </div>
+        </fieldset>
+        <input type="submit" value="Guardar cambios" id="btnGuardar" disabled>
+        <input type="button" value="Cancelar" id="btnCancelar" disabled>
+      </form>
     </div>
   </main>
   <footer class="text-muted">
@@ -150,8 +176,8 @@
   </footer>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/users.js"></script>
   <script src="js/my-profile.js"></script>
-  
 </body>
 
 </html>
