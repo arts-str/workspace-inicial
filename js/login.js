@@ -21,7 +21,13 @@ btnLogin.addEventListener("click", (e) => {
   if (usuario.trim() !== "" && contraseña.trim() !== "") {
     localStorage.setItem("sesionIniciada", "true");
     localStorage.setItem("usuario", usuario); // para guardar el nombre de usuario
-    window.location.href = "index.html"; // redirige al index
+
+    const userExist = getUser(usuario);
+    if(!userExist){
+      createUser(usuario); // para guardar el objeto usuario
+    }
+    
+    globalThis.location.href = "index.html"; // redirige al index
   } else {
     alert("Por favor, completá todos los campos.");
   }
