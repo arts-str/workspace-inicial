@@ -14,9 +14,6 @@
   <link href="css/style-products.css" rel="stylesheet">
   <link href="css/navbar.css" rel="stylesheet">
   <link href="css/dark-mode-extra.css" rel="stylesheet">
-  <script src="js/redireccion.js"></script>
-  <script src="js/responsive-header.js" defer></script>
-  <script src="js/responsive-product.js" defer></script>
 </head>
 
 <body>
@@ -67,7 +64,7 @@
                 </clipPath>
               </defs>
             </svg>
-            <input type="search" id="buscador" placeholder="Buscar">
+            <input type="text" id="buscador" placeholder="Buscar">
           </div>
           <div class="links-right">
             <a href="sell.html">
@@ -81,29 +78,25 @@
             <a href="cart.html">
               <i class="fas fa-shopping-cart icon-item"></i>Carrito
             </a>
-            <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
+         <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
+            <button id="dark-mode-toggle" class="dark-mode-btn" title="Cambiar tema">
+               <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="var(--accent)" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                 <path d="M21 12.79A9 9 0 1 1 11.21 3
+                          7 7 0 0 0 21 12.79z"></path>
+               </svg>
+             </button>
         </div>
-        <button id="dark-mode-toggle" class="dark-mode-btn" title="Cambiar tema">
-  <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
-       width="24" height="24" viewBox="0 0 24 24"
-       fill="none" stroke="var(--accent)" stroke-width="2"
-       stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3
-             7 7 0 0 0 21 12.79z"></path>
-  </svg>
-</button>
 
-        
+        </div>
       </div>
       </a>
+
       <div class="mobile-cart">
           <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
       </div>
-
-      
-
-
-
 
       <div class="menu-icon" id="menu-icon">
         <span class="one"></span>
@@ -127,6 +120,15 @@
               <span class="username"></span>
               <a href="my-profile.html">Mi Perfil</a>
             </div>
+            <button id="dark-mode-toggle-mobile" class="dark-mode-btn" title="Cambiar tema">
+               <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="var(--accent)" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                 <path d="M21 12.79A9 9 0 1 1 11.21 3
+                          7 7 0 0 0 21 12.79z"></path>
+               </svg>
+             </button>
         </div>
         <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
         <a href="categories.html"><i class="fas fa-list"></i> Categorías</a>
@@ -195,7 +197,8 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
-  <script src="js/my-profile.js"></script>
+  <script src="js/redireccion.js"></script>
+  <script src="js/responsive-header.js" defer></script>
   <script src="js/dark-mode.js"></script>
 </body>
 

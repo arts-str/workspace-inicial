@@ -4592,7 +4592,7 @@ readers do not read off random characters that represent icons */
    border: none;
   cursor: pointer;
   padding: 0;           
-  margin: 0 0.5rem;            
+  margin: 0 1rem;            
   display: flex;
   align-items: center;
   justify-content: center;

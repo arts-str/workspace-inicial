@@ -93,7 +93,7 @@
     color: var(--dark);
 }
 
-.dark-mode #usuario, #contraseña {
+.dark-mode #usuario, .dark-mode #contraseña {
     background-color: var(--dark);
 }
 .dark-mode .icon00, .icon01{
@@ -170,4 +170,13 @@ color: var(--accent);
     border: solid var(--accent);
     color: var(--dark);
     background-color: var(--white);
+}
+
+.darkmode-sensitive-btn{
+	background: var(--dark);
+	color: var(--page-bg);
+}
+
+.form-edit-inputs{
+    color: #000C14 !important;
 }
