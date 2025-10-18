@@ -81,6 +81,7 @@
     color: var(--dark);
 }
 
+/*login*/
 .dark-mode .container {
     border: solid var(--dark);
     box-shadow: none;
