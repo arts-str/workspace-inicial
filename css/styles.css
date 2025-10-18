@@ -1,9 +1,11 @@
+
+
 @font-face {
   font-family: HankenGrotesk;
   src: url('../webfonts/Hanken_Grotesk/HankenGrotesk-VariableFont_wght.ttf');
 }
 body{
-  background: #EAEEFF;
+  background: var(--page-bg);
   font-family: HankenGrotesk, sans-serif;
 }
 
@@ -45,7 +47,7 @@ h1{
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: black;
+  color: var(--dark);
   font-weight: bold;
 }
 
@@ -66,9 +68,9 @@ h1{
 
 .jumbotron .container {
   max-width: 40rem;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--dark);
   border-radius: 10px;
-  text-shadow: 1px 1px 2px grey;
+  text-shadow: var(--dark);
 }
 
 .jumbotron .lead {
@@ -158,7 +160,7 @@ footer p {
 
 #spinner-wrapper {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--dark);
   width: 100%;
   height: 100%;
   top: 0;
@@ -178,7 +180,7 @@ a.custom-card:hover {
 }
 
 .checked {
-  color: orange;
+  color: var(--accent);
 }
 
 /* Ordenar productos/categorías */

@@ -4584,3 +4584,30 @@ readers do not read off random characters that represent icons */
 .fas {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900; }
+
+
+  /* Boton modo oscuro */
+  .dark-mode-btn {
+  background: none;
+   border: none;
+  cursor: pointer;
+  padding: 0;           
+  margin: 0 0.5rem;            
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.dark-mode-btn svg {
+  width: 2rem;
+  height: 2rem;
+  stroke: white;
+  display: block;
+  transition: transform 0.2s ease, stroke 0.2s ease;
+}
+
+.dark-mode-btn:hover svg {
+  transform: scale(1.1);
+  stroke: #ffc166;           /* color más claro al pasar el mouse */
+}

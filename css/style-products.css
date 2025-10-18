@@ -20,7 +20,7 @@
     border-bottom: none;
 }
 .buscador-dropdown-item:hover {
-    color: #F09100;
+    color: var(--accent);
     font-weight: bold;
 }
 
@@ -35,27 +35,10 @@
     font-weight: 500;
     margin-left: 3rem;
 }
-.filtros-static{
-    background-color: #000C13;
-    border-radius: 0 32px 32px 0;
-    list-style: none;
-    padding: 30px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    height: fit-content;
-    position: relative;
-    top: 20px;
-}
-.filtros-static ul{
-    list-style: none;
-}
-.filtros-static ul li{
-    margin: 0!important;
-}
+
 h4{
     font-size: 26px;
-    color: #EAEEFF;
+    color: var(white);
 }
 .filtros-static li{
     cursor: pointer;
@@ -63,14 +46,14 @@ h4{
     color: #577284;
 }
 .filtros-static li:hover{
-    color: #EAEEFF;
+    color: var(white);
 }
 .filtros-inputs{
     display: flex;
-    color: #000C13;
+    color: var(--dark)
 }
 .filtros-inputs input::placeholder{
-    color: #2b2929;
+    color: var(--dark);
 }
 .filtros-inputs input{
     max-width: 30%;
@@ -79,7 +62,7 @@ h4{
     background-color: #708593;
 }
 .filtros-inputs input:focus{
-    outline: 1px #EAEEFF solid;
+    outline: 1px var(--white) solid;
 }
 .filtros-inputs button{
     width: 2rem;
@@ -134,7 +117,7 @@ h4{
     cursor: pointer;
 }
 .filtros-activos svg:hover path{
-    stroke: #EAEEFF;
+    stroke: var(--white);
 }
 
 /* Botón de filtros para móvil */
@@ -150,12 +133,12 @@ h4{
 }
 
 .product-filter button:hover{
-    background-color: #bcbcbc;
+    background-color: var(--ligt-grey);
 }
 
 .order-filter {
     background-color: #D9D9D9;
-    color: #000C13;
+    color:var(--dark);
     border: none;
     width: 120px;
     height: 50px;
@@ -181,7 +164,7 @@ h4{
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #000C13;
+    background-color: var(--dark);
     z-index: 1000;
     overflow-y: auto;
 }
@@ -191,19 +174,19 @@ h4{
     justify-content: space-between;
     align-items: center;
     padding: 30px;
-    border-bottom: 2px solid #F09100;
+    border-bottom: 2px solid var(--accent);
 }
 
 .filtros-overlay .filtros-static h2 {
     font-size: xx-large;
     margin-left: 2rem;
-    color: #c8c7c7;
+    color: var(--ligt-grey);
 }
 
 .close-filters {
     background: none;
     border: none;
-    color: #F09100;
+    color: var(--accent);
     font-size: 30px;
     cursor: pointer;
     display: flex;
@@ -212,7 +195,7 @@ h4{
 }
 
 .filtros-header button:hover{
-    color: #ffffff;
+    color: var(--white);
 }
 
 /* Contenedor principal de la página*/
@@ -229,15 +212,17 @@ h4{
     gap: 6px;
     margin: 3rem;
     width: 100%;
+    justify-content: center;
 }
 
 /* Contendeor de list-items-container y filtros */
 .result-container {
-    place-self: start;
     display: flex;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     flex-flow: column;
     width: auto;
+   
 }
 
 /* Es en donde se despliegan cada una de las tarjetas de producto*/
@@ -252,19 +237,19 @@ h4{
     margin-top: 0;
 }
 .list-item-container{
-    background-color: #EAEEFF;
+    background-color: var(--white);
     position: relative;
     max-width: 1006px;
     min-width: 750px;
     height: max-content;
     display: flex;
     flex-direction: row;
-    border: 1px black solid;
+    border: 1px var(--dark) solid;
     border-radius: 12px;
     overflow: hidden;
 }
 .list-item-container:hover{
-    background-color: #d8ddf3;
+    background-color: var(--ligt-grey);
 }
 .list-item-container img{
     width: 20%;
@@ -272,11 +257,15 @@ h4{
     object-fit: cover;
 }
 .list-item-container hr{
-    color: #F09100;
+    color: var(--accent);
     width: 100%;
     height: 2px !important;
     opacity: 1;
     margin-top: -10px;
+}
+
+.contenido {
+    color: var(--dark);
 }
 h3{
     margin-top: 1rem;
@@ -298,6 +287,7 @@ h3{
     justify-content: space-between;
     position: relative;
     padding-left: 2rem;
+    background-color: var(--page-bg);
 }
 
 /* Hace referencia a título y descripción de un producto */
@@ -349,7 +339,14 @@ h3{
 .resaltado{
     padding: 1rem 1rem .3rem 1rem;
     border-radius: 32px 0 12px 0;
-    background: #F09100;
+    background: var(--accent);
+}
+
+#product-title { 
+    color: var(--dark)
+}
+#product-result-count { 
+    color: var(--dark);
 }
 
 @media screen and (max-width: 1940px){
