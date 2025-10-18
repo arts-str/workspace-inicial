@@ -5,10 +5,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-  
+
+   <link rel="stylesheet" href="css/variables-color.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
+ 
   <link href="css/styles-login.css" rel="stylesheet">
+   <link href="css/dark-mode-extra.css" rel="stylesheet">
   
 </head>
 
@@ -20,11 +23,11 @@
         <h2>Iniciar Sesión</h2>
         <span>Use su usuario y contraseña</span>
         <div class="container-input">
-          <ion-icon name="person-outline"></ion-icon>
+          <ion-icon class="icon00" name="person-outline"></ion-icon>
           <input type="text" placeholder="Usuario" id="usuario" required>
         </div>
         <div class="container-input">
-          <ion-icon name="lock-closed-outline"></ion-icon>
+          <ion-icon class="icon01" name="lock-closed-outline"></ion-icon>
           <input type="password" placeholder="Contraseña" id="contraseña"required>
         </div>
         <a href="#">
@@ -38,27 +41,27 @@
     <!-- REGISTRO -->
     <div class="container-form">
       <form class="sign-up">
-        <h2>Registrarse</h2>
-        <span>Use su correo electrónico para registrarse</span>
+        <h2 class="reg-1">Registrarse</h2>
+        <span class="reg-1">Use su correo electrónico para registrarse</span>
 
         <!-- USUARIO -->
         <div class="container-input">
-          <ion-icon name="person-outline"></ion-icon>
+          <ion-icon class="icon-registro" name="person-outline"></ion-icon>
           <input type="text" placeholder="Usuario" required>
         </div>
 
         <!-- CORREO ELECTRONICO -->
         <div class="container-input"> 
-          <ion-icon name="mail-outline"></ion-icon>
+          <ion-icon class="icon-registro" name="mail-outline"></ion-icon>
           <input type="text" placeholder="Correo electrónico" required>
         </div>
 
         <!-- CONTRASEÑA -->
         <div class="container-input">
-          <ion-icon name="lock-closed-outline"></ion-icon>
+          <ion-icon class="icon-registro" name="lock-closed-outline"></ion-icon>
           <input type="password" placeholder="Contraseña" required>
         </div>
-        <button class="button">REGISTRARSE</button>
+        <button class="button-1">REGISTRARSE</button>
       </form>
     </div>
 
@@ -87,6 +90,7 @@
   <script src="js/login.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="js/dark-mode.js"></script>
 </body>
 
 </html>

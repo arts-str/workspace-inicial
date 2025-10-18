@@ -6,12 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
 
+  <link rel="stylesheet" href="css/variables-color.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/style-products.css" rel="stylesheet">
   <link href="css/navbar.css" rel="stylesheet">
+  <link href="css/dark-mode-extra.css" rel="stylesheet">
   <script src="js/redireccion.js"></script>
   <script src="js/responsive-header.js" defer></script>
   <script src="js/responsive-product.js" defer></script>
@@ -79,13 +81,29 @@
             <a href="cart.html">
               <i class="fas fa-shopping-cart icon-item"></i>Carrito
             </a>
+            <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
         </div>
+        <button id="dark-mode-toggle" class="dark-mode-btn" title="Cambiar tema">
+  <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
+       width="24" height="24" viewBox="0 0 24 24"
+       fill="none" stroke="var(--accent)" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3
+             7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
+
+        
       </div>
       </a>
-
       <div class="mobile-cart">
           <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
       </div>
+
+      
+
+
+
 
       <div class="menu-icon" id="menu-icon">
         <span class="one"></span>
@@ -121,49 +139,7 @@
   </header>
 
   <main class="products-container">
-    <aside class="filtros-container">
-      <p>Filtros:</p>
-      <div class="filtros-activos">
-        <div class="tag"><p>Tag</p> 
-          <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_429_11083)">
-              <path d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006" stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-            <defs>
-              <clipPath id="clip0_429_11083">
-                <rect width="24" height="24" fill="white"/>
-              </clipPath>
-            </defs>
-          </svg>
-        </div>
-      </div>
-      <div class="filtros-static">
-        <ul>
-          <li>
-            <h4>Condicion</h4>
-          </li>
-          <li>Nuevo</li>
-          <li>Usado</li>
-          <li>Partes</li>
-        </ul>
-        <ul>
-          <li>
-            <h4>Color</h4>
-          </li>
-          <li>Rojo</li>
-          <li>Azul</li>
-          <li>Violeta</li>
-          <li>Amarillo</li>
-        </ul>
-        <ul>
-          <li>
-            <h4>Km</h4>
-          </li>
-          <li>0 km</li>
-          <li>Hasta 50.000 km</li>
-          <li>Hasta 100.000 km</li>
-        </ul>
-      </div>
+   
     </aside>
     <section class="list-container">
       <h2 id="product-title">Resultados</h2>
@@ -171,9 +147,6 @@
       
       <div class="result-container">
         <div class="product-filter">
-          <button class="order-filter filter-toggle" id="filterToggle">
-            <i class="fas fa-filter"></i> Filtrar
-          </button>
         </div>
 
         <div class="order-container">
@@ -202,43 +175,6 @@
     </section>
   </main>
 
-  <!-- Overlay para le filtro en móvil-->
-  <div class="filtros-overlay" id="filtersOverlay">
-    <div class="filtros-header">
-      <button class="close-filters" id="closeFilters">
-          <i class="fas fa-arrow-left"></i> Volver
-      </button>
-    </div>
-    <div class="filtros-static">
-      <h2>Filtros</h2>
-      <ul>
-        <li>
-          <h4>Condicion</h4>
-        </li>
-        <li>Nuevo</li>
-        <li>Usado</li>
-        <li>Partes</li>
-      </ul>
-      <ul>
-        <li>
-          <h4>Color</h4>
-        </li>
-        <li>Rojo</li>
-        <li>Azul</li>
-        <li>Violeta</li>
-        <li>Amarillo</li>
-      </ul>
-      <ul>
-        <li>
-          <h4>Km</h4>
-        </li>
-        <li>0 km</li>
-        <li>Hasta 50.000 km</li>
-        <li>Hasta 100.000 km</li>
-      </ul>
-    </div>
-  </div>
-
   <!---FOOTER-->
   <footer class="text-muted">
     <div class="container">
@@ -259,6 +195,8 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
+  <script src="js/my-profile.js"></script>
+  <script src="js/dark-mode.js"></script>
 </body>
 
 </html>

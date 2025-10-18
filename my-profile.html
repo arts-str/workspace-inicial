@@ -6,11 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
   
+  <link rel="stylesheet" href="css/variables-color.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/navbar.css" rel="stylesheet">
+  <link href="css/dark-mode-extra.css" rel="stylesheet">
   <link href="css/style-profile.css" rel="stylesheet">
   <script src="js/responsive-header.js" defer></script>
   <script src="js/redireccion.js"></script>
@@ -78,6 +80,17 @@
             <a href="cart.html">
               <i class="fas fa-shopping-cart icon-item"></i>Carrito
             </a>
+         <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
+        </div>
+        <button id="dark-mode-toggle" class="dark-mode-btn" title="Cambiar tema">
+  <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
+       width="24" height="24" viewBox="0 0 24 24"
+       fill="none" stroke="var(--accent)" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3
+             7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
         </div>
       </div>
       </a>
@@ -145,17 +158,17 @@
           </div>
         </fieldset>
         <fieldset class="account-info">
-          <div>
+          <div class="card-profile">
             <i class="fas fa-envelope"></i>
             <label for="inputEmail">Email</label>
             <input class="disabled-input" type="email" name="email" id="inputEmail" placeholder="ej: example@example.com" required disabled>
           </div>
-          <div>
+          <div class="card-profile">
             <i class="fas fa-phone"></i>
             <label for="inputTelefono">Teléfono</label>
             <input class="disabled-input" type="tel" name="telefono" id="inputTelefono" placeholder="ej: 099999999" required disabled>
           </div>
-          <div>
+          <div class="card-profile">
             <i class="fas fa-address-card"></i>
             <label for="inputNombreUsuario">Nombre de usuario</label>
             <input class="disabled-input" type="text" name="nombreUsuario" id="inputNombreUsuario" placeholder="ej: anaGomez" required disabled>
@@ -178,6 +191,8 @@
   <script src="js/init.js"></script>
   <script src="js/users.js"></script>
   <script src="js/my-profile.js"></script>
+  <script src="js/dark-mode.js"></script>
+  
 </body>
 
 </html>

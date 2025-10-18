@@ -245,6 +245,9 @@ nav{
     width: 50px;
     text-align: center;
 }
+.username {
+    color: white;
+}
 
 /* Cuando la pantalla llegue a 1800px */
 @media screen and (max-width: 1800px){
