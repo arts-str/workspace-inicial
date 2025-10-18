@@ -55,7 +55,7 @@ let updateUser = (
   email,
   telefono,
   nombreUsuario,
-  fotoURL
+  fotoURL = ''
 ) => {
   const users = getLocalUsers();
   const currentUser = localStorage.getItem("usuario");

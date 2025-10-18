@@ -16,6 +16,7 @@ const inputEmail = document.getElementById("inputEmail");
 const inputTelefono = document.getElementById("inputTelefono");
 const inputNombreUsuario = document.getElementById("inputNombreUsuario");
 const inputProfileImage = document.getElementById("inputProfileImage");
+const profPic = document.getElementById('profileImage');
 
 /**
  * Rellena con los datos del usuario al ingresar a la página "my-profile.html"
@@ -26,8 +27,10 @@ function fillProfile() {
   inputApellido.value = user.apellido;
   inputEmail.value = user.email;
   inputTelefono.value = user.telefono;
-  inputNombreUsuario.value = user.nombreUsuario;
-  // Falta tema foto
+  inputNombreUsuario.value = user.nombreUsuario;  
+  if (user.fotoURL !== '') {
+    profPic.src = user.fotoURL;
+  }
 }
 fillProfile();
 
@@ -37,6 +40,8 @@ fillProfile();
 function disableFields() {
   for (let inputField of inputFields) {
     inputField.disabled = true;
+    console.log(inputField.disabled);
+    
     inputField.classList.remove("available-input");
     inputField.classList.add("disabled-input");
   }
@@ -64,12 +69,13 @@ function enableFields() {
  */
 btnEditarPerfil.addEventListener("click", () => {
   enableFields();
+  updateInputsClass();
 });
 
 /**
  * Cancelar edición
  */
-btnCancelar.addEventListener("click", (e) => {
+btnCancelar.addEventListener("click", () => {
   const confirmar = confirm(
     "¿Estás seguro que quieres salir? No se guardarán los cambios"
   );
@@ -93,10 +99,19 @@ perfilForm.addEventListener("submit", (e) => {
     const email = inputEmail.value;
     const telefono = inputTelefono.value;
     const nombreUsuario = inputNombreUsuario.value;
-    const fotoURL = "";
+    const fotoURL = profPic.src;
 
     updateUser(nombre, apellido, email, telefono, nombreUsuario, fotoURL);
 
+    disableFields();
     globalThis.location.reload();
   }
 });
+
+function updateInputsClass() {
+  inputNombre.classList.add('form-edit-inputs');
+  inputApellido.classList.add('form-edit-inputs');
+  inputEmail.classList.add('form-edit-inputs');
+  inputTelefono.classList.add('form-edit-inputs');
+  inputNombreUsuario.classList.add('form-edit-inputs');
+}
