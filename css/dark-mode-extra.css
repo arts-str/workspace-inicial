@@ -33,9 +33,10 @@
 }
 
 .dark-mode .luna-icon {
-    fill: var(--dark);
-    stroke: var(--dark); 
+  fill: var(--accent);
+  stroke: var(--accent);
 }
+
 .dark-mode .luna-icon:hover {
     stroke: var(--dark);
 }
@@ -140,4 +141,33 @@
 
 .dark-mode .icon-registro { 
     color: var(--accent);
+}
+
+.dark-mode main .container {
+    border: none;
+}
+
+.dark-mode main label {
+color: var(--accent);
+}
+
+.dark-mode .card-profile { 
+ border: solid var(--accent);
+ background-color: var(--white);
+}
+
+.dark-mode .fas {
+    color: var(--accent);
+}
+
+.dark-mode #btnGuardar {
+    border: solid var(--accent);
+    background-color: var(--accent);
+    color: var(--white);
+}
+
+.dark-mode #btnCancelar {
+    border: solid var(--accent);
+    color: var(--dark);
+    background-color: var(--white);
 }
