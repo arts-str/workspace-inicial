@@ -24,12 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Alternar tema al hacer clic
-  toggleBtn.addEventListener("click", () => {
-    const isDark = root.classList.toggle("dark-mode");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  });
-  toggleBtnM.addEventListener("click", () => {
-    const isDark = root.classList.toggle("dark-mode");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  });
+  if (toggleBtn && toggleBtnM) {
+    toggleBtn.addEventListener("click", () => {
+      const isDark = root.classList.toggle("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    toggleBtnM.addEventListener("click", () => {
+      const isDark = root.classList.toggle("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    
+  }
+
 });

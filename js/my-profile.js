@@ -69,7 +69,7 @@ function enableFields() {
  */
 btnEditarPerfil.addEventListener("click", () => {
   enableFields();
-  updateInputsClass();
+  updateInputsClassDark();
 });
 
 /**
@@ -82,6 +82,9 @@ btnCancelar.addEventListener("click", () => {
   if (confirmar) {
     fillProfile();
     disableFields();
+    updateInputsClassLight();
+    deleteImg();
+    editedImage = false;
   }
 });
 
@@ -104,14 +107,22 @@ perfilForm.addEventListener("submit", (e) => {
     updateUser(nombre, apellido, email, telefono, nombreUsuario, fotoURL);
 
     disableFields();
+    editedImage = false;
     globalThis.location.reload();
   }
 });
 
-function updateInputsClass() {
+function updateInputsClassDark() {
   inputNombre.classList.add('form-edit-inputs');
   inputApellido.classList.add('form-edit-inputs');
   inputEmail.classList.add('form-edit-inputs');
   inputTelefono.classList.add('form-edit-inputs');
   inputNombreUsuario.classList.add('form-edit-inputs');
+}
+function updateInputsClassLight() {
+  inputNombre.classList.remove('form-edit-inputs');
+  inputApellido.classList.remove('form-edit-inputs');
+  inputEmail.classList.remove('form-edit-inputs');
+  inputTelefono.classList.remove('form-edit-inputs');
+  inputNombreUsuario.classList.remove('form-edit-inputs');
 }

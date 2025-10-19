@@ -16,7 +16,8 @@ let getLocalUsers = () => {
  */
 let getUser = (nombreUsuario) => {
   const users = getLocalUsers();
-
+  console.log(users);
+  
   return users.find((u) => u.nombreUsuario === nombreUsuario);
 };
 
