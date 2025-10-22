@@ -8,8 +8,8 @@ let totalPriceUSD = 0;
 let totalPriceUYU = 0;
 
 document.addEventListener("DOMContentLoaded", async () => {
-    addToCart(50925);
-    addToCart(60801);
+    addToCart(50925);//Agregar al carrito de manera provisoria para testeo
+    addToCart(60801);//Agregar al carrito de manera provisoria para testeo
 
     const cart = getUserCart();
     if (cart) {
@@ -76,6 +76,10 @@ function removeFromCart(prodID) {
 
 }
 
+/**
+ * Sumar un elemento al carrito de un objeto ya existente
+ * @param {number} prodID 
+ */
 function addOneInCart(prodID) {
     const user = getUser(localStorage.getItem('usuario'));
     const carrito = user.carrito;
@@ -89,6 +93,10 @@ function addOneInCart(prodID) {
     updatePrices()
     
 }
+/**
+ * Restar un elemento al carrito de un objeto ya existente
+ * @param {number} prodID 
+ */
 function subOneInCart(prodID) {
     const user = getUser(localStorage.getItem('usuario'));
     const carrito = user.carrito;
@@ -215,7 +223,9 @@ function addCard(product, value) {
         </div>
     `
 }
-
+/**
+ * Tomar el valor de todos los inputs y sumarlos para obtener cantidad total de productos
+ */
 function updateProductNumber() {
     let inputArray = document.querySelectorAll('input[name="quantity"]');
     
@@ -233,21 +243,30 @@ function updateProductNumber() {
     updateDetail();
 }
 
-
+/**
+ * Pesos uruguayos a dolares
+ * @param {number} val 
+ * @returns dolares
+ */
 function uyuToUsd(val) {
     return val / 40;
 }
 
+/**
+ * @returns precio total en USD o en UYU
+ */
 function calculateTotalPrice() {
     if (globalCart.every(p => p.product.currency === "UYU")) {
-        return totalPriceUYU; // no conversion needed
+        return totalPriceUYU; //No se necesita conversion
     }
-    // otherwise calculate in USD
+    //Sino calcular en USD
     return totalPriceUSD + uyuToUsd(totalPriceUYU);
 }
 
 
-
+/**
+ * Actualiza los precios, se fija el tipo de moneda y actualiza el resumen con esta informacion
+ */
 function updateDetail() {
     updatePrices();
     let total = calculateTotalPrice().toLocaleString("en-US", {
@@ -255,7 +274,7 @@ function updateDetail() {
         maximumFractionDigits: 2,
     });
 
-    // ✅ Detect if there are only UYU products
+    //Detectar si hay solo productos en UYUs
     const hasUSD = globalCart.some(p => p.product.currency === "USD");
     const hasUYU = globalCart.some(p => p.product.currency === "UYU");
 
@@ -264,10 +283,10 @@ function updateDetail() {
     } else if (!hasUSD && hasUYU) {
         subtotalMoneda.innerHTML = "UYU";
     } else if (hasUSD && hasUYU) {
-        // Mixed currencies — show both or choose a standard label
+        //Cuando hay monedas mezcladas
         subtotalMoneda.innerHTML = "USD (total convertido)";
     } else {
-        // Empty cart
+        //Vaciar carrito
         subtotalMoneda.innerHTML = "";
         total = "0.00";
     }
@@ -276,7 +295,9 @@ function updateDetail() {
 }
 
 
-
+/**
+ * Actualiza las variables globales de precio total en USD y UYU
+ */
 function updatePrices() {
     totalPriceUSD = 0;
     totalPriceUYU = 0;
@@ -291,7 +312,10 @@ function updatePrices() {
     }
 }
 
-
+/**
+ * Para llevar a product-info al cliquear la imagen del producto
+ * @param {number} id 
+ */
 function setProductID(id) {
   localStorage.setItem("productID", id);
   window.location = "product-info.html";
