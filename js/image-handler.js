@@ -12,7 +12,6 @@ let editedImage = false;
 function encodeImage() {
     prevImg = profPic.src;
     let filesSelected = inputProfileImage.files;
-    console.log(filesSelected);
     
     const fileToLoad = filesSelected[0];
     if (!fileToLoad) return;
@@ -24,7 +23,6 @@ function encodeImage() {
 
         let y = (srcData[srcData.length-2] === '=') ? 2 : 1 ;
         let sizeB = (srcData.length * (3/4)) - y;
-        console.log(sizeB, filesSelected[0].size);
         
         if (sizeB < 4000000) {
             editedImage = true;
