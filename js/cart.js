@@ -43,7 +43,7 @@ function removeFromCart(prodID) {
     if (elementoAEliminar) { //Si esta en el carrito
         const posElementoAElminiar = carrito.indexOf(elementoAEliminar); //Buscar su posicion en el array carrito
         carrito.splice(posElementoAElminiar, 1); //Eliminarlo
-        updateUser(user.name, user.apellido, user.email, user.telefono, user.nombreUsuario, user.fotoURL, carrito);//Actualizar el user object
+        updateUser(user.nombre, user.apellido, user.email, user.telefono, user.nombreUsuario, user.fotoURL, carrito);//Actualizar el user object
     }else{
         console.log(prodID + " no está en el carrito");  
     }
@@ -69,7 +69,7 @@ function addOneInCart(prodID) {
     const elementoActualizar = carrito.find((p) => p.id === Number.parseInt(prodID, 10));
     elementoActualizar.amount++;
     
-    updateUser(user.name, user.apellido, user.email, user.telefono, user.nombreUsuario, user.fotoURL, carrito);//Actualizar el user object
+    updateUser(user.nombre, user.apellido, user.email, user.telefono, user.nombreUsuario, user.fotoURL, carrito);//Actualizar el user object
 
     const updateElement = globalCart.find((p) => p.product.id === Number.parseInt(prodID, 10));
     updateElement.amount++;
@@ -86,7 +86,7 @@ function subOneInCart(prodID) {
     const carrito = user.carrito;
     const elementoActualizar = carrito.find((p) => p.id === Number.parseInt(prodID, 10));
     elementoActualizar.amount--;
-    updateUser(user.name, user.apellido, user.email, user.telefono, user.nombreUsuario, user.fotoURL, carrito);//Actualizar el user object
+    updateUser(user.nombre, user.apellido, user.email, user.telefono, user.nombreUsuario, user.fotoURL, carrito);//Actualizar el user object
     
     const updateElement = globalCart.find((p) => p.product.id === Number.parseInt(prodID, 10));
     updateElement.amount--;

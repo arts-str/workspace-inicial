@@ -503,7 +503,7 @@ function addToCart() {
 
   carrito.push({ id: prodIdNumber, amount: 1 }); //Agregarlo
   updateUser(
-    user.name,
+    user.nombre,
     user.apellido,
     user.email,
     user.telefono,
