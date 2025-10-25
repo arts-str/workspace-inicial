@@ -78,6 +78,7 @@
             </a>
             <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
             <a href="cart.html">
+              <span class="badge"></span>
               <i class="fas fa-shopping-cart icon-item"></i>Carrito
             </a>
           <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
@@ -97,6 +98,7 @@
       </a>
 
       <div class="mobile-cart">
+          <span class="badge"></span>
           <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
       </div>
 
@@ -143,22 +145,23 @@
     </div>
   </header>
   <main>
-    <div class="carrito">    
+    <div class="text-center p-4">
+      <h1>Carrito</h1>
+      <p class="lead">Todos tus productos añadidos para comprar.</p>
+      <p class="envio-gratis">¡Envio gratis a partir del tercer producto!</p>
+    </div>   
+    <div class="carrito-container"> 
 
-      <div class="container" id="container">
-      
+      <div class="carrito" id="carrito">
       </div>
 
       <div class="carrito-detalle">
         <div>
         <h5>Detalle de la compra</h5>
-        <hr>
         </div>
         <div>
           <p id="productNum" class="productos">Productos (7)</p>
           <p id="envioGratis" class="envio-gratis envio-disabled">Envio gratis</p>
-          
-          <hr>
         </div>
         
         <div class="detalle-precio">
@@ -172,10 +175,9 @@
         </div>
         <button class="buy-now">Comprar ahora</button>
       </div>
-
     </div>
-
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

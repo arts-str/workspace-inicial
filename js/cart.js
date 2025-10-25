@@ -1,4 +1,4 @@
-const container = document.getElementById('container');
+const container = document.getElementById('carrito');
 const productNumLabel = document.getElementById('productNum');
 const subtotalMoneda = document.getElementById('subtotalMoneda');
 const subtotalPrecio = document.getElementById('subtotalPrecio');
@@ -8,9 +8,6 @@ let totalPriceUSD = 0;
 let totalPriceUYU = 0;
 
 document.addEventListener("DOMContentLoaded", async () => {
-    addToCart(50925);//Agregar al carrito de manera provisoria para testeo
-    addToCart(60801);//Agregar al carrito de manera provisoria para testeo
-
     const cart = getUserCart();
     if (cart) {
         for (const item of cart) {
@@ -32,20 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 function getUserCart() {
     return getUser(localStorage.getItem('usuario')).carrito;
 }
-/**
- * Quitar del carrito actualizando el objeto usuario
- * @param {number} prodID 
- */
-function addToCart(prodID) {
-    const user = getUser(localStorage.getItem('usuario'));
-    const carrito = user.carrito;
-    if (!carrito.find((p) => p.id === prodID)) { //Si no esta en el carrito
-        carrito.push({id: prodID, amount: 1}); //Agregarlo
-        updateUser(user.name, user.apellido, user.email, user.telefono, user.nombreUsuario, user.fotoURL, carrito); //Actualizar el user object
-    }else{
-        console.log(prodID + " ya esta en el carrito");  
-    }
-}
+
 /**
  * Quitar del carrito actualizando el objeto usuario
  * @param {number} prodID 
@@ -53,7 +37,7 @@ function addToCart(prodID) {
 function removeFromCart(prodID) {
     const user = getUser(localStorage.getItem('usuario'));
     const carrito = user.carrito;
-    const elementoAEliminar = carrito.find((p) => p.id === parseInt(prodID, 10));
+    const elementoAEliminar = carrito.find((p) => p.id === Number.parseInt(prodID));
     console.log(carrito.indexOf(elementoAEliminar)) //Buscar su posicion en el array carrito);
     
     if (elementoAEliminar) { //Si esta en el carrito
@@ -64,7 +48,7 @@ function removeFromCart(prodID) {
         console.log(prodID + " no está en el carrito");  
     }
 
-    const deleteElement = globalCart.find((p) => p.product.id === parseInt(prodID, 10));
+    const deleteElement = globalCart.find((p) => p.product.id === Number.parseInt(prodID, 10));
     if (deleteElement) {
         const posElementoAElminiar = globalCart.indexOf(deleteElement);
         globalCart.splice(posElementoAElminiar, 1);
@@ -72,8 +56,7 @@ function removeFromCart(prodID) {
     updateProductNumber();
     updatePrices();
     updateDetail();
-
-
+    updateCartBadge();
 }
 
 /**
@@ -83,16 +66,17 @@ function removeFromCart(prodID) {
 function addOneInCart(prodID) {
     const user = getUser(localStorage.getItem('usuario'));
     const carrito = user.carrito;
-    const elementoActualizar = carrito.find((p) => p.id === parseInt(prodID, 10));
+    const elementoActualizar = carrito.find((p) => p.id === Number.parseInt(prodID, 10));
     elementoActualizar.amount++;
     
     updateUser(user.name, user.apellido, user.email, user.telefono, user.nombreUsuario, user.fotoURL, carrito);//Actualizar el user object
 
-    const updateElement = globalCart.find((p) => p.product.id === parseInt(prodID, 10));
+    const updateElement = globalCart.find((p) => p.product.id === Number.parseInt(prodID, 10));
     updateElement.amount++;
     updatePrices()
-    
+    updateCartBadge();
 }
+
 /**
  * Restar un elemento al carrito de un objeto ya existente
  * @param {number} prodID 
@@ -100,13 +84,14 @@ function addOneInCart(prodID) {
 function subOneInCart(prodID) {
     const user = getUser(localStorage.getItem('usuario'));
     const carrito = user.carrito;
-    const elementoActualizar = carrito.find((p) => p.id === parseInt(prodID, 10));
+    const elementoActualizar = carrito.find((p) => p.id === Number.parseInt(prodID, 10));
     elementoActualizar.amount--;
     updateUser(user.name, user.apellido, user.email, user.telefono, user.nombreUsuario, user.fotoURL, carrito);//Actualizar el user object
     
-    const updateElement = globalCart.find((p) => p.product.id === parseInt(prodID, 10));
+    const updateElement = globalCart.find((p) => p.product.id === Number.parseInt(prodID, 10));
     updateElement.amount--;
     updateDetail()
+    updateCartBadge();
 }
 
 /**
@@ -135,9 +120,9 @@ function addEventsToCards() {
         const addBttn = fieldset.children[2]; //Boton de sumar tercer elemento
         const prodID = fieldset.parentElement.parentElement.children[0].children[1].innerHTML;
         
-        let current = parseInt(input.value, 10); 
-        let min = parseInt(input.min, 10);
-        let max = parseInt(input.max, 10);
+        let current = Number.parseInt(input.value, 10); 
+        let min = Number.parseInt(input.min, 10);
+        let max = Number.parseInt(input.max, 10);
 
         if (max === 0) {
             max = 1;
@@ -152,7 +137,7 @@ function addEventsToCards() {
         
         addBttn.onclick = () =>{
             
-            current = parseInt(input.value, 10); 
+            current = Number.parseInt(input.value, 10); 
             if (current < max) {  //Si no es mayor a la cantidad maxima de productos
                 addBttn.classList.remove('disabled');
                 subBttn.classList.remove('disabled');
@@ -165,7 +150,7 @@ function addEventsToCards() {
             }
         };
         subBttn.onclick = () =>{
-            current = parseInt(input.value, 10); 
+            current = Number.parseInt(input.value, 10); 
             
             if (min < current) { //Si no es menor que 1
                 addBttn.classList.remove('disabled');
@@ -194,20 +179,21 @@ function addCard(product, value) {
     const prodID = product.id;
     return `
         <div class="list-item-container cursor-active">
-            <img src="${image}" alt="Imagen" onclick="setProductID(${prodID})">
+            <div class="img-contenido">
+                <img src="${image}" alt="Imagen" onclick="setProductID(${prodID})">
+            </div>
             <div class="contenido">
                 <div class="contenido-1">
                     <div class="contenido-titulo">
                         <h3>${title}</h3>
-                        <button type="button" title="Down" id="delete" class="del">${prodID}</button>
+                        <button type="button" title="Down" id="delete${prodID}" class="del">${prodID}</button>
                     </div>
-                    <hr>
                     <div class="contenido-mid">
                         <p>Cantidad:</p>
                         <fieldset class="cart-input">
-                            <button type="button" title="Down" id="sub" class="sub">Down</button>
-                            <input type="number" name="quantity" id="amount" value="${value}" min="1" max="${max}" readonly>
-                            <button type="button" title="Up" id="add" class="add">Up</button>
+                            <button type="button" title="Down" id="sub${prodID}" aria-label="Disminuir cantidad"><i class="fas fa-minus"></i></button>
+                            <input type="number" name="quantity" id="amount${prodID}" value="${value}" min="1" max="${max}" readonly>
+                            <button type="button" title="Up" id="add${prodID}" aria-label="Aumentar cantidad"><i class="fas fa-plus"></i></button>
                         </fieldset>
                     </div>
                     </div>
@@ -231,7 +217,7 @@ function updateProductNumber() {
     
     let sum = 0;
     for (const input of inputArray) {
-        sum += parseInt(input.value, 10);
+        sum += Number.parseInt(input.value, 10);
     }
     productNumLabel.innerHTML = `Productos (${sum})`
     if (sum > 2) {
@@ -318,5 +304,5 @@ function updatePrices() {
  */
 function setProductID(id) {
   localStorage.setItem("productID", id);
-  window.location = "product-info.html";
+  globalThis.location = "product-info.html";
 }

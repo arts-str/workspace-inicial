@@ -64,7 +64,7 @@
                 </clipPath>
               </defs>
             </svg>
-            <input type="text" id="buscador" placeholder="Buscar">
+            <input type="text" placeholder="Buscar">
           </div>
           <div class="links-right">
             <a href="sell.html">
@@ -76,6 +76,7 @@
             </a>
             <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
             <a href="cart.html">
+              <span class="badge"></span>
               <i class="fas fa-shopping-cart icon-item"></i>Carrito
             </a>
           <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
@@ -95,6 +96,7 @@
       </a>
 
       <div class="mobile-cart">
+          <span class="badge"></span>
           <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
       </div>
 
@@ -136,13 +138,12 @@
         <a href="#"><i class="fas fa-ticket-alt"></i> Cupones</a>
         <a href="sell.html"><i class="fas fa-store"></i> Vender</a>
         <a href="#"><i class="fas fa-heart"></i> Favoritos</a>
+
         <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
     </div>
   </header>
 
   <main class="products-container">
-  
-    </aside>
     <section class="result-container">
       <h2 id="product-title">Resultados</h2>
       <p id="product-result-count"></p>
@@ -192,6 +193,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
+  <script src="js/users.js"></script>
   <script src="js/redireccion.js"></script>
   <script src="js/responsive-header.js" defer></script>
   <script src="js/dark-mode.js"></script>

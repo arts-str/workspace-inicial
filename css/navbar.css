@@ -90,12 +90,35 @@ nav{
     margin-right: 7px;
 }
 
+/* Badge carrito */
+.badge {
+    position: absolute;
+    margin-top: -8px;
+    margin-left: 1rem;
+    background-color: var(--bs-blue);
+    color: var(--white);
+    text-align: center;
+    border-radius: 100%;
+    place-content: center;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    font-size: small;
+}
+
 /* --- Responsive design --- */
 
 /* Icono de carrito para responsive */
 .mobile-cart {
     display: none;
     align-self: center;
+}
+
+.mobile-cart .badge{
+    width: 25px;
+    height: 25px;
+    margin-top: 4px;
+    margin-left: 2rem;
 }
 
 .mobile-cart a {
@@ -324,12 +347,16 @@ nav{
     .clicked .one {
         transform: translateY(10px) rotate(45deg);
     }
-
     .clicked .two {
         opacity: 0;
     }
-
     .clicked .three {
         transform: translateY(-10px) rotate(-45deg);
+    }
+    .mobile-cart .badge{
+        width: 18px;
+        height: 18px;
+        margin-top: 4px;
+        margin-left: 1.7rem;
     }
 }

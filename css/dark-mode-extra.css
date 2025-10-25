@@ -136,8 +136,13 @@ color: var(--accent);
     background-color: var(--white);
 }
 
-.dark-mode .fas:not(.fa-star) {
+.dark-mode .fas:not(.fa-star),
+.dark-mode button:not(.disabled) i.fas {
     color: var(--accent);
+}
+
+.dark-mode button.disabled i.fas {
+    color: inherit;
 }
 
 .dark-mode #btnGuardar {
