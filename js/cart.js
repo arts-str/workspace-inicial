@@ -3,6 +3,9 @@ const productNumLabel = document.getElementById('productNum');
 const subtotalMoneda = document.getElementById('subtotalMoneda');
 const subtotalPrecio = document.getElementById('subtotalPrecio');
 const envioGratis = document.getElementById('envioGratis');
+const noProducts = document.querySelector('.no-products');
+const btnBuyNow = document.getElementById('btnBuyNow');
+
 let globalCart = [];
 let totalPriceUSD = 0;
 let totalPriceUYU = 0;
@@ -118,8 +121,13 @@ function addEventsToCards() {
         const subBttn = fieldset.children[0]; //Boton de restar primer elemento
         const input = fieldset.children[1]; //Input segundo elemento
         const addBttn = fieldset.children[2]; //Boton de sumar tercer elemento
-        const prodID = fieldset.parentElement.parentElement.children[0].children[1].innerHTML;
+        const prodID = fieldset.parentElement.parentElement.parentElement.children[0].children[1].innerHTML;
         
+        //Elemento de precio unitario. Ej: 1 x USD 500
+        const unitPrice = fieldset.parentElement.parentElement.children[2];
+        //Elemento donde se encuentra el precio resaltado
+        const sumProductPrice = fieldset.parentElement.parentElement.parentElement.parentElement.children[1].children[0].children[1].children[0];
+
         let current = Number.parseInt(input.value, 10); 
         let min = Number.parseInt(input.min, 10);
         let max = Number.parseInt(input.max, 10);
@@ -134,6 +142,8 @@ function addEventsToCards() {
         if (current === min) {
             subBttn.classList.add('disabled');
         }
+
+        updateProductPrices(unitPrice, input, sumProductPrice);
         
         addBttn.onclick = () =>{
             
@@ -148,6 +158,7 @@ function addEventsToCards() {
             if(current + 1 === max){
                 addBttn.classList.add('disabled');
             }
+            input.dispatchEvent(new Event('change'));
         };
         subBttn.onclick = () =>{
             current = Number.parseInt(input.value, 10); 
@@ -163,9 +174,47 @@ function addEventsToCards() {
             if(current - 1 === 1){
                 subBttn.classList.add('disabled');
             }
+            input.dispatchEvent(new Event('change'));
         };
+
+        //Mostrar precio unitario cuando la cantidad de un producto sea mayor a 1
+        input.addEventListener('change', () => {
+            updateProductPrices(unitPrice, input, sumProductPrice);
+        })
     }
 }
+
+/**
+ * Esta función se encarga de actualizar el precio de un producto en consecuencia del cambio de cantidad
+ * @param {Element} unitPrice 
+ * @param {Element} input 
+ * @param {number} sumProductPrice 
+ */
+function updateProductPrices(unitPrice, input, sumProductPrice){
+    const originalPrice = unitPrice.children[0].innerHTML; //Precio original extraído del Ej: 1 x USD 5,000.00
+    const sumProduct = Number.parseInt(input.value); //Cantidad de un producto deseado
+    
+    if (sumProduct > 1){
+        unitPrice.style.display = "block";
+    } else {
+        unitPrice.style.display = "none";
+    }
+
+    // Extraer la parte numérica con coma y punto
+    const match = new RegExp(/(\d{1,3}(?:,\d{3})*\.\d+)/).exec(originalPrice)?.[1];
+    if (match) {
+        // Reemplazar coma por nada para convertirlo a número
+        const numero = Number.parseFloat(match.replaceAll(',', ''));
+
+        //Mostrar el precio total: precio original x cantidad deseada
+        const totalPrice = numero * sumProduct;
+        sumProductPrice.innerHTML = totalPrice.toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        });
+    }
+}
+
 /**
  * @param {object} product 
  * @returns String con HTML para la tarjeta del producto
@@ -190,21 +239,26 @@ function addCard(product, value) {
                     </div>
                     <div class="contenido-mid">
                         <p>Cantidad:</p>
-                        <fieldset class="cart-input">
-                            <button type="button" title="Down" id="sub${prodID}" aria-label="Disminuir cantidad"><i class="fas fa-minus"></i></button>
-                            <input type="number" name="quantity" id="amount${prodID}" value="${value}" min="1" max="${max}" readonly>
-                            <button type="button" title="Up" id="add${prodID}" aria-label="Aumentar cantidad"><i class="fas fa-plus"></i></button>
-                        </fieldset>
-                    </div>
-                    </div>
-                    <div class="contenido-2">
-                        <div class="monedas">
-                            <p class="moneda">${currency}</p>
-                            <div class="resaltado">
-                            <p class="precio">${price}</p>
-                            </div>
+                        <div class="product-amount">
+                            <fieldset class="cart-input">
+                                <button type="button" title="Down" id="sub${prodID}" aria-label="Disminuir cantidad"><i class="fas fa-minus"></i></button>
+                                <input type="number" name="quantity" id="amount${prodID}" value="${value}" min="1" max="${max}" readonly>
+                                <button type="button" title="Up" id="add${prodID}" aria-label="Aumentar cantidad"><i class="fas fa-plus"></i></button>
+                            </fieldset>
+                        </div>
+                        <div class="product-unit-price">
+                            <p>1 x ${currency} ${price}</p>
                         </div>
                     </div>
+                </div>
+                <div class="contenido-2">
+                    <div class="monedas">
+                        <p class="moneda">${currency}</p>
+                        <div class="resaltado">
+                        <p class="precio">${price}</p>
+                        </div>
+                    </div>
+                </div>
             </div> 
         </div>
     `
@@ -220,10 +274,21 @@ function updateProductNumber() {
         sum += Number.parseInt(input.value, 10);
     }
     productNumLabel.innerHTML = `Productos (${sum})`
-    if (sum > 2) {
+    
+    // Deshabilitar botón de comprar y mostrar mensaje de "¡Tu carrito está vacío!" cuando
+    // la suma de productos sea 0
+    if (sum == 0){
+        btnBuyNow.disabled = true;
+        noProducts.style.display = 'block';
+    } else {
+        noProducts.style.display = 'none';
+        btnBuyNow.disabled = false;
+    }
+    
+    // Envío gratis
+    if(sum > 2) {
         envioGratis.classList.remove('envio-disabled');
     }else{
-        
         envioGratis.classList.add('envio-disabled');
     }
     updateDetail();
