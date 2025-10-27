@@ -57,9 +57,12 @@
 }
 
 .list-item-container .img-contenido {
-    max-width: 300px;
-    align-items: center;
+    height: 210px;
+    min-width: 340px;
     align-self: center;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .list-item-container img {
@@ -317,7 +320,7 @@ fieldset button {
     color: var(--dark);
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 1024px) {
     #carrito {
         justify-items: center;
     }
@@ -366,14 +369,38 @@ fieldset button {
     }
 }
 
-@media screen and (max-width: 650px) {
-    .list-item-container .img-contenido {
-        max-width: 130px;
+@media screen and (max-width: 536px) {
+    .carrito-container{
+        width: 100%;
     }
-}
-
-@media screen and (max-width: 445px) {
-    .detalle-precio .monedas {
-        display: grid;
+    .carrito{
+        width: 100%;
+    }
+    .list-item-container{
+        position: relative;
+        width: 100%;
+        flex-direction: column;
+    }
+    .list-item-container .img-contenido{
+        position: relative;
+        min-width: 272px;
+        height: auto;
+    }
+    .carrito-detalle{
+        padding: .5rem;
+        width: 100%;
+    }
+    .detalle-precio .monedas{
+        flex-direction: column;
+        align-items: end;
+    }
+    .detalle-precio .moneda{
+        align-self: flex-end;
+    }
+    .detalle-precio .resaltado{
+        width: fit-content;
+    }
+    .buy-now{
+        margin-top: 1rem;
     }
 }
