@@ -1,10 +1,5 @@
 /*product info*/
 
-.dark-mode #buy-now,
-#add-to-cart, #cost{
-    color: var(--white)
-}
-
 .dark-mode .comment-form h3 {
     color: var(--dark);
 }
@@ -13,7 +8,7 @@
 }
 
 .dark-mode .bi-star-fill {
-  color: var(--accent); 
+    color: var(--accent); 
 }
 
 .dark-mode #inputComment {
@@ -22,8 +17,8 @@
 }
 
 .dark-mode .relacionado-item {
-  border: 0.1rem solid var(--accent);
-  background-color: var(--white);
+    border: 0.1rem solid var(--accent);
+    background-color: var(--white);
 }
 
 /*nav*/
@@ -33,8 +28,8 @@
 }
 
 .dark-mode .luna-icon {
-  fill: var(--accent);
-  stroke: var(--accent);
+    fill: var(--accent);
+    stroke: var(--accent);
 }
 
 .dark-mode .luna-icon:hover {
@@ -48,7 +43,7 @@
 }
 
 .dark-mode .btn-outline-dark {
-    border: solid var(--dark);
+    border: 1px solid var(--dark);
     color: var(--dark);
 }
 
@@ -59,11 +54,8 @@
 }
 
 .dark-mode .list-item-container {
-    border: none;
-}
-.dark-mode .contenido {
-    border: solid var(--accent);
-    border-left:none;
+    background-color: var(--white);
+    border: 1px var(--accent) solid;
 }
 
 .dark-mode p.precio {
@@ -83,10 +75,10 @@
 }
 
 /*login*/
-.dark-mode .container {
+.dark-mode body > .container {
     border: solid var(--dark);
     box-shadow: none;
-
+    background-color: var(--white);
 }
 
 .dark-mode .container h2, span {
@@ -104,35 +96,23 @@
     background-color: var(--white);
     color: var(--dark);
 }
-  
+
 .dark-mode .welcome-sign-in  .welcome-sign{
     background-color: var(--white);
     border: solid var(--accent);
 }
 
 .dark-mode .container-welcome .welcome-sign-in.welcome {
-    background-color: var(--dark);
     padding: auto;
-   border-top:none;
-  
+    border-top:none;
 }
-
 
 .dark-mode .sign-up input {
     background-color: var(--dark);
 }
 
-.dark-mode .container {
-    background-color: var(--white);
-}
-
-.dark-mode .container:has(#btn-sign-up:focus),
 .dark-mode .container:has(#btn-sign-up:focus) {
-  border: solid var(--accent);
-}
-
-.dark-mode .icon-registro { 
-    color: var(--dark);
+    border: solid var(--accent);
 }
 
 .dark-mode h2 .reg1, .reg-1 {
@@ -152,12 +132,17 @@ color: var(--accent);
 }
 
 .dark-mode .card-profile { 
- border: solid var(--accent);
- background-color: var(--white);
+    border: solid var(--accent);
+    background-color: var(--white);
 }
 
-.dark-mode .fas {
+.dark-mode .fas:not(.fa-star),
+.dark-mode button:not(.disabled) i.fas {
     color: var(--accent);
+}
+
+.dark-mode button.disabled i.fas {
+    color: inherit;
 }
 
 .dark-mode #btnGuardar {

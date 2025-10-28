@@ -15,9 +15,7 @@ let getLocalUsers = () => {
  * @param {string} nombreUsuario
  */
 let getUser = (nombreUsuario) => {
-  const users = getLocalUsers();
-  console.log(users);
-  
+  const users = getLocalUsers();  
   return users.find((u) => u.nombreUsuario === nombreUsuario);
 };
 
@@ -35,6 +33,7 @@ let createUser = (nombreUsuario) => {
     nombreUsuario: nombreUsuario,
     fotoURL: "",
     modoOscuro: "",
+    carrito: [],
   };
   users.push(user);
   localStorage.setItem("usuarios", JSON.stringify(users));
@@ -49,6 +48,7 @@ let createUser = (nombreUsuario) => {
  * @param {string} telefono
  * @param {string} nombreUsuario
  * @param {string} fotoURL
+ * @param {Array} carrito
  */
 let updateUser = (
   nombre,
@@ -56,7 +56,8 @@ let updateUser = (
   email,
   telefono,
   nombreUsuario,
-  fotoURL = ''
+  fotoURL = '',
+  carrito = [],
 ) => {
   const users = getLocalUsers();
   const currentUser = localStorage.getItem("usuario");
@@ -69,6 +70,7 @@ let updateUser = (
     user.telefono = telefono;
     user.nombreUsuario = nombreUsuario;
     user.fotoURL = fotoURL;
+    user.carrito = carrito;
 
     localStorage.setItem("usuarios", JSON.stringify(users));
     localStorage.setItem("usuario", nombreUsuario);

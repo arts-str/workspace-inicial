@@ -184,7 +184,7 @@ main{
 #cost {
   display: inline-block;
   background-color: var(--accent);
-  color: var(--dark);
+  color: var(--bs-dark);
   font-size: 1.2em;
   padding: .5rem 1rem .3rem 1rem;
   border-radius: 32px 0 0 0;

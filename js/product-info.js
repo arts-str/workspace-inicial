@@ -11,6 +11,10 @@ const inputComment = document.getElementById("inputComment");
 const stars = document.querySelectorAll('.star-rating input[name="rating"]');
 let score = 0;
 
+//Comprar, agregar al carrito
+const buttonBuyNow = document.getElementById("buy-now");
+const buttonAddToCart = document.getElementById("add-to-cart");
+
 //para mostrar los datos de productos en la pantalla
 function showProductInfo() {
   if (!productData.name || !productData.images?.length) return; //si no hay datos no se cumple la funcion
@@ -129,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /**
  * Define el valor de la variable score de acuerdo al número de estrellas
  * que están seleccionadas en el form
- * @param {boolean} clear 
+ * @param {boolean} clear
  */
 function starRatingChange() {
   stars.forEach((star) => {
@@ -165,13 +169,13 @@ function sendCommentForm() {
 
     // En caso de que exista un mensaje de "No hay comentarios", se elimina dicho elemento
     const noComments = document.querySelector("p.no-comments");
-    if(noComments?.parentNode){
-      noComments.parentNode.removeChild(noComments);
+    if (noComments?.parentNode) {
+      noComments.remove();
     }
 
     const commentObj = {
-      product: parseInt(productID),
-      score: parseInt(score),
+      product: Number.parseInt(productID),
+      score: Number.parseInt(score),
       description: inputComment.value,
       user: localStorage.getItem("usuario"),
       dateTime: getCurrentDate(), //formato "YYYY-mm-dd HH:mm:ss",
@@ -185,7 +189,6 @@ function sendCommentForm() {
     clearForm(); // Limpiar formulario
   });
 }
-
 
 /**
  * Fecha y hora actual en formato "YYYY-MM-DD HH:mm:ss"
@@ -212,8 +215,8 @@ function getCurrentDate() {
  */
 function clearForm() {
   inputComment.value = "";
-  stars.forEach(star => {
-      star.checked = false;
+  stars.forEach((star) => {
+    star.checked = false;
   });
   score = 0;
 }
@@ -400,45 +403,10 @@ function addCommentsLeft() {
   `;
 }
 
-
-
-// Productos Relacionados
-function productosRelacionados() {
-    const container = document.querySelector('.productos-relacionados');
-    container.innerHTML = '<h4>Productos relacionados</h4><div class="relacionados-list"></div>';
-    const list = container.querySelector('.relacionados-list');
-    if (!productData.relatedProducts || !productData.relatedProducts.length) {
-        list.innerHTML = '<p>No hay productos relacionados.</p>';
-        return;
-    }
-    productData.relatedProducts.forEach(prod => {
-        const item = document.createElement('div');
-        item.className = 'relacionado-item';
-        item.innerHTML = `
-            <div class="relacionado-img">
-                <img src="${prod.image}" alt="${prod.name}">
-            </div>
-            <div class="relacionado-info">
-                <h5>${prod.name}</h5>
-                <button onclick="verProductoRelacionado(${prod.id})">Ver producto</button>
-            </div>
-        `;
-        list.appendChild(item);
-    });
-}
-
-
-// Función para navegar al producto relacionado
-function verProductoRelacionado(id) {
-    localStorage.setItem('productID', id);
-    window.location.reload();
-}
-
-
 function addStarsTop() {
   let score = scoreAverage(allComments);
   let stars = calculateStars(score, "h5");
-  document.getElementById('stars').innerHTML = `
+  document.getElementById("stars").innerHTML = `
 
     <div class="comments-score-top">
       <div class="stars-amount-inline">
@@ -448,12 +416,101 @@ function addStarsTop() {
         <p>${allComments.length} calificaciones</p>
       </div>
     </div>
-    `
+    `;
 
-    document.getElementById('stars').addEventListener('click', () =>{
-      document.getElementById('comment-section').scrollIntoView();
-    });
-    document.getElementById('stars').addEventListener('touchstart', () =>{
-      document.getElementById('comment-section').scrollIntoView();
-    });
+  document.getElementById("stars").addEventListener("click", () => {
+    document.getElementById("comment-section").scrollIntoView();
+  });
+  document.getElementById("stars").addEventListener("touchstart", () => {
+    document.getElementById("comment-section").scrollIntoView();
+  });
+}
+
+/** ----------------- Funciones de productos relacionados -----------------*/
+
+// Productos Relacionados
+function productosRelacionados() {
+  const container = document.querySelector(".productos-relacionados");
+  container.innerHTML =
+    '<h4>Productos relacionados</h4><div class="relacionados-list"></div>';
+  const list = container.querySelector(".relacionados-list");
+  if (!productData.relatedProducts || !productData.relatedProducts.length) {
+    list.innerHTML = "<p>No hay productos relacionados.</p>";
+    return;
+  }
+  productData.relatedProducts.forEach((prod) => {
+    const item = document.createElement("div");
+    item.className = "relacionado-item";
+    item.innerHTML = `
+            <div class="relacionado-img">
+                <img src="${prod.image}" alt="${prod.name}">
+            </div>
+            <div class="relacionado-info">
+                <h5>${prod.name}</h5>
+                <button onclick="verProductoRelacionado(${prod.id})">Ver producto</button>
+            </div>
+        `;
+    list.appendChild(item);
+  });
+}
+
+// Función para navegar al producto relacionado
+function verProductoRelacionado(id) {
+  localStorage.setItem("productID", id);
+  window.location.reload();
+}
+
+/** ----------------- Funciones para agregar producto al carrito -----------------*/
+/**
+ * Comprar ahora: agrega el producto al carrito y redirige a la página de carrito
+ */
+buttonBuyNow.addEventListener("click", (e) => {
+  const added = addToCart();
+  if (added) {
+    globalThis.location.href = "cart.html";
+  } // redirige al carrito
+});
+
+/**
+ * Agregar al carrito: agrega el producto al carrito
+ */
+buttonAddToCart.addEventListener("click", (e) => {
+  const added = addToCart();
+  if (added) {
+    alert(
+      "¡Se ha añadido este producto a tu carrito! Puedes acceder ahora a finalizar tu compra o continuar añadiendo productos :)"
+    );
+  }
+});
+
+/**
+ * Agregar producto al carrito y actualizar el objeto usuario
+ */
+function addToCart() {
+  const prodID = localStorage.getItem("productID");
+  const prodIdNumber = Number.parseInt(prodID);
+
+  const user = getUser(localStorage.getItem("usuario"));
+  const carrito = user.carrito;
+  const productInCart = carrito.find((p) => p.id === prodIdNumber);
+
+  if (productInCart) {
+    //Si ya está en el carrito
+    console.log(prodID + " ya esta en el carrito");
+    alert("¡Este producto ya está en tu carrito!");
+    return false;
+  }
+
+  carrito.push({ id: prodIdNumber, amount: 1 }); //Agregarlo
+  updateUser(
+    user.nombre,
+    user.apellido,
+    user.email,
+    user.telefono,
+    user.nombreUsuario,
+    user.fotoURL,
+    carrito
+  ); //Actualizar el user object
+  updateCartBadge(); //Actualizar Badge
+  return true;
 }

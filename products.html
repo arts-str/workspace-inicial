@@ -64,7 +64,7 @@
                 </clipPath>
               </defs>
             </svg>
-            <input type="text" id="buscador" placeholder="Buscar">
+            <input type="text" placeholder="Buscar">
           </div>
           <div class="links-right">
             <a href="sell.html">
@@ -76,18 +76,19 @@
             </a>
             <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
             <a href="cart.html">
+              <span class="badge"></span>
               <i class="fas fa-shopping-cart icon-item"></i>Carrito
             </a>
-         <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
-            <button id="dark-mode-toggle" class="dark-mode-btn" title="Cambiar tema">
-               <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
-                    width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="var(--accent)" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                 <path d="M21 12.79A9 9 0 1 1 11.21 3
-                          7 7 0 0 0 21 12.79z"></path>
-               </svg>
-             </button>
+          <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
+          <button id="dark-mode-toggle" class="dark-mode-btn" title="Cambiar tema">
+              <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
+                  width="24" height="24" viewBox="0 0 24 24"
+                  fill="none" stroke="var(--accent)" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3
+                        7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
         </div>
 
         </div>
@@ -95,6 +96,7 @@
       </a>
 
       <div class="mobile-cart">
+          <span class="badge"></span>
           <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
       </div>
 
@@ -121,14 +123,14 @@
               <a href="my-profile.html">Mi Perfil</a>
             </div>
             <button id="dark-mode-toggle-mobile" class="dark-mode-btn" title="Cambiar tema">
-               <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
-                    width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="var(--accent)" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                 <path d="M21 12.79A9 9 0 1 1 11.21 3
-                          7 7 0 0 0 21 12.79z"></path>
-               </svg>
-             </button>
+              <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
+                  width="24" height="24" viewBox="0 0 24 24"
+                  fill="none" stroke="var(--accent)" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3
+                        7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
         </div>
         <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
         <a href="categories.html"><i class="fas fa-list"></i> Categorías</a>
@@ -136,43 +138,37 @@
         <a href="#"><i class="fas fa-ticket-alt"></i> Cupones</a>
         <a href="sell.html"><i class="fas fa-store"></i> Vender</a>
         <a href="#"><i class="fas fa-heart"></i> Favoritos</a>
+
         <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
     </div>
   </header>
 
   <main class="products-container">
-   
-    </aside>
-    <section class="list-container">
+    <section class="result-container">
       <h2 id="product-title">Resultados</h2>
       <p id="product-result-count"></p>
       
-      <div class="result-container">
-        <div class="product-filter">
+      <div class="order-container">
+        <div class="btn-order btn-group-toggle" data-bs-toggle="buttons">
+          <input type="radio" class="btn-check" name="options" id="sortAscCost">
+          <label class="btn btn-secondary" for="sortAscCost"><i class="fas fa-sort-amount-down mr-1"></i>$</label>
+          <input type="radio" class="btn-check" name="options" id="sortDescCost">
+          <label class="btn btn-secondary" for="sortDescCost"><i class="fas fa-sort-amount-up mr-1"></i>$</label>
+          <input type="radio" class="btn-check" name="options" id="sortByRel" checked>
+          <label class="btn btn-secondary" for="sortByRel"><i class="fas fa-sort-amount-down mr-1"></i>Rel</label>
         </div>
-
-        <div class="order-container">
-          <div class="btn-order btn-group-toggle" data-bs-toggle="buttons">
-            <input type="radio" class="btn-check" name="options" id="sortAscCost">
-            <label class="btn btn-secondary" for="sortAscCost"><i class="fas fa-sort-amount-down mr-1"></i>$</label>
-            <input type="radio" class="btn-check" name="options" id="sortDescCost">
-            <label class="btn btn-secondary" for="sortDescCost"><i class="fas fa-sort-amount-up mr-1"></i>$</label>
-            <input type="radio" class="btn-check" name="options" id="sortByRel" checked>
-            <label class="btn btn-secondary" for="sortByRel"><i class="fas fa-sort-amount-down mr-1"></i>Rel</label>
-          </div>
-          <div class="order-minmax">
-            <p class="font-weight-normal text-end my-2">Precio</p>
-            <input class="form-control" min="0" type="number" placeholder="min." id="rangeFilterCostMin">
-            <input class="form-control" min="0" type="number" placeholder="máx." id="rangeFilterCostMax">
-            <div class="group" role="group">
-              <button class="btn btn-outline-dark" id="rangeFilterCost">Buscar</button>
-              <button class="btn btn-outline-danger" id="clearRangeFilterCost">Limpiar</button>
-            </div>
+        <div class="order-minmax">
+          <p class="font-weight-normal text-end my-2">Precio</p>
+          <input class="form-control" min="0" type="number" placeholder="min." id="rangeFilterCostMin">
+          <input class="form-control" min="0" type="number" placeholder="máx." id="rangeFilterCostMax">
+          <div class="group" role="group">
+            <button class="btn btn-outline-dark" id="rangeFilterCost">Buscar</button>
+            <button class="btn btn-outline-danger" id="clearRangeFilterCost">Limpiar</button>
           </div>
         </div>
+      </div>
 
-        <div id="product-list-container" class="list-items-container">
-        </div>
+      <div id="product-list-container" class="list-items-container">
       </div>
     </section>
   </main>
@@ -197,6 +193,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
+  <script src="js/users.js"></script>
   <script src="js/redireccion.js"></script>
   <script src="js/responsive-header.js" defer></script>
   <script src="js/dark-mode.js"></script>

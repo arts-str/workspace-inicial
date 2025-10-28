@@ -80,18 +80,19 @@
             </a>
             <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
             <a href="cart.html">
+              <span class="badge"></span>
               <i class="fas fa-shopping-cart icon-item"></i>Carrito
             </a>
-         <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
-            <button id="dark-mode-toggle" class="dark-mode-btn" title="Cambiar tema">
-               <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
-                    width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="var(--accent)" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                 <path d="M21 12.79A9 9 0 1 1 11.21 3
-                          7 7 0 0 0 21 12.79z"></path>
-               </svg>
-             </button>
+          <div style="border-left:2px solid #F09100;height:2rem"></div> <!--HR VERTICAL-->
+          <button id="dark-mode-toggle" class="dark-mode-btn" title="Cambiar tema">
+              <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
+                  width="24" height="24" viewBox="0 0 24 24"
+                  fill="none" stroke="var(--accent)" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3
+                        7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
         </div>
 
         </div>
@@ -99,6 +100,7 @@
       </a>
 
       <div class="mobile-cart">
+          <span class="badge"></span>
           <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
       </div>
 
@@ -125,14 +127,14 @@
               <a href="my-profile.html">Mi Perfil</a>
             </div>
             <button id="dark-mode-toggle-mobile" class="dark-mode-btn" title="Cambiar tema">
-               <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
-                    width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="var(--accent)" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                 <path d="M21 12.79A9 9 0 1 1 11.21 3
-                          7 7 0 0 0 21 12.79z"></path>
-               </svg>
-             </button>
+              <svg class="luna-icon" xmlns="http://www.w3.org/2000/svg"
+                  width="24" height="24" viewBox="0 0 24 24"
+                  fill="none" stroke="var(--accent)" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3
+                        7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
         </div>
         <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
         <a href="categories.html"><i class="fas fa-list"></i> Categorías</a>
@@ -140,113 +142,114 @@
         <a href="#"><i class="fas fa-ticket-alt"></i> Cupones</a>
         <a href="sell.html"><i class="fas fa-store"></i> Vender</a>
         <a href="#"><i class="fas fa-heart"></i> Favoritos</a>
+
         <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
     </div>
   </header>
-<main>
-  <div class="product-info-container">
-    <div class="product-info">
+  <main>
+    <div class="product-info-container">
+      <div class="product-info">
 
-      <!-- columna izquierda -->
-      <div class="left-column">
-        <div class="title-row">
-          <div>
-            <p id="pre-categ"> Categorías &gt; <a id="product-category" href="products.html">.</a> </p>
-            <h2 id="product-name">.</h2>
+        <!-- columna izquierda -->
+        <div class="left-column">
+          <div class="title-row">
+            <div>
+              <p id="pre-categ"> Categorías &gt; <a id="product-category" href="products.html">.</a> </p>
+              <h2 id="product-name">.</h2>
+            </div>
+            <!-- Ícono de corazón -->
+          <div class="icon-corazon-wrapper"> <svg class="icon-corazon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#d32f2f" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"> <path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8l-3.4-3.4c-1.5-1.4-3.9-1.4-5.4 0s-1.4 3.9 0 5.4L12 20l8.8-10c1.4-1.5 1.4-3.9 0-5.4z"/> 
+          </svg> </div>
           </div>
-          <!-- Ícono de corazón -->
-        <div class="icon-corazon-wrapper"> <svg class="icon-corazon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#d32f2f" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round"> <path d="M20.8 4.6c-1.5-1.4-3.9-1.4-5.4 0L12 8l-3.4-3.4c-1.5-1.4-3.9-1.4-5.4 0s-1.4 3.9 0 5.4L12 20l8.8-10c1.4-1.5 1.4-3.9 0-5.4z"/> 
-        </svg> </div>
-        </div>
 
-        <!-- carrusel de img -->
-        <div class="image-carousel">
-          <img id="main-image" alt="Visualización de producto">
-          <div class="carousel-controls">
-            <button id="prev" class="arrow">&#10094;</button>
-            <button id="next" class="arrow">&#10095;</button>
+          <!-- carrusel de img -->
+          <div class="image-carousel">
+            <img id="main-image" alt="Visualización de producto">
+            <div class="carousel-controls">
+              <button id="prev" class="arrow">&#10094;</button>
+              <button id="next" class="arrow">&#10095;</button>
+            </div>
           </div>
+
+        <!-- Ícono de compartir abajo --> <div class="icon-compartir-wrapper">
+          <div id="dots"></div>
+          <svg class="icon-compartir" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" 
+            stroke-linecap="round" stroke-linejoin="round"> <circle cx="18" cy="5" r="3" /> <circle cx="6" cy="12" r="3" /> <circle cx="18" cy="19" r="3" /> <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /> <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /> 
+          </svg> </div>
         </div>
 
-      <!-- Ícono de compartir abajo --> <div class="icon-compartir-wrapper">
-        <div id="dots"></div>
-        <svg class="icon-compartir" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" 
-          stroke-linecap="round" stroke-linejoin="round"> <circle cx="18" cy="5" r="3" /> <circle cx="6" cy="12" r="3" /> <circle cx="18" cy="19" r="3" /> <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /> <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" /> 
-        </svg> </div>
-      </div>
+        <!-- columna derecha -->
+        <div class="right-column">
+          <div id="stars"></div>
+          <div class="price-sold">
+            <span id="product-sold"></span>
+            <span id="product-price">
+              <span id="currency"></span>
+              <span id="cost"></span>
+            </span>
 
-      <!-- columna derecha -->
-      <div class="right-column">
-        <div id="stars"></div>
-        <div class="price-sold">
-          <span id="product-sold"></span>
-          <span id="product-price">
-            <span id="currency"></span>
-            <span id="cost"></span>
-          </span>
+          </div>
+            <!--botones de compra y venta-->
+          <div class="btn">
+            <button id="buy-now">Comprar ahora</button>
+            <button id="add-to-cart">Agregar al carrito</button>
+          </div>
 
-        </div>
-          <!--botones de compra y venta-->
-        <div class="btn">
-          <button id="buy-now">Comprar ahora</button>
-          <button id="add-to-cart">Agregar al carrito</button>
+          <!--descripción-->
+          <h5>Descripción:</h5>
+          <p id="product-description"></p>
         </div>
 
-        <!--descripción-->
-        <h5>Descripción:</h5>
-        <p id="product-description"></p>
-      </div>
-
-    </div>
-  
-  </div>
-
-  <section class="comment-section" id="comment-section">
-
-    <div class="score-comments">
-      
-      <div class="comments-left" id="commentsLeft">
-        <h2>Opiniones destacadas:</h2>  
-        
       </div>
     
-      <ul id="comments">
-      
-      </ul>
     </div>
 
-    <div class="comment-form">
-        <h3>¡Déjanos tu opinión!</h3>
-        <hr>
-        <form id="commentForm" action="" method="post">
-            <label for="star-rating">Califica este producto del 1 al 5:</label>
-            <fieldset class="star-rating">
-                <input type="radio" name="rating" id="str5" value="5">
-                <label for="str5"><i class="fas fa-star"></i></label>
-                <input type="radio" name="rating" id="str4" value="4">
-                <label for="str4"><i class="fas fa-star"></i></label>
-                <input type="radio" name="rating" id="str3" value="3">
-                <label for="str3"><i class="fas fa-star"></i></label>
-                <input type="radio" name="rating" id="str2" value="2">
-                <label for="str2"><i class="fas fa-star"></i></label>
-                <input type="radio" name="rating" id="str1" value="1">
-                <label for="str1"><i class="fas fa-star"></i></label>
-            </fieldset>
-            <label for="inputComment">Déjanos un comentario:</label>
-            <textarea name="inputComment" placeholder="Escribe aquí..." id="inputComment" maxlength="200" required></textarea>
+    <section class="comment-section" id="comment-section">
+
+      <div class="score-comments">
         
-            <input id="submitComment" type="submit" value="Enviar">
-        </form>
-    </div>
-  </section>
+        <div class="comments-left" id="commentsLeft">
+          <h2>Opiniones destacadas:</h2>  
+          
+        </div>
+      
+        <ul id="comments">
+        
+        </ul>
+      </div>
 
-  <section>
-    <!-- Productos relacionados -->
-    <div class="productos-relacionados"></div>
+      <div class="comment-form">
+          <h3>¡Déjanos tu opinión!</h3>
+          <hr>
+          <form id="commentForm" action="" method="post">
+              <label for="star-rating">Califica este producto del 1 al 5:</label>
+              <fieldset class="star-rating">
+                  <input type="radio" name="rating" id="str5" value="5">
+                  <label for="str5"><i class="fas fa-star"></i></label>
+                  <input type="radio" name="rating" id="str4" value="4">
+                  <label for="str4"><i class="fas fa-star"></i></label>
+                  <input type="radio" name="rating" id="str3" value="3">
+                  <label for="str3"><i class="fas fa-star"></i></label>
+                  <input type="radio" name="rating" id="str2" value="2">
+                  <label for="str2"><i class="fas fa-star"></i></label>
+                  <input type="radio" name="rating" id="str1" value="1">
+                  <label for="str1"><i class="fas fa-star"></i></label>
+              </fieldset>
+              <label for="inputComment">Déjanos un comentario:</label>
+              <textarea name="inputComment" placeholder="Escribe aquí..." id="inputComment" maxlength="200" required></textarea>
+          
+              <input id="submitComment" type="submit" value="Enviar">
+          </form>
+      </div>
+    </section>
 
-  </section>
-</main>
+    <section>
+      <!-- Productos relacionados -->
+      <div class="productos-relacionados"></div>
+
+    </section>
+  </main>
 
 
   <footer class="text-muted">
@@ -266,6 +269,7 @@
     </div>
   </div>
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/users.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
   <script src="js/dark-mode.js"></script>
