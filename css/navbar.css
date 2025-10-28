@@ -258,6 +258,41 @@ nav{
     text-decoration: none;
     color: #a5a2a2;
 }
+
+/* Estilos para el menú de usuario en escritorio creado dinámicamente */
+.desktop-user-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #0b0e12;
+    border-radius: 8px;
+    padding: 0.4rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    min-width: 180px;
+    z-index: 1200;
+    flex-direction: column;
+}
+.desktop-user-menu a{
+    color: #EAEEFF;
+    text-decoration: none;
+    display: flex;
+    gap: .6rem;
+    align-items: center;
+    padding: .6rem .8rem;
+    border-radius: 6px;
+}
+.desktop-user-menu a:hover{
+    background: rgba(255,255,255,0.03);
+}
+.desktop-user-menu.open{
+    display: flex;
+}
+
+/* Asegurar que el menú solo se muestre como dropdown en pantallas de escritorio */
+@media (max-width: 991px) {
+  .desktop-user-menu { display: none !important; }
+}
 .user-info a:hover{
     color: #d3a96b;
 }
