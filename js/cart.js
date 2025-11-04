@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 /**
- * @returns Array de IDs de productos
+ * @returns Array de objeto de productos
  */
 function getUserCart() {
     return getUser(localStorage.getItem('usuario')).carrito;
