@@ -165,7 +165,7 @@
             <legend>Tipo de envío</legend>
             <div>
               <span class='hidden icon'><i class="fas fa-check"></i></span>
-              <input type="radio" id="premium" name="tipoEnvio" value="premium" />
+              <input type="radio" id="premium" name="tipoEnvio" value="0.15" />
               <label for="premium">
                 Premium 2 a 5 días (15%)
               </label>
@@ -173,7 +173,7 @@
 
             <div>
               <span class='hidden icon'><i class="fas fa-check"></i></span>
-              <input type="radio" id="express" name="tipoEnvio" value="express" />
+              <input type="radio" id="express" name="tipoEnvio" value="0.07" />
               <label for="express">
                 Express 5 a 8 días (7%)
               </label>
@@ -181,7 +181,7 @@
 
             <div>
               <span class='hidden icon'><i class="fas fa-check"></i></span>
-              <input type="radio" id="standard" name="tipoEnvio" value="standard" />
+              <input type="radio" id="standard" name="tipoEnvio" value="0.05" />
               <label for="standard">
                 Standard 12 a 15 días (5%)
               </label>
@@ -192,19 +192,25 @@
               <h5>Detalle de la compra</h5>
               <div>
                 <p id="productNum" class="productos">Productos (0)</p>
-                <p id="productNumPrecio" class="productos">0</p>
+                <div class="totalProducts">
+                  <p id="subtotalMoneda"></p>
+                  <p id="subtotalPrecio"></p>
+                </div>
               </div>
               <div>
                 <p id="productEnvio" class="productos">Envío</p>
-                <p id="productEnvioPrecio" class="productos">0</p>
+                <div class="totalEnvio">
+                  <p id="costoEnvioMoneda"></p>
+                  <p id="costoEnvioPrecio"></p>
+                </div>
               </div>
             </div>
             <div class="detalle-precio">
-              <p class="subtotal">Total: </p>
+              <p class="total">Total: </p>
               <div class="monedas">
-                <p id="subtotalMoneda" class="moneda"></p>
+                <p id="totalMoneda"></p>
                 <div class="resaltado">
-                  <p id="subtotalPrecio" class="precio"></p>
+                  <p id="totalPrecio"></p>
                 </div>
               </div>
             </div>

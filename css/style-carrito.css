@@ -29,7 +29,7 @@
     margin: 0;
 }
 
-.carrito-detalle .content > div{
+.carrito-detalle .content>div {
     width: 100%;
 }
 
@@ -49,14 +49,21 @@
     justify-content: space-between;
 }
 
-.detalle-info div:last-child {
+.detalle-info div>div{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.detalle-info #subtotalMoneda,
+.detalle-info #costoEnvioMoneda{
+    text-align: end;
+    font-size: small;
+}
+
+.detalle-info>div:last-child {
     border-bottom: 2px solid var(--accent);
 }
-
-.detalle-info div p:last-of-type {
-    text-align: end;
-}
-
 .detalle-precio {
     margin-top: 1rem;
     display: flex;
@@ -65,7 +72,7 @@
     align-items: center;
 }
 
-.subtotal {
+.detalle-precio p.total {
     color: var(--dark);
     padding-left: 1.5rem;
     font-weight: bolder;
@@ -165,12 +172,14 @@ h3 {
     margin-bottom: 0;
 }
 
-.precio {
+.precio,
+p#totalPrecio {
     margin-top: -.5rem !important;
     font-size: 1.5rem;
 }
 
-.moneda {
+.moneda,
+p#totalMoneda {
     font-size: 1.2rem;
     margin-right: .5rem !important;
     align-self: center;
@@ -179,26 +188,25 @@ h3 {
 
 .monedas {
     display: flex;
-    line-height: 26pt;
+    line-height: 24pt;
     justify-content: flex-end;
 }
 
 .resaltado {
-    padding: 1rem 1rem .3rem 1rem;
+    padding: 1rem 1rem .5rem 1rem;
     border-radius: 32px 0 7px 0;
     background: var(--accent);
 }
 
-p#subtotalPrecio,
-p#subtotalMoneda,
-p.subtotal {
-    margin-bottom: 0;
+p#totalMoneda {
+    align-self: center;
+    white-space: pre;
 }
 
-p#subtotalMoneda {
-    align-self: center;
-    font-size: 1rem;
-    white-space: pre;
+p#totalMoneda,
+p#totalPrecio,
+p.total {
+    margin-bottom: 0;
 }
 
 fieldset.cart-input {
@@ -458,11 +466,6 @@ fieldset.envio div:has(input[type="radio"]:checked) label {
     color: white;
 }
 
-/*
-fieldset.envio div:has(input[type="radio"]:checked) input[type="radio"] {
-    border: 2px solid white;
-}*/
-
 @media screen and (max-width: 1024px) {
     #carrito {
         justify-items: center;
@@ -472,7 +475,7 @@ fieldset.envio div:has(input[type="radio"]:checked) input[type="radio"] {
         grid-template-columns: 1fr;
     }
 
-    .carrito-detalle .content{
+    .carrito-detalle .content {
         flex-direction: row;
         justify-content: unset;
     }
@@ -551,7 +554,7 @@ fieldset.envio div:has(input[type="radio"]:checked) input[type="radio"] {
 
     .list-item-container .img-contenido {
         position: relative;
-        min-width: 272px;
+        min-width: 240px;
         height: auto;
     }
 
@@ -559,16 +562,12 @@ fieldset.envio div:has(input[type="radio"]:checked) input[type="radio"] {
         width: 100%;
     }
 
-    .carrito-detalle .content{
+    .carrito-detalle .content {
         flex-direction: column;
     }
 
-    .detalle-precio{
+    .detalle-precio {
         display: block;
-    }
-
-    .detalle-precio .monedas {
-        justify-content: space-between;
     }
 
     .detalle-precio .moneda {
@@ -576,7 +575,7 @@ fieldset.envio div:has(input[type="radio"]:checked) input[type="radio"] {
         margin-left: 1.5rem;
     }
 
-    p#subtotalMoneda {
+    p#totalMoneda {
         font-size: smaller;
     }
 
@@ -584,13 +583,18 @@ fieldset.envio div:has(input[type="radio"]:checked) input[type="radio"] {
         width: fit-content;
     }
 
-    .detalle-precio .resaltado p,
-    .detalle-precio .subtotal p {
-        font-size: large;
+    .detalle-precio .resaltado p#totalPrecio,
+    .detalle-precio p#totalMoneda {
+        font-size: medium;
     }
 
     .buy-now {
         margin-top: 1rem;
         width: 100%;
     }
+
+    fieldset.envio,
+    .detalle-info {
+        padding: 1rem;
+    } 
 }

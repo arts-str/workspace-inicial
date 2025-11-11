@@ -1,26 +1,23 @@
 const container = document.getElementById("carrito");
 
+const noProducts = document.querySelector(".no-products");
+const btnBuyNow = document.getElementById("btnBuyNow");
+
 // Detalle de compra
 const productNumLabel = document.getElementById("productNum");
-const productNumPrecio = document.getElementById("productNumPrecio");
-const productEnvioPrecio = document.getElementById("productEnvioPrecio");
-
-// Total final: productos y envío
+const costoEnvioMoneda = document.getElementById('costoEnvioMoneda');
+const costoEnvioPrecio = document.getElementById('costoEnvioPrecio');
 const subtotalMoneda = document.getElementById("subtotalMoneda");
 const subtotalPrecio = document.getElementById("subtotalPrecio");
 
 const radioEnvio = document.getElementsByName("tipoEnvio");
-
-const noProducts = document.querySelector(".no-products");
-const btnBuyNow = document.getElementById("btnBuyNow");
-
-const costoEnvioMoneda = document.getElementById('costoEnvioMoneda');
-const costoEnvioPrecio = document.getElementById('costoEnvioPrecio');
-const totalMoneda = document.getElementById('totalMoneda');
-const totalPrecio = document.getElementById('totalPrecio');
 const premiumRadio = document.getElementById('premium');
 const expressRadio = document.getElementById('express');
 const standardRadio = document.getElementById('standard');
+
+// Total final: productos y envío
+const totalMoneda = document.getElementById('totalMoneda');
+const totalPrecio = document.getElementById('totalPrecio');
 
 let globalCart = [];
 let totalPriceUSD = 0;
@@ -408,15 +405,11 @@ function updateDetail() {
   } else {
     //Vaciar carrito
     moneda = "";
-    total = "0.00";
   }
-
-  // Al lado de Productos()
-  productNumPrecio.innerHTML = `${moneda} ${total}`;
 
   subtotalMoneda.innerHTML = moneda;
   subtotalPrecio.innerHTML = total;
-    updateTotalCosts();
+  updateTotalCosts();
 }
 
 /**
@@ -455,7 +448,9 @@ standardRadio.addEventListener('click', () => updateTotalCosts());
 
 function updateTotalCosts() {
     const subtotal = calculateTotalPrice();
-    const shippingPercentage = document.querySelector('input[name="tipoEnvio"]:checked').value;
+    let shippingType = document.querySelector('input[name="tipoEnvio"]:checked');
+    
+    shippingPercentage = shippingType? shippingType.value : 0;
     const shippingCost = subtotal * shippingPercentage;
     const totalCost = subtotal + shippingCost;
 
