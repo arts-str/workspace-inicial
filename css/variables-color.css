@@ -1,6 +1,7 @@
 :root {
   --accent: #f09100;
   --hover: rgb(209, 82, 32);
+  --dark-grey: #2b2b2b;
   --dark: #000C14;
   --grey: #c5c5c5;
   --light-gray: rgba(255, 255, 255, 0.65);
@@ -13,13 +14,12 @@
 }
 
 .dark-mode {
---accent: #f09100;
+  --accent: #f09100;
   --hover: rgb(209, 82, 32);
   --dark: white;
   --grey:#c5c5c5;;
   --light-gray: rgba(56, 53, 53, 0.822);
   --white: #000C14;
   --page-bg: #000C14;
-    
 }
 

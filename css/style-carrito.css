@@ -8,14 +8,29 @@
 }
 
 .carrito-detalle {
+    display: flex;
+    flex-direction: column;
+}
+
+.carrito-detalle .content {
     border-radius: 12px;
     min-width: fit-content;
     height: fit-content;
     border: var(--accent) solid 2px;
-    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.carrito-detalle .content hr {
+    color: var(--accent);
+    height: 1.8px;
+    opacity: unset;
+    margin: 0;
+}
+
+.carrito-detalle .content > div{
+    width: 100%;
 }
 
 .carrito-detalle h5 {
@@ -23,20 +38,45 @@
     margin-bottom: 1rem;
 }
 
-.detalle-precio {
-    border-top: 2px solid var(--accent);
+
+.detalle-info {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.detalle-info div {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
+}
+
+.detalle-info div:last-child {
+    border-bottom: 2px solid var(--accent);
+}
+
+.detalle-info div p:last-of-type {
+    text-align: end;
+}
+
+.detalle-precio {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     align-items: center;
 }
 
 .subtotal {
     color: var(--dark);
-    margin: 1rem 1rem 0 0;
-    margin-right: 1rem;
+    padding-left: 1.5rem;
+    font-weight: bolder;
 }
 
 .list-item-container:nth-child(1) {
     margin-top: 0;
+}
+
+.list-item-container:last-of-type {
+    margin-bottom: 0;
 }
 
 .list-item-container {
@@ -49,7 +89,7 @@
     border: 2px var(--accent) solid !important;
     border-radius: 12px;
     overflow: hidden;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .list-item-container:hover {
@@ -156,11 +196,12 @@ p.subtotal {
 }
 
 p#subtotalMoneda {
+    align-self: center;
     font-size: 1rem;
     white-space: pre;
 }
 
-fieldset {
+fieldset.cart-input {
     border-radius: 10px;
     border: var(--accent) 2px solid;
     display: flex;
@@ -171,7 +212,7 @@ fieldset {
     margin: 1rem 0;
 }
 
-fieldset input {
+fieldset.cart-input input {
     transition: .3s;
     border: none;
     line-height: 2rem;
@@ -186,13 +227,13 @@ fieldset input {
     font-weight: bolder;
 }
 
-fieldset input::-webkit-inner-spin-button,
-fieldset input::-webkit-outer-spin-button {
+fieldset.cart-input input::-webkit-inner-spin-button,
+fieldset.cart-input input::-webkit-outer-spin-button {
     margin: 0;
     appearance: none;
 }
 
-fieldset button {
+fieldset.cart-input button {
     border-radius: inherit;
     border: none;
     background-color: transparent;
@@ -202,7 +243,7 @@ fieldset button {
 }
 
 .disabled {
-    color: var(--bs-gray);
+    color: var(--bs-gray) !important;
 }
 
 .add {
@@ -267,7 +308,7 @@ fieldset button {
 }
 
 .buy-now {
-    margin-top: 3rem;
+    margin-top: 1rem;
     padding: 1rem;
     border-radius: 10px;
     font-weight: 700;
@@ -284,6 +325,7 @@ fieldset button {
 }
 
 .buy-now:disabled {
+    cursor: default;
     background: var(--bs-gray);
 }
 
@@ -320,6 +362,107 @@ fieldset button {
     color: var(--dark);
 }
 
+/* Selección de Tipo de envío */
+fieldset.envio {
+    width: 100%;
+    padding: 0 1.5rem;
+}
+
+fieldset.envio legend {
+    color: var(--dark);
+    font-size: medium;
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+fieldset.envio div {
+    display: flex;
+    border: var(--accent) solid 2px;
+    font-size: medium;
+    text-align: center;
+    padding: 5px;
+    border-radius: 20px;
+    margin-bottom: 7px;
+}
+
+fieldset.envio div:last-of-type {
+    margin-bottom: 0;
+}
+
+fieldset.envio div label {
+    color: var(--dark);
+    cursor: pointer;
+    width: 100%;
+}
+
+fieldset.envio input[type="radio"] {
+    appearance: none;
+    cursor: pointer;
+    border: 2px solid var(--accent);
+    height: 1.5em;
+    width: 1.6em;
+    border-radius: 100%;
+    vertical-align: text-bottom;
+    position: relative;
+}
+
+input[type="radio"]:disabled {
+    border: none;
+    cursor: default;
+}
+
+fieldset.envio div:has(input[type="radio"]:disabled) label {
+    cursor: default;
+}
+
+fieldset.envio div:has(input[type="radio"]:disabled) {
+    color: var(--bs-gray);
+    border: var(--bs-gray) solid 2px;
+}
+
+fieldset.envio div span.icon {
+    display: none;
+    position: absolute;
+    color: white !important;
+    margin: 3px 3px 0 5px;
+    font-size: 15px;
+}
+
+fieldset.envio div input[type="radio"]::before {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    top: 0;
+}
+
+fieldset.envio div input[type="radio"]:checked::before {
+    border: 5px solid transparent;
+    border-radius: 100%;
+    margin: 4px;
+}
+
+fieldset.envio div:has(input[type="radio"]:checked) span.icon {
+    display: block;
+}
+
+fieldset.envio div:has(input[type="radio"]:checked) {
+    background-color: var(--accent);
+    font-weight: bold;
+}
+
+fieldset.envio div:has(input[type="radio"]:checked) label {
+    color: white;
+}
+
+/*
+fieldset.envio div:has(input[type="radio"]:checked) input[type="radio"] {
+    border: 2px solid white;
+}*/
+
 @media screen and (max-width: 1024px) {
     #carrito {
         justify-items: center;
@@ -327,6 +470,16 @@ fieldset button {
 
     .carrito-container {
         grid-template-columns: 1fr;
+    }
+
+    .carrito-detalle .content{
+        flex-direction: row;
+        justify-content: unset;
+    }
+
+    .buy-now {
+        width: 60%;
+        align-self: center;
     }
 }
 
@@ -353,54 +506,91 @@ fieldset button {
     }
 
     .contenido-2 .monedas p {
-        font-size: 14pt;
+        font-size: 12pt;
     }
 
-    fieldset {
+    fieldset.cart-input {
         margin: .5rem 0;
     }
 
-    fieldset button i {
+    fieldset.cart-input button i {
         font-size: small;
     }
 
-    fieldset input {
+    fieldset.cart-input input {
         font-size: 12pt;
+    }
+
+    fieldset.envio div {
+        font-size: small;
+    }
+
+    fieldset.envio div span.icon {
+        font-size: x-small;
+    }
+
+    .detalle-info div p {
+        font-size: smaller;
     }
 }
 
-@media screen and (max-width: 536px) {
-    .carrito-container{
+@media screen and (max-width: 650px) {
+    .carrito-container {
         width: 100%;
     }
-    .carrito{
+
+    .carrito {
         width: 100%;
     }
-    .list-item-container{
+
+    .list-item-container {
         position: relative;
         width: 100%;
         flex-direction: column;
     }
-    .list-item-container .img-contenido{
+
+    .list-item-container .img-contenido {
         position: relative;
         min-width: 272px;
         height: auto;
     }
-    .carrito-detalle{
-        padding: .5rem;
+
+    .carrito-detalle {
         width: 100%;
     }
-    .detalle-precio .monedas{
+
+    .carrito-detalle .content{
         flex-direction: column;
-        align-items: end;
     }
-    .detalle-precio .moneda{
+
+    .detalle-precio{
+        display: block;
+    }
+
+    .detalle-precio .monedas {
+        justify-content: space-between;
+    }
+
+    .detalle-precio .moneda {
         align-self: flex-end;
+        margin-left: 1.5rem;
     }
-    .detalle-precio .resaltado{
+
+    p#subtotalMoneda {
+        font-size: smaller;
+    }
+
+    .detalle-precio .resaltado {
         width: fit-content;
     }
-    .buy-now{
+
+    .detalle-precio .resaltado p,
+    .detalle-precio .subtotal p {
+        font-size: large;
+    }
+
+    .buy-now {
         margin-top: 1rem;
+        width: 100%;
     }
 }
