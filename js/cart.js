@@ -6,6 +6,14 @@ const envioGratis = document.getElementById('envioGratis');
 const noProducts = document.querySelector('.no-products');
 const btnBuyNow = document.getElementById('btnBuyNow');
 
+const costoEnvioMoneda = document.getElementById('costoEnvioMoneda');
+const costoEnvioPrecio = document.getElementById('costoEnvioPrecio');
+const totalMoneda = document.getElementById('totalMoneda');
+const totalPrecio = document.getElementById('totalPrecio');
+const premiumRadio = document.getElementById('premium');
+const expressRadio = document.getElementById('express');
+const standardRadio = document.getElementById('standard');
+
 let globalCart = [];
 let totalPriceUSD = 0;
 let totalPriceUYU = 0;
@@ -26,8 +34,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
+
 /**
- * @returns Array de objeto de productos
+ *Array de objeto de productos
  */
 function getUserCart() {
     return getUser(localStorage.getItem('usuario')).carrito;
@@ -343,6 +352,7 @@ function updateDetail() {
     }
 
     subtotalPrecio.innerHTML = total;
+    updateTotalCosts();
 }
 
 
@@ -370,4 +380,47 @@ function updatePrices() {
 function setProductID(id) {
   localStorage.setItem("productID", id);
   globalThis.location = "product-info.html";
+}
+
+/**
+ ** PRECIO DE ENVIOS
+ */
+premiumRadio.addEventListener('click', () => updateTotalCosts());
+expressRadio.addEventListener('click', () => updateTotalCosts());
+standardRadio.addEventListener('click', () => updateTotalCosts());
+
+
+function updateTotalCosts() {
+    const subtotal = calculateTotalPrice();
+    const shippingPercentage = document.querySelector('input[name="tipoEnvio"]:checked').value;
+    const shippingCost = subtotal * shippingPercentage;
+    const totalCost = subtotal + shippingCost;
+
+    const hasUSD = globalCart.some(p => p.product.currency === "USD");
+    const hasUYU = globalCart.some(p => p.product.currency === "UYU");
+
+    let currency;
+    if (hasUSD || hasUYU) {
+        if (hasUSD && !hasUYU) {
+            currency = "USD";
+        } else if (!hasUSD && hasUYU) {
+            currency = "UYU";
+        } else {
+            currency = "USD";
+        }
+    } else {
+        currency = "";
+    }
+
+    costoEnvioMoneda.innerHTML = currency;
+    totalMoneda.innerHTML = currency;
+
+    costoEnvioPrecio.innerHTML = shippingCost.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
+    totalPrecio.innerHTML = totalCost.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
 }
