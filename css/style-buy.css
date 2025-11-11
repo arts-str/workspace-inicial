@@ -1,0 +1,281 @@
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: var(--page-bg);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transform: translateY(-20px);
+    transition: transform 0.3s;
+    border: 3px solid var(--accent);
+}
+
+.modal-header {
+    padding: .5rem;
+    border-bottom: none;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.modal-body {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+/* Cerrar Modal */
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 40px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--hover);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Formulario */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-step {
+    display: none;
+}
+
+.form-label {
+    text-align: center;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bolder;
+    color: var(--dark);
+    font-size: larger;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 3px solid var(--accent);
+    border-radius: 7px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    background-color: var(--page-bg);
+    color: var(--dark);
+}
+
+.form-input::placeholder {
+    color: var(--dark);
+}
+
+.form-step.active {
+    display: block;
+}
+
+.btn-group {
+    display: flex;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: var(--dark-grey);
+}
+
+.btn-primary:hover {
+    background-color: var(--hover);
+}
+
+.btn-secondary {
+    background-color: var(--grey);
+    color: var(--dark-grey);
+}
+
+.btn-secondary:hover {
+    background-color: var(--dark-grey);
+}
+
+.option-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.option-btn {
+    flex: 1;
+    padding: 12px;
+    background-color: var(--page-bg);
+    border: 3px solid var(--accent);
+    color: var(--dark);
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.option-btn.active {
+    background-color: var(--accent);
+    color: var(--white);
+}
+
+.option-content {
+    display: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    height: 250px;
+}
+
+.option-content.active {
+    display: block;
+}
+
+/* Transferencia bancaria */
+.brou {
+    background-image: url(https://logoteca.uy/wp-content/uploads/sites/3/2024/09/Logo-BROU.svg);
+}
+
+.bbva {
+    background-image: url(https://1000marcas.net/wp-content/uploads/2019/12/BBVA-logo.png);
+}
+
+.scotiabank {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Logo_Scotiabank_%28Kanada%29.svg/345px-Logo_Scotiabank_%28Kanada%29.svg.png);
+}
+
+.santander {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/1280px-Banco_Santander_Logotipo.svg.png);
+}
+
+.citibank {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Citi.svg/450px-Citi.svg.png?20251011050120);
+}
+
+.itau {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ita%C3%BA_Unibanco_logo_2023.svg/1200px-Ita%C3%BA_Unibanco_logo_2023.svg.png);
+}
+
+.option-content.active fieldset.banco legend,
+.option-content.active fieldset.credit-card legend {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.option-content.active fieldset.banco .banco-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.option-content.active fieldset.banco .banco-option {
+    background-color: var(--page-bg);
+    border: 3px solid var(--accent);
+    border-radius: 5px;
+    padding: .3rem;
+    height: 60px;
+}
+
+.option-content.active fieldset.banco .banco-option input[type="radio"] {
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: absolute;
+}
+
+.option-content.active fieldset.banco .banco-option:has(input[type="radio"]:checked) {
+    background-color: var(--accent);
+}
+
+.option-content.active fieldset.banco .banco-option label {
+    background-position: center;
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 100ms ease-in;
+    -moz-transition: all 100ms ease-in;
+    transition: all 100ms ease-in;
+}
+
+/* Tarjeta de crédito */
+.option-content.active fieldset.credit-card .card-detail {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    justify-content: space-between;
+}
+
+.option-content.active fieldset.credit-card .card-detail .form-group input {
+    text-align: center;
+}
+
+.option-content.active fieldset.credit-card label.form-label {
+    color: var(--dark);
+    font-size: medium;
+    text-align: start;
+}
+
+.option-content.active fieldset.credit-card input#nroTarjeta {
+    padding-right: 82px;
+    background:
+        url(https://download.logo.wine/logo/Mastercard/Mastercard-Logo.wine.png) no-repeat right 47px center,
+        url(https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png) no-repeat right 10px center;
+    background-size: 32px 21px, 39px 13px;
+}
+
+@media screen and (max-width: 650px) {
+
+    .option-content.active fieldset.banco legend,
+    .option-content.active fieldset.credit-card legend {
+        font-size: medium;
+    }
+}
