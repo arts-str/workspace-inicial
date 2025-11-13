@@ -169,3 +169,8 @@ color: var(--accent);
 .form-edit-inputs-cancel{
     color: white !important;
 }
+
+.dark-mode .feedback-content {
+  background: var(--white);
+  color: var(--dark);
+}

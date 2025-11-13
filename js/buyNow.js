@@ -165,3 +165,90 @@ buyForm.addEventListener("submit", function (e) {
   // Cerrar Modal
   closeModal();
 });
+
+
+//validación antes de comprar
+
+buyForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  if (validarCompra()) {
+    // Si pasa las validaciones
+    closeModal(); // Cierra el modal de compra
+    mostrarModalFeedback(true); // Muestra cartel de éxito
+  } else {
+    mostrarModalFeedback(false); // Muestra cartel de error
+  }
+});
+
+/**
+ * verifica que todos los datos estén completos antes de finalizar la compra
+ */
+function validarCompra() {
+  // dirección
+  const departamento = document.getElementById("departamentoSelect").value.trim();
+  const localidad = document.getElementById("localidad")?.value.trim();
+  const calle = document.getElementById("calle")?.value.trim();
+  const nroPuerta = document.getElementById("nroPuerta")?.value.trim();
+  const esquina = document.getElementById("esquina")?.value.trim();
+
+  if (!departamento || !localidad || !calle || !nroPuerta || !esquina) {
+    return false;
+  }
+
+  // forma de envío
+  const envioSeleccionado = document.querySelector('input[name="tipoEnvio"]:checked');
+  if (!envioSeleccionado) {
+    return false;
+  }
+
+  // cantidad de productos 
+  const cantidades = document.querySelectorAll('input[name="quantity"]');
+  for (const input of cantidades) {
+    if (parseInt(input.value) <= 0 || isNaN(input.value)) {
+      return false;
+    }
+  }
+
+  // validar si hay forma de pago
+  const opcionActiva = document.querySelector(".option-btn.active");
+  if (!opcionActiva) return false;
+
+  if (opcionActiva.dataset.option === "transferencia") {
+    const bancoSeleccionado = document.querySelector('input[name="banco"]:checked');
+    if (!bancoSeleccionado) return false;
+  }
+
+  if (opcionActiva.dataset.option === "tarjeta") {
+    const nombre = document.getElementById("fullName")?.value.trim();
+    const nroTarjeta = document.getElementById("nroTarjeta")?.value.trim();
+    const vencimiento = document.getElementById("vencimiento")?.value.trim();
+    const cvv = document.getElementById("cvv")?.value.trim();
+
+    if (!nombre || !nroTarjeta || !vencimiento || !cvv) return false;
+  }
+
+  return true;
+}
+
+/**
+ modal con mensaje de compra exitosa o error
+ */
+function mostrarModalFeedback(exito) {
+  const modal = document.createElement("div");
+  modal.classList.add("feedback-modal");
+  modal.innerHTML = `
+    <div class="feedback-content ${exito ? "success" : "error"}">
+      <span class="icon">${exito ? "✔️" : "❌"}</span>
+      <h2>${exito ? "¡Compra realizada!" : "Algo salió mal :("}</h2>
+      <button class="feedback-btn">${exito ? "¡Genial!" : "Reintentar"}</button>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // cerrar modal al hacer clic en el botón
+  modal.querySelector(".feedback-btn").addEventListener("click", () => {
+    modal.remove();
+  });
+}
