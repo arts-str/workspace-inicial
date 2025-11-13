@@ -466,6 +466,10 @@ fieldset.envio div:has(input[type="radio"]:checked) label {
     color: white;
 }
 
+#subtotalMoneda, #subtotalPrecio, #costoEnvioMoneda, #costoEnvioPrecio{
+    color: var(--dark);
+}
+
 @media screen and (max-width: 1024px) {
     #carrito {
         justify-items: center;
