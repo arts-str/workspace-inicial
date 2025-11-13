@@ -107,10 +107,29 @@ nextStep1Btn.addEventListener("click", (e) => {
 /**
  * Se encarga de validar la primer parte de Dirección de facturación
  */
-function validateBuyStep1() {
-  // Falta agregar lógica
-  return true;
+ function validateBuyStep1() {
+  const step1 = document.getElementById("buyStep1");
+  const requiredFields = step1.querySelectorAll("[required]");
+
+  let valido = true;
+
+  requiredFields.forEach((campo) => {
+    if (!campo.value.trim()) {
+      valido = false;
+      campo.classList.add("input-error"); // borde rojo
+    } else {
+      campo.classList.remove("input-error");
+    }
+  });
+
+  if (!valido) {
+    buyForm.reportValidity();
+    return false; // no deja avanzar
+  }
+
+  return true; // deja avanzar si todo está completo
 }
+
 
 /**
  * Seleccion de transferencia bancaria o tarjeta de crédito

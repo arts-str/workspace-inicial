@@ -236,13 +236,14 @@
               </div>
 
               <div class="form-group">
-                <select title="Departamento" class="form-input" id="departamentoSelect"></select>
-                <input type="text" placeholder="Localidad" class="form-input" id="localidad">
-                <input type="text" placeholder="Calle" class="form-input" id="calle">
-                <input type="number" placeholder="Nro puerta" class="form-input" id="nroPuerta">
-                <input type="number" placeholder="Esquina" class="form-input" id="esquina">
+                <select title="Departamento" class="form-input" id="departamentoSelect" required></select>
+                <input type="text" placeholder="Localidad" class="form-input" id="localidad" required>
+                <input type="text" placeholder="Calle" class="form-input" id="calle" required>
+                <input type="number" placeholder="Nro puerta" class="form-input" id="nroPuerta" required>
+                <input type="number" placeholder="Esquina" class="form-input" id="esquina"required>
 
-                <div class="btn-group">
+
+                      <div class="btn-group">
                   <button type="button" class="btn btn-secondary" id="closeForm">Cancelar</button>
                   <button type="button" class="btn btn-primary" id="nextStep1">Continuar</button>
                 </div>
@@ -269,7 +270,7 @@
                         <label for="brou" class="brou"></label>
                       </div>
 
-                      <div class="banco-option">
+                      <div class="banco-option" required>
                         <input type="radio" id="bbva" name="banco" value="bbva" />
                         <label for="bbva" class="bbva"></label>
                       </div>
@@ -302,17 +303,17 @@
                   <fieldset class="credit-card">
                     <legend>Ingrese los datos de su tarjeta</legend>
                     <div class="form-group">
-                      <input type="text" class="form-input" id="fullName" placeholder="Nombre completo">
-                      <input type="text" class="form-input" id="nroTarjeta" placeholder="Nro de tarjeta">
+                      <input type="text" class="form-input" id="fullName" placeholder="Nombre completo"required>
+                      <input type="text" class="form-input" id="nroTarjeta" placeholder="Nro de tarjeta" required>
                     </div>
                     <div class="card-detail">
                       <div class="form-group">
                         <label class="form-label" for="vencimiento">Vencimiento</label>
-                        <input type="text" placeholder="MM / AAAA" class="form-input" id="vencimiento">
+                        <input type="text" placeholder="MM / AAAA" class="form-input" id="vencimiento" required>
                       </div>
                       <div class="form-group">
                         <label class="form-label" for="cvv">CVV</label>
-                        <input type="text" placeholder="123" class="form-input" id="cvv">
+                        <input type="text" placeholder="123" class="form-input" id="cvv" required>
                       </div>
                     </div>
                   </fieldset>
