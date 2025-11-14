@@ -334,3 +334,7 @@
 .feedback-btn:hover {
   transform: scale(1.05);
 }
+
+.icon {
+    fill:var(--accent);
+}

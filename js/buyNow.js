@@ -37,7 +37,7 @@ const departamentos = [
   { value: "sanJose", text: "San José" },
   { value: "soriano", text: "Soriano" },
   { value: "tacuarembo", text: "Tacuarembó" },
-  { value: "treintaYTres", text: "Treina y tres" },
+  { value: "treintaYTres", text: "Treinta y tres" },
 ];
 departamentos.forEach((departamento) => {
   const option = document.createElement("option");
@@ -50,25 +50,17 @@ departamentos.forEach((departamento) => {
  * Cuando se hace click en "Continuar compra"
  * Se abre el modal
  */
-btnBuyNow.addEventListener("click", (e) => {
-  let envioChecked = false;
-  let envio = "";
+btnBuyNow.addEventListener("click", () => {
+  const envioSeleccionado = document.querySelector('input[name="tipoEnvio"]:checked');
 
-  for (const radio of radioEnvio) {
-    if (radio.checked) {
-      envioChecked = true;
-      envio = radio.value;
-      break;
-    }
-  }
-
-  if (envioChecked && envio) {
-    // Abrir modal
-    buyModal.classList.add("active");
-    resetForm();
-  } else {
+  if (!envioSeleccionado) {
     alert("¡Debes seleccionar primero el tipo de envío!");
+    return;
   }
+
+  // Abrir modal
+  buyModal.classList.add("active");
+  resetForm();
 });
 
 // Cerrar el modal
@@ -79,25 +71,22 @@ closeFormBtn.addEventListener("click", closeModal);
 closeModalBtn.addEventListener("click", closeModal);
 
 window.addEventListener("click", (e) => {
-  if (e.target == buyModal) {
-    closeModal();
-  }
+  if (e.target === buyModal) closeModal();
 });
 
 /**
- * Volver atrás
+ * Volver atrás (Paso 2 → Paso 1)
  */
 prevStep2Btn.addEventListener("click", function () {
   buyStep2.classList.remove("active");
   buyStep1.classList.add("active");
 });
 
-
 /**
- * Siguiente paso después de ingresar Dirección de facturación
+ Siguiente paso después de ingresar Dirección de facturación
  */
-nextStep1Btn.addEventListener("click", (e) => {
-  // Validar primero paso 1: dirección de facturación
+nextStep1Btn.addEventListener("click", () => {
+  // Validar primer paso (dirección)
   if (validateBuyStep1()) {
     buyStep1.classList.remove("active");
     buyStep2.classList.add("active");
@@ -105,18 +94,16 @@ nextStep1Btn.addEventListener("click", (e) => {
 });
 
 /**
- * Se encarga de validar la primer parte de Dirección de facturación
+  Se encarga de validar la primer parte de Dirección de facturación
  */
- function validateBuyStep1() {
-  const step1 = document.getElementById("buyStep1");
-  const requiredFields = step1.querySelectorAll("[required]");
-
+function validateBuyStep1() {
+  const requiredFields = buyStep1.querySelectorAll("[required]");
   let valido = true;
 
   requiredFields.forEach((campo) => {
     if (!campo.value.trim()) {
-      valido = false;
       campo.classList.add("input-error"); // borde rojo
+      valido = false;
     } else {
       campo.classList.remove("input-error");
     }
@@ -124,15 +111,14 @@ nextStep1Btn.addEventListener("click", (e) => {
 
   if (!valido) {
     buyForm.reportValidity();
-    return false; // no deja avanzar
+    return false;
   }
 
-  return true; // deja avanzar si todo está completo
+  return true;
 }
 
-
 /**
- * Seleccion de transferencia bancaria o tarjeta de crédito
+ Selección de transferencia bancaria o tarjeta de crédito
  */
 optionButtons.forEach((button) => {
   button.addEventListener("click", function () {
@@ -155,7 +141,7 @@ optionButtons.forEach((button) => {
   });
 });
 
-// Resetear el formulario
+// Resetear el formulario al abrir modal
 function resetForm() {
   buyForm.reset();
 
@@ -173,92 +159,96 @@ function resetForm() {
   document.getElementById("optionTransferencia").classList.add("active");
 }
 
-/**
- * Enviar el formulario
+/*
+ Enviar el formulario
  */
 buyForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  // Falta lógica
+  const esValido = validarCompra();
 
-  // Cerrar Modal
-  closeModal();
+  closeModal(); // Cierra el modal de compra
+  mostrarModalFeedback(esValido); // Muestra cartel según resultado
 });
 
-
-//validación antes de comprar
-
-buyForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  if (validarCompra()) {
-    // Si pasa las validaciones
-    closeModal(); // Cierra el modal de compra
-    mostrarModalFeedback(true); // Muestra cartel de éxito
-  } else {
-    mostrarModalFeedback(false); // Muestra cartel de error
-  }
-});
-
-/**
- * verifica que todos los datos estén completos antes de finalizar la compra
+/*
+ Verifica que todos los datos estén completos antes de finalizar la compra
  */
 function validarCompra() {
-  // dirección
-  const departamento = document.getElementById("departamentoSelect").value.trim();
+  // Dirección
+  const departamento = document.getElementById("departamentoSelect")?.value.trim();
   const localidad = document.getElementById("localidad")?.value.trim();
   const calle = document.getElementById("calle")?.value.trim();
   const nroPuerta = document.getElementById("nroPuerta")?.value.trim();
   const esquina = document.getElementById("esquina")?.value.trim();
 
-  if (!departamento || !localidad || !calle || !nroPuerta || !esquina) {
+  if (![departamento, localidad, calle, nroPuerta, esquina].every(Boolean)) {
     return false;
   }
 
-  // forma de envío
+  // Forma de envío
   const envioSeleccionado = document.querySelector('input[name="tipoEnvio"]:checked');
-  if (!envioSeleccionado) {
-    return false;
-  }
+  if (!envioSeleccionado) return false;
 
-  // cantidad de productos 
+  // Cantidad de productos
   const cantidades = document.querySelectorAll('input[name="quantity"]');
+
+  /*
+   Si el carrito está vacío no permite finalizar compra
+   */
+  if (cantidades.length === 0) return false;
+
   for (const input of cantidades) {
-    if (parseInt(input.value) <= 0 || isNaN(input.value)) {
-      return false;
-    }
+    const valor = parseInt(input.value);
+    if (isNaN(valor) || valor <= 0) return false;
   }
 
-  // validar si hay forma de pago
+  // Forma de pago
   const opcionActiva = document.querySelector(".option-btn.active");
   if (!opcionActiva) return false;
 
+  // Transferencia banco
   if (opcionActiva.dataset.option === "transferencia") {
     const bancoSeleccionado = document.querySelector('input[name="banco"]:checked');
     if (!bancoSeleccionado) return false;
   }
 
+  // Tarjeta todos los datos completos
   if (opcionActiva.dataset.option === "tarjeta") {
     const nombre = document.getElementById("fullName")?.value.trim();
     const nroTarjeta = document.getElementById("nroTarjeta")?.value.trim();
     const vencimiento = document.getElementById("vencimiento")?.value.trim();
     const cvv = document.getElementById("cvv")?.value.trim();
 
-    if (!nombre || !nroTarjeta || !vencimiento || !cvv) return false;
+    if (![nombre, nroTarjeta, vencimiento, cvv].every(Boolean)) return false;
   }
 
   return true;
 }
 
-/**
- modal con mensaje de compra exitosa o error
+/*
+ Modal con mensaje de compra exitosa o error
  */
+
 function mostrarModalFeedback(exito) {
   const modal = document.createElement("div");
   modal.classList.add("feedback-modal");
+
   modal.innerHTML = `
     <div class="feedback-content ${exito ? "success" : "error"}">
-      <span class="icon">${exito ? "✔️" : "❌"}</span>
+      <span class="icon">
+        ${
+          exito
+            ? `
+          <svg viewBox="0 0 24 24" fill="currentColor" width="44" height="44">
+            <path d="M20.285 6.709l-11.285 11.285-5.285-5.285 1.414-1.414 3.871 3.871 9.871-9.871z"/>
+          </svg>`
+            : `
+          <svg viewBox="0 0 24 24" fill="currentColor" width="44" height="44">
+            <path d="M18.364 5.636l-1.414-1.414L12 9.172 7.05 4.222 5.636 5.636 10.586 10.586 5.636 15.536l1.414 1.414L12 12 16.95 16.95l1.414-1.414L13.414 10.586z"/>
+          </svg>`
+        }
+      </span>
       <h2>${exito ? "¡Compra realizada!" : "Algo salió mal :("}</h2>
       <button class="feedback-btn">${exito ? "¡Genial!" : "Reintentar"}</button>
     </div>
@@ -266,7 +256,6 @@ function mostrarModalFeedback(exito) {
 
   document.body.appendChild(modal);
 
-  // cerrar modal al hacer clic en el botón
   modal.querySelector(".feedback-btn").addEventListener("click", () => {
     modal.remove();
   });

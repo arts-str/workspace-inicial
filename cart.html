@@ -147,190 +147,194 @@
     </div>
   </header>
   <main>
-    <div class="text-center p-4">
-      <h1>Carrito</h1>
-      <p class="lead">Todos tus productos añadidos para comprar.</p>
-    </div>
-    <div class="carrito-container">
+  <div class="text-center p-4">
+    <h1>Carrito</h1>
+    <p class="lead">Todos tus productos añadidos para comprar.</p>
+  </div>
 
-      <div class="carrito" id="carrito">
-        <div class="no-products">
-          <p>¡Tu carrito está vacío!</p>
-        </div>
+  <div class="carrito-container">
+
+    <div class="carrito" id="carrito">
+      <div class="no-products">
+        <p>¡Tu carrito está vacío!</p>
       </div>
+    </div>
 
-      <div class="carrito-detalle">
-        <div class="content">
-          <fieldset class="envio">
-            <legend>Tipo de envío</legend>
-            <div>
-              <span class='hidden icon'><i class="fas fa-check"></i></span>
-              <input type="radio" id="premium" name="tipoEnvio" value="0.15" checked/>
-              <label for="premium">
-                Premium 2 a 5 días (15%)
-              </label>
-            </div>
+    <div class="carrito-detalle">
+      <div class="content">
+        <fieldset class="envio">
+          <legend>Tipo de envío</legend>
 
-            <div>
-              <span class='hidden icon'><i class="fas fa-check"></i></span>
-              <input type="radio" id="express" name="tipoEnvio" value="0.07" />
-              <label for="express">
-                Express 5 a 8 días (7%)
-              </label>
-            </div>
-
-            <div>
-              <span class='hidden icon'><i class="fas fa-check"></i></span>
-              <input type="radio" id="standard" name="tipoEnvio" value="0.05" />
-              <label for="standard">
-                Standard 12 a 15 días (5%)
-              </label>
-            </div>
-          </fieldset>
           <div>
-            <div class="detalle-info">
-              <h5>Detalle de la compra</h5>
-              <div>
-                <p id="productNum" class="productos">Productos (0)</p>
-                <div class="totalProducts">
-                  <p id="subtotalMoneda"></p>
-                  <p id="subtotalPrecio"></p>
-                </div>
-              </div>
-              <div>
-                <p id="productEnvio" class="productos">Envío</p>
-                <div class="totalEnvio">
-                  <p id="costoEnvioMoneda"></p>
-                  <p id="costoEnvioPrecio"></p>
-                </div>
+            <span class='hidden icon'><i class="fas fa-check"></i></span>
+            <input type="radio" id="premium" name="tipoEnvio" value="0.15" checked />
+            <label for="premium">Premium 2 a 5 días (15%)</label>
+          </div>
+
+          <div>
+            <span class='hidden icon'><i class="fas fa-check"></i></span>
+            <input type="radio" id="express" name="tipoEnvio" value="0.07" />
+            <label for="express">Express 5 a 8 días (7%)</label>
+          </div>
+
+          <div>
+            <span class='hidden icon'><i class="fas fa-check"></i></span>
+            <input type="radio" id="standard" name="tipoEnvio" value="0.05" />
+            <label for="standard">Standard 12 a 15 días (5%)</label>
+          </div>
+
+        </fieldset>
+
+        <div>
+          <div class="detalle-info">
+            <h5>Detalle de la compra</h5>
+            <div>
+              <p id="productNum" class="productos">Productos (0)</p>
+              <div class="totalProducts">
+                <p id="subtotalMoneda"></p>
+                <p id="subtotalPrecio"></p>
               </div>
             </div>
-            <div class="detalle-precio">
-              <p class="total">Total: </p>
-              <div class="monedas">
-                <p id="totalMoneda"></p>
-                <div class="resaltado">
-                  <p id="totalPrecio"></p>
-                </div>
+
+            <div>
+              <p id="productEnvio" class="productos">Envío</p>
+              <div class="totalEnvio">
+                <p id="costoEnvioMoneda"></p>
+                <p id="costoEnvioPrecio"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="detalle-precio">
+            <p class="total">Total:</p>
+            <div class="monedas">
+              <p id="totalMoneda"></p>
+              <div class="resaltado">
+                <p id="totalPrecio"></p>
               </div>
             </div>
           </div>
         </div>
-        <button id="btnBuyNow" class="buy-now">Continuar compra</button>
       </div>
+
+      <button id="btnBuyNow" class="buy-now" type="button">Continuar compra</button>
     </div>
+  </div>
 
-    <!-- Modal -->
-    <div id="buyModal" class="modal-overlay">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button class="close-btn" id="closeModal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <form action="" id="buyForm" method="post">
+  <!-- Modal -->
+  <div id="buyModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close-btn" id="closeModal" type="button">&times;</button>
+      </div>
 
-            <!-- Paso 1: Dirección de facturación -->
-            <div class="form-step active" id="buyStep1">
-              <div class="form-group">
-                <span class="form-label">Dirección de facturación</span>
-              </div>
+      <div class="modal-body">
+        <form id="buyForm">
 
-              <div class="form-group">
-                <select title="Departamento" class="form-input" id="departamentoSelect" required></select>
-                <input type="text" placeholder="Localidad" class="form-input" id="localidad" required>
-                <input type="text" placeholder="Calle" class="form-input" id="calle" required>
-                <input type="number" placeholder="Nro puerta" class="form-input" id="nroPuerta" required>
-                <input type="number" placeholder="Esquina" class="form-input" id="esquina"required>
+          <!-- Paso 1 -->
+          <div class="form-step active" id="buyStep1">
+            <span class="form-label">Dirección de facturación</span>
 
+            <div class="form-group">
+              <select title="Departamento" class="form-input" id="departamentoSelect" required></select>
+              <input type="text" placeholder="Localidad" class="form-input" id="localidad" required>
+              <input type="text" placeholder="Calle" class="form-input" id="calle" required>
+              <input type="number" placeholder="Nro puerta" class="form-input" id="nroPuerta" required>
+              <input type="text" placeholder="Esquina" class="form-input" id="esquina" required>
 
-                      <div class="btn-group">
-                  <button type="button" class="btn btn-secondary" id="closeForm">Cancelar</button>
-                  <button type="button" class="btn btn-primary" id="nextStep1">Continuar</button>
-                </div>
+              <div class="btn-group">
+                <button class="btn btn-secondary" id="closeForm" type="button">Cancelar</button>
+                <button class="btn btn-primary" id="nextStep1" type="button">Continuar</button>
               </div>
             </div>
+          </div>
 
-            <!-- Paso 2: Forma de pago -->
-            <div class="form-step" id="buyStep2">
-              <div class="form-group">
-                <span class="form-label">Forma de pago</span>
-                <div class="option-buttons">
-                  <button type="button" class="option-btn active" data-option="transferencia">Transferencia
-                    bancaria</button>
-                  <button type="button" class="option-btn" data-option="tarjeta">Tarjeta de crédito</button>
-                </div>
+          <!-- Paso 2 -->
+          <div class="form-step" id="buyStep2">
+            <span class="form-label">Forma de pago</span>
 
-                <!-- Opción 1: Transferencia -->
-                <div class="option-content active" id="optionTransferencia">
-                  <fieldset class="banco">
-                    <legend>Elija su banco</legend>
-                    <div class="banco-container">
-                      <div class="banco-option">
-                        <input type="radio" id="brou" name="banco" value="brou" />
-                        <label for="brou" class="brou"></label>
-                      </div>
-
-                      <div class="banco-option" required>
-                        <input type="radio" id="bbva" name="banco" value="bbva" />
-                        <label for="bbva" class="bbva"></label>
-                      </div>
-
-                      <div class="banco-option">
-                        <input type="radio" id="scotiabank" name="banco" value="scotiabank" />
-                        <label for="scotiabank" class="scotiabank"></label>
-                      </div>
-
-                      <div class="banco-option">
-                        <input type="radio" id="santander" name="banco" value="santander" />
-                        <label for="santander" class="santander"></label>
-                      </div>
-
-                      <div class="banco-option">
-                        <input type="radio" id="citibank" name="banco" value="citibank" />
-                        <label for="citibank" class="citibank"></label>
-                      </div>
-
-                      <div class="banco-option">
-                        <input type="radio" id="itau" name="banco" value="itau" />
-                        <label for="itau" class="itau"></label>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
-
-                <!-- Opción 1: Tarjeta de crédito -->
-                <div class="option-content" id="optionTarjeta">
-                  <fieldset class="credit-card">
-                    <legend>Ingrese los datos de su tarjeta</legend>
-                    <div class="form-group">
-                      <input type="text" class="form-input" id="fullName" placeholder="Nombre completo"required>
-                      <input type="text" class="form-input" id="nroTarjeta" placeholder="Nro de tarjeta" required>
-                    </div>
-                    <div class="card-detail">
-                      <div class="form-group">
-                        <label class="form-label" for="vencimiento">Vencimiento</label>
-                        <input type="text" placeholder="MM / AAAA" class="form-input" id="vencimiento" required>
-                      </div>
-                      <div class="form-group">
-                        <label class="form-label" for="cvv">CVV</label>
-                        <input type="text" placeholder="123" class="form-input" id="cvv" required>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
-
-                <div class="btn-group">
-                  <button type="button" class="btn btn-secondary" id="prevStep2">Anterior</button>
-                  <button type="submit" class="btn btn-primary">Enviar</button>
-                </div>
-              </div>
+            <div class="option-buttons">
+              <button class="option-btn active" data-option="transferencia" type="button">Transferencia bancaria</button>
+              <button class="option-btn" data-option="tarjeta" type="button">Tarjeta de crédito</button>
             </div>
 
-          </form>
-        </div>
+            <!-- Transferencia -->
+            <div class="option-content active" id="optionTransferencia">
+              <fieldset class="banco">
+                <legend>Elija su banco</legend>
+
+                <div class="banco-container">
+
+                  <div class="banco-option">
+                    <input type="radio" id="brou" name="banco" value="brou" />
+                    <label for="brou" class="brou"></label>
+                  </div>
+
+                  <div class="banco-option">
+                    <input type="radio" id="bbva" name="banco" value="bbva" />
+                    <label for="bbva" class="bbva"></label>
+                  </div>
+
+                  <div class="banco-option">
+                    <input type="radio" id="scotiabank" name="banco" value="scotiabank" />
+                    <label for="scotiabank" class="scotiabank"></label>
+                  </div>
+
+                  <div class="banco-option">
+                    <input type="radio" id="santander" name="banco" value="santander" />
+                    <label for="santander" class="santander"></label>
+                  </div>
+
+                  <div class="banco-option">
+                    <input type="radio" id="citibank" name="banco" value="citibank" />
+                    <label for="citibank" class="citibank"></label>
+                  </div>
+
+                  <div class="banco-option">
+                    <input type="radio" id="itau" name="banco" value="itau" />
+                    <label for="itau" class="itau"></label>
+                  </div>
+
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- Tarjeta -->
+            <div class="option-content" id="optionTarjeta">
+              <fieldset class="credit-card">
+                <legend>Ingrese los datos</legend>
+
+                <div class="form-group">
+                  <input type="text" class="form-input" id="fullName" placeholder="Nombre completo">
+                  <input type="text" class="form-input" id="nroTarjeta" placeholder="Nro de tarjeta">
+                </div>
+
+                <div class="card-detail">
+                  <div class="form-group">
+                    <label class="form-label">Vencimiento</label>
+                    <input type="text" placeholder="MM / AAAA" class="form-input" id="vencimiento">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">CVV</label>
+                    <input type="text" placeholder="123" class="form-input" id="cvv">
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-secondary" id="prevStep2" type="button">Anterior</button>
+              <button class="btn btn-primary" type="submit">Enviar</button>
+            </div>
+
+          </div>
+
+        </form>
       </div>
     </div>
-  </main>
+  </div>
+</main>
 
   <footer class="text-muted">
     <div class="container">
