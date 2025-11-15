@@ -290,7 +290,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: black;
+  background: #000000aa;
   color: var(--dark);
   z-index: 9999; /* para asegurar que esté encima */
 }

@@ -167,7 +167,7 @@
 
           <div>
             <span class='hidden icon'><i class="fas fa-check"></i></span>
-            <input type="radio" id="premium" name="tipoEnvio" value="0.15" checked />
+            <input type="radio" id="premium" name="tipoEnvio" value="0.15"  />
             <label for="premium">Premium 2 a 5 días (15%)</label>
           </div>
 
@@ -179,7 +179,7 @@
 
           <div>
             <span class='hidden icon'><i class="fas fa-check"></i></span>
-            <input type="radio" id="standard" name="tipoEnvio" value="0.05" />
+            <input type="radio" id="standard" name="tipoEnvio" value="0.05" checked/>
             <label for="standard">Standard 12 a 15 días (5%)</label>
           </div>
 
@@ -239,7 +239,7 @@
               <select title="Departamento" class="form-input" id="departamentoSelect" required></select>
               <input type="text" placeholder="Localidad" class="form-input" id="localidad" required>
               <input type="text" placeholder="Calle" class="form-input" id="calle" required>
-              <input type="number" placeholder="Nro puerta" class="form-input" id="nroPuerta" required>
+              <input type="tel" placeholder="Nro puerta" class="form-input" id="nroPuerta" min="0" required>
               <input type="text" placeholder="Esquina" class="form-input" id="esquina" required>
 
               <div class="btn-group">
@@ -305,19 +305,19 @@
                 <legend>Ingrese los datos</legend>
 
                 <div class="form-group">
-                  <input type="text" class="form-input" id="fullName" placeholder="Nombre completo">
-                  <input type="text" class="form-input" id="nroTarjeta" placeholder="Nro de tarjeta">
+                  <input type="text" class="form-input" id="fullName" placeholder="Nombre completo" >
+                  <input type="text" class="form-input" id="nroTarjeta" placeholder="Nro de tarjeta" >
                 </div>
 
                 <div class="card-detail">
                   <div class="form-group">
                     <label class="form-label">Vencimiento</label>
-                    <input type="text" placeholder="MM / AAAA" class="form-input" id="vencimiento">
+                    <input type="text" placeholder="MM / AAAA" class="form-input" id="vencimiento" >
                   </div>
 
                   <div class="form-group">
                     <label class="form-label">CVV</label>
-                    <input type="text" placeholder="123" class="form-input" id="cvv">
+                    <input type="text" placeholder="123" class="form-input" id="cvv" >
                   </div>
                 </div>
               </fieldset>

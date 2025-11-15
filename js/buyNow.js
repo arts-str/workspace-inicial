@@ -137,6 +137,17 @@ optionButtons.forEach((button) => {
       ) {
         content.classList.add("active");
       }
+      if ('optionTransferencia' === `option${option.charAt(0).toUpperCase() + option.slice(1)}`) {
+        document.getElementById("fullName").required = false;
+        document.getElementById("nroTarjeta").required = false;
+        document.getElementById("vencimiento").required = false;
+        document.getElementById("cvv").required = false;        
+      }else{
+        document.getElementById("fullName").required = true;
+        document.getElementById("nroTarjeta").required = true;
+        document.getElementById("vencimiento").required = true;
+        document.getElementById("cvv").required = true;
+      }
     });
   });
 });
@@ -167,7 +178,9 @@ buyForm.addEventListener("submit", function (e) {
 
   const esValido = validarCompra();
 
-  closeModal(); // Cierra el modal de compra
+  if (esValido) {
+    closeModal(); // Cierra el modal de compra
+  }
   mostrarModalFeedback(esValido); // Muestra cartel según resultado
 });
 
@@ -223,7 +236,16 @@ function validarCompra() {
     if (![nombre, nroTarjeta, vencimiento, cvv].every(Boolean)) return false;
   }
 
+  updateCart();
   return true;
+}
+
+/**
+ * Borrar el carrito despues de la compra
+ */
+function updateCart() {
+  const usuario = getUser(localStorage.getItem("usuario"));
+  updateUser(usuario.nombre, usuario.apellido, usuario.email, usuario.telefono, usuario.nombreUsuario, usuario.fotoURL, []);
 }
 
 /*
@@ -240,17 +262,15 @@ function mostrarModalFeedback(exito) {
         ${
           exito
             ? `
-          <svg viewBox="0 0 24 24" fill="currentColor" width="44" height="44">
-            <path d="M20.285 6.709l-11.285 11.285-5.285-5.285 1.414-1.414 3.871 3.871 9.871-9.871z"/>
+          <svg viewBox="0 0 24 24" fill="currentColor" width="88px">
+            <path  d="M20.285 6.709l-11.285 11.285-5.285-5.285 1.414-1.414 3.871 3.871 9.871-9.871z"/>
           </svg>`
             : `
-          <svg viewBox="0 0 24 24" fill="currentColor" width="44" height="44">
-            <path d="M18.364 5.636l-1.414-1.414L12 9.172 7.05 4.222 5.636 5.636 10.586 10.586 5.636 15.536l1.414 1.414L12 12 16.95 16.95l1.414-1.414L13.414 10.586z"/>
-          </svg>`
+          <svg viewBox="0 0 24 24" fill="none" width="88px"><path d="M12 5V15M12 19H12.01" stroke="#f09100" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>`
         }
       </span>
-      <h2>${exito ? "¡Compra realizada!" : "Algo salió mal :("}</h2>
-      <button class="feedback-btn">${exito ? "¡Genial!" : "Reintentar"}</button>
+      <h2>${exito ? "¡Compra realizada!" : "Te falto completar los campos"}</h2>
+      <button class="feedback-btn" ${exito ? "onclick='window.location.reload()'" : ""} >${exito ? "¡Genial!" : "Reintentar"}</button>
     </div>
   `;
 
@@ -260,3 +280,64 @@ function mostrarModalFeedback(exito) {
     modal.remove();
   });
 }
+
+
+
+const nroTarjeta = document.getElementById("nroTarjeta");
+nroTarjeta.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Quitar todo lo que no sea un número
+    value = value.replace(/\D/g, "");
+
+    // Limitar el numero máximo de digitos
+    value = value.slice(0, 16);
+
+    // Espacio cada 4 digitos
+    value = value.replace(/(.{4})/g, "$1 ").trim();
+
+    e.target.value = value;
+});
+
+
+const vencimiento = document.getElementById("vencimiento");
+vencimiento.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Remove anything that's not a digit
+    value = value.replace(/\D/g, "");
+
+    // Limit to 4 digits (MMYY)
+    value = value.slice(0, 6);
+
+    // Auto add slash after 2 digits: MM/YY
+    if (value.length >= 3) {
+        value = value.slice(0, 2) + "/" + value.slice(2);
+    }
+
+    e.target.value = value;
+});
+
+const cvv = document.getElementById("cvv");
+cvv.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Quitar todo lo que no sea un número
+    value = value.replace(/\D/g, "");
+
+    // Limitar el numero máximo de digitos
+    value = value.slice(0, 3);
+
+    e.target.value = value;
+});
+
+const localidad = document.getElementById("localidad");
+localidad.addEventListener("input", (e) => {
+    let value = e.target.value;
+
+    // Quitar todo lo que no sea un número
+    value = value.replace(/[^A-Za-z\s]/g, "");
+
+    e.target.value = value;
+});
+
