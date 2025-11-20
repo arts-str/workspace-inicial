@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return; //si no hay productID muestra este error
   }
 
-  getJSONData(PRODUCT_INFO_URL + productID + ".json").then((resultObj) => {
+  getJSONData(PRODUCT_INFO_URL + productID).then((resultObj) => {
     if (resultObj.status === "ok") {
       productData = resultObj.data; //solicita los datos desde URL y si son ok la guarda
 
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  getJSONData(PRODUCT_INFO_COMMENTS_URL + productID + ".json").then(
+  getJSONData(PRODUCT_INFO_COMMENTS_URL + productID).then(
     (resultObj) => {
       //Fetch a los comentarios del producto
       if (resultObj.status === "ok") {

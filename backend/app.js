@@ -1,34 +1,25 @@
 const express = require("express"); // Importa ExpressJS.
+const cors = require("cors");
+const productRouter = require("./routes/productRoutes");
+const cartRouter = require("./routes/cartRoutes");
+const categoryRouter = require("./routes/categoryRoutes");
 
 const app = express(); // Crea una instancia de ExpressJS
 
 const port = 3000;
 
+app.use(cors());
+
 app.use(express.json()); // Permite que el servidor analice el cuerpo de las peticiones como JSON
 
-const productPath = "./products/";
-const commentsPath = "./productsComments/";
+app.use("/products", productRouter);
 
-app.get("/products/:id", (req, res) => {
-  try{
-    const selectedProduct = require(productPath + req.params.id + ".json");
-    
-    res.json(selectedProduct);
-  }
-  catch(err){
-    res.status(404).json({error: "Producto no encontrado"});
-  }
-});
+app.use("/cart", cartRouter);
 
-app.get("/products-comments/:id", (req, res) => {
-  try{
-    const selectedComment = require(commentsPath + req.params.id + ".json");
-    res.json(selectedComment);
-  }
-  catch(err){
-    res.status(404).json({error: "Comentario no encontrado"});
-  }
-});
+app.use("/category", categoryRouter);
+
+
+
 
 
 // Esta línea inicia el servidor para que escuche peticiones en el puerto indicado

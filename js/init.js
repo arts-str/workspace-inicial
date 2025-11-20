@@ -1,11 +1,10 @@
-const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
+const CATEGORIES_URL = "http://localhost:3000/category/";
 const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publish.json";
-const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
-const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
-const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
-const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
+const PRODUCTS_URL = "http://localhost:3000/products/";
+const PRODUCT_INFO_URL = "http://localhost:3000/products/";
+const PRODUCT_INFO_COMMENTS_URL = "http://localhost:3000/products/comments/";
+const CART_INFO_URL = "http://localhost:3000/cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
-const PRODUCTS_CARS_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json" //API de Autos
 const EXT_TYPE = ".json";
 
 let showSpinner = function(){
@@ -19,7 +18,12 @@ let hideSpinner = function(){
 let getJSONData = function(url){
     let result = {};
     showSpinner();
-    return fetch(url)
+    return fetch(url, {
+      headers: { 
+        "Content-Type": "application/json",
+      }
+    }
+    )
     .then(response => {
       if (response.ok) {
         return response.json();

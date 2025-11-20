@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const cart = getUserCart();
   if (cart) {
     for (const item of cart) {
-      const result = await getJSONData(PRODUCT_INFO_URL + item.id + ".json");
+      const result = await getJSONData(PRODUCT_INFO_URL + item.id);
       if (result.status === "ok") {
         container.insertAdjacentHTML(
           "beforeend",

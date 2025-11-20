@@ -76,11 +76,12 @@ function showProductsList() {
 }
 
 document.addEventListener("DOMContentLoaded", (e) => {
-  getJSONData(PRODUCTS_URL + localStorage.getItem("catID") + ".json").then(
+  getJSONData(CATEGORIES_URL + localStorage.getItem("catID")).then(
     (resultObj) => {
       if (resultObj.status === "ok") {
+        console.log(resultObj);
         setProductTitle(resultObj.data.catName);
-
+        
         currentProductArray = resultObj.data.products;
         backupProductArray = [...currentProductArray]; // Copiar resultado original de productos
         showProductsList();
