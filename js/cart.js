@@ -24,16 +24,23 @@ let totalPriceUSD = 0;
 let totalPriceUYU = 0;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const cart = getUserCart();
+  const resultObj = await getUserCart();
+
+  const cart = resultObj ? resultObj.data : null;
+  console.log(cart);
+  
   if (cart) {
     for (const item of cart) {
-      const result = await getJSONData(PRODUCT_INFO_URL + item.id);
+      const result = await getJSONData(PRODUCT_INFO_URL + item.product_id);
       if (result.status === "ok") {
+
+        console.log(result.data);
+        
         container.insertAdjacentHTML(
           "beforeend",
-          addCard(result.data, item.amount)
+          addCard(result.data, item.quantity)
         );
-        globalCart.push({ product: result.data, amount: item.amount });
+        globalCart.push({ product: result.data, amount: item.quantity });
       }
     }
     addEventsToCards();
@@ -46,8 +53,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 /**
  *Array de objeto de productos
  */
-function getUserCart() {
-  return getUser(localStorage.getItem("usuario")).carrito;
+async function getUserCart() {
+  
+
+  const resultObj = await getJSONData(CART_INFO_URL);
+
+  if (resultObj.status === "ok") {
+    // Now you can use it
+    const user = getUser(localStorage.getItem('usuario'));
+    updateUser(user.nombre, user.apellido, user.email, user.telefono, user.nombreUsuario, user.fotoURL, resultObj.data);
+    return resultObj;
+  } else {
+    console.log("Status not OK:", resultObj);
+  }
+
+  
 }
 
 /**
@@ -58,7 +78,7 @@ function removeFromCart(prodID) {
   const user = getUser(localStorage.getItem("usuario"));
   const carrito = user.carrito;
   const elementoAEliminar = carrito.find(
-    (p) => p.id === Number.parseInt(prodID)
+    (p) => p.product_id === Number.parseInt(prodID)
   );
   console.log(carrito.indexOf(elementoAEliminar)); //Buscar su posicion en el array carrito);
 
@@ -90,6 +110,17 @@ function removeFromCart(prodID) {
   updatePrices();
   updateDetail();
   updateCartBadge();
+
+  const deleteRequest = new Request(CART_INFO_URL + prodID, {
+      method: "DELETE",
+      headers: { 
+        "Content-Type": "application/json",
+        "user_id": "1"
+      }
+    });
+
+  del(deleteRequest);
+
 }
 
 /**
@@ -99,10 +130,12 @@ function removeFromCart(prodID) {
 function addOneInCart(prodID) {
   const user = getUser(localStorage.getItem("usuario"));
   const carrito = user.carrito;
+  console.log(carrito);
+  
   const elementoActualizar = carrito.find(
-    (p) => p.id === Number.parseInt(prodID, 10)
+    (p) => p.product_id === Number.parseInt(prodID, 10)
   );
-  elementoActualizar.amount++;
+  elementoActualizar.quantity++;
 
   updateUser(
     user.nombre,
@@ -121,6 +154,19 @@ function addOneInCart(prodID) {
   updatePrices();
   updateDetail();
   updateCartBadge();
+  
+  const putRequest = new Request(CART_INFO_URL + prodID, {
+      method: "PUT",
+      headers: { 
+        "Content-Type": "application/json",
+        "user_id": "1"
+      },
+      body: JSON.stringify({
+        quantity: elementoActualizar.quantity
+      })
+    });
+  put(putRequest);
+
 }
 
 /**
@@ -131,9 +177,9 @@ function subOneInCart(prodID) {
   const user = getUser(localStorage.getItem("usuario"));
   const carrito = user.carrito;
   const elementoActualizar = carrito.find(
-    (p) => p.id === Number.parseInt(prodID, 10)
+    (p) => p.product_id === Number.parseInt(prodID, 10)
   );
-  elementoActualizar.amount--;
+  elementoActualizar.quantity--;
   updateUser(
     user.nombre,
     user.apellido,
@@ -151,6 +197,18 @@ function subOneInCart(prodID) {
   updatePrices();
   updateDetail();
   updateCartBadge();
+
+  const putRequest = new Request(CART_INFO_URL + prodID, {
+      method: "PUT",
+      headers: { 
+        "Content-Type": "application/json",
+        "user_id": "1"
+      },
+      body: JSON.stringify({
+        quantity: elementoActualizar.quantity
+      })
+    });
+  put(putRequest);
 }
 
 /**
@@ -282,7 +340,7 @@ function updateProductPrices(unitPrice, input, sumProductPrice) {
  * @param {object} product
  * @returns String con HTML para la tarjeta del producto
  */
-function addCard(product, value) {
+function addCard(product, value) {  
   const title = product.name;
   const max = product.soldCount; //provisorio ya que no hay valor de stock en la API
   const image = product.images[0];

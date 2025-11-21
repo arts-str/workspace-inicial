@@ -21,6 +21,7 @@ let getJSONData = function(url){
     return fetch(url, {
       headers: { 
         "Content-Type": "application/json",
+        "user_id": "1"
       }
     }
     )
@@ -43,4 +44,49 @@ let getJSONData = function(url){
         hideSpinner();
         return result;
     });
+}
+
+async function post(request) {
+  try {
+    const response = await fetch(request);
+
+    const text = await response.text(); // read raw text
+    //console.log("Raw response:", text);
+
+    const result = JSON.parse(text || "{}"); // avoid empty parse
+    //console.log("Success:", result);
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+async function del(request) {
+  try {
+    const response = await fetch(request);
+
+    const text = await response.text(); // read raw text
+    //console.log("Raw response:", text);
+
+    const result = JSON.parse(text || "{}"); // avoid empty parse
+    //console.log("Success:", result);
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+async function put(request) {
+  try {
+    const response = await fetch(request);
+
+    const text = await response.text(); // read raw text
+    //console.log("Raw response:", text);
+
+    const result = JSON.parse(text || "{}"); // avoid empty parse
+    //console.log("Success:", result);
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }

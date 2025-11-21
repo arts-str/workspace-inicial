@@ -464,8 +464,8 @@ function verProductoRelacionado(id) {
 /**
  * Comprar ahora: agrega el producto al carrito y redirige a la página de carrito
  */
-buttonBuyNow.addEventListener("click", (e) => {
-  const added = addToCart();
+buttonBuyNow.addEventListener("click", async (e) => {
+  const added = await addToCart();
   if (added) {
     globalThis.location.href = "cart.html";
   } // redirige al carrito
@@ -486,13 +486,13 @@ buttonAddToCart.addEventListener("click", (e) => {
 /**
  * Agregar producto al carrito y actualizar el objeto usuario
  */
-function addToCart() {
+async function addToCart() {
   const prodID = localStorage.getItem("productID");
   const prodIdNumber = Number.parseInt(prodID);
 
   const user = getUser(localStorage.getItem("usuario"));
   const carrito = user.carrito;
-  const productInCart = carrito.find((p) => p.id === prodIdNumber);
+  const productInCart = carrito.find((p) => p.product_id === prodIdNumber);
 
   if (productInCart) {
     //Si ya está en el carrito
@@ -501,7 +501,20 @@ function addToCart() {
     return false;
   }
 
-  carrito.push({ id: prodIdNumber, amount: 1 }); //Agregarlo
+  const postRequest = new Request(CART_INFO_URL, {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        "user_id": "1"
+      },
+      body: JSON.stringify({
+        product_id: prodIdNumber, quantity: 1
+      })
+    });
+
+  await post(postRequest);
+
+  carrito.push({ id: prodIdNumber, quantity: 1 }); //Agregarlo
   updateUser(
     user.nombre,
     user.apellido,
@@ -512,5 +525,8 @@ function addToCart() {
     carrito
   ); //Actualizar el user object
   updateCartBadge(); //Actualizar Badge
+  
+  
   return true;
 }
+

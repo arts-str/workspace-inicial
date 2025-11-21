@@ -34,7 +34,7 @@ let updateCartBadge = () => {
     let total = 0;
 
     for (const product of actualUser.carrito){
-      total += product.amount; //Sumar por la cantidad
+      total += product.quantity; //Sumar por la cantidad
     }
 
     for (const badge of badgesCart) {

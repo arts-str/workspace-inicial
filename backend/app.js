@@ -19,9 +19,6 @@ app.use("/cart", cartRouter);
 app.use("/category", categoryRouter);
 
 
-
-
-
 // Esta línea inicia el servidor para que escuche peticiones en el puerto indicado
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
