@@ -8,6 +8,7 @@ cartRouter.get("/:id", cartController.getCartItem);
 cartRouter.get("/", cartController.getCart);
 cartRouter.post("/", cartController.insertCartItems);
 cartRouter.delete("/:id", cartController.deleteCartItem);
+cartRouter.delete("/", cartController.deleteCart);
 cartRouter.put("/:id", cartController.modifyCartItemAmount);
 
 

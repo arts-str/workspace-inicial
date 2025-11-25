@@ -114,11 +114,34 @@ const modifyCartItemAmount = async (userId, productId, quantity) => {
   }
 };
 
+const deleteCart = async (userId) => {
+  const conn = await pool.getConnection();
+
+  try {
+    await conn.beginTransaction();
+
+    const result = await conn.query(
+      `DELETE FROM cart WHERE user_id = ?`,
+      [userId]
+    );
+
+    await conn.commit();
+    return result;
+  } catch (err) {
+    await conn.rollback();
+    console.error("Error deleting cart item:", err);
+    throw err;
+  } finally {
+    conn.release();
+  }
+};
+
 
 module.exports = {
   getCartItem,
   getCart,
   insertCartItems,
   deleteCartItem,
+  deleteCart,
   modifyCartItemAmount
 };

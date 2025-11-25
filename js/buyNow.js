@@ -246,6 +246,17 @@ function validarCompra() {
 function updateCart() {
   const usuario = getUser(localStorage.getItem("usuario"));
   updateUser(usuario.nombre, usuario.apellido, usuario.email, usuario.telefono, usuario.nombreUsuario, usuario.fotoURL, []);
+  const deleteRequest = new Request(CART_INFO_URL, {
+      method: "DELETE",
+      headers: { 
+        "Content-Type": "application/json",
+        "access-token": getAccessToken(),
+        "user_id": "1"
+      }
+    });
+
+  del(deleteRequest);
+
 }
 
 /*

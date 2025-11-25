@@ -87,11 +87,34 @@ const modifyCartItemAmount = async (req, res) => {
   }
 };
 
+const deleteCart = async (req, res)  =>{
+
+  const user_id = req.headers["user_id"];
+
+  if (!user_id) {
+    return res.status(400).json({ message: "User ID header missing" });
+  }
+  try {
+    const result = await cartModel.deleteCart(user_id);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Cart was empty" });
+    }
+
+    res.json({ message: "Items removed from cart" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
 
 module.exports = {
   getCartItem,
   getCart,
   insertCartItems,
   deleteCartItem,
+  deleteCart,
   modifyCartItemAmount
 };
