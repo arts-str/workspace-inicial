@@ -1,3 +1,12 @@
+
+/**
+ * Obtener el token de acceso del localStorage
+ */
+let getAccessToken = () => {
+  let token = localStorage.getItem("token");
+  return token;
+}
+
 /**
  * Obtener lista de "usuarios" de la plataforma
  */

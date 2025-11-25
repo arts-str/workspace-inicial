@@ -21,6 +21,7 @@ let getJSONData = function(url){
     return fetch(url, {
       headers: { 
         "Content-Type": "application/json",
+        "access-token": getAccessToken(),
         "user_id": "1"
       }
     }

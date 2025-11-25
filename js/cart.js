@@ -59,7 +59,6 @@ async function getUserCart() {
   const resultObj = await getJSONData(CART_INFO_URL);
 
   if (resultObj.status === "ok") {
-    // Now you can use it
     const user = getUser(localStorage.getItem('usuario'));
     updateUser(user.nombre, user.apellido, user.email, user.telefono, user.nombreUsuario, user.fotoURL, resultObj.data);
     return resultObj;
@@ -115,6 +114,7 @@ function removeFromCart(prodID) {
       method: "DELETE",
       headers: { 
         "Content-Type": "application/json",
+        "access-token": getAccessToken(),
         "user_id": "1"
       }
     });
@@ -159,6 +159,7 @@ function addOneInCart(prodID) {
       method: "PUT",
       headers: { 
         "Content-Type": "application/json",
+        "access-token": getAccessToken(),
         "user_id": "1"
       },
       body: JSON.stringify({
@@ -202,6 +203,7 @@ function subOneInCart(prodID) {
       method: "PUT",
       headers: { 
         "Content-Type": "application/json",
+        "access-token": getAccessToken(),
         "user_id": "1"
       },
       body: JSON.stringify({

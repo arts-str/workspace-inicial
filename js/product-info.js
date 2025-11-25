@@ -505,6 +505,7 @@ async function addToCart() {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",
+        "access-token": getAccessToken(),
         "user_id": "1"
       },
       body: JSON.stringify({

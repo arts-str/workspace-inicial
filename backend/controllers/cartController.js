@@ -1,7 +1,7 @@
 const cartModel = require("../models/cartModel");
 
 const getCartItem = async (req, res)  =>{
-  const id = parseInt(req.params.id)
+  const id = Number.parseInt(req.params.id)
   const cart = await cartModel.getCartItem(id);
   res.json(cart);
 }
