@@ -34,6 +34,29 @@ CREATE TABLE IF NOT EXISTS `cart` (
 
 -- Volcando datos para la tabla ecommerce.cart: ~0 rows (aproximadamente)
 
+-- Volcando estructura para tabla ecommerce.categories
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `description` text NOT NULL,
+  `article_amount` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Volcando datos para la tabla ecommerce.categories: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla ecommerce.categories_images
+CREATE TABLE IF NOT EXISTS `categories_images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) NOT NULL,
+  `image_url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_category_id` (`category_id`),
+  CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Volcando datos para la tabla ecommerce.categories_images: ~0 rows (aproximadamente)
+
 -- Volcando estructura para tabla ecommerce.products
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) NOT NULL,
@@ -173,6 +196,23 @@ INSERT INTO `related_products` (`product_id`, `related_id`) VALUES
 	(60804, 60801),
 	(60804, 60803);
 
+-- Volcando estructura para tabla ecommerce.scores
+CREATE TABLE IF NOT EXISTS `scores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `rating` int(11) NOT NULL DEFAULT 0,
+  `comment` text NOT NULL DEFAULT 'Sin comentario.',
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `fk_user_id` (`user_id`),
+  KEY `fk_product_id` (`product_id`),
+  CONSTRAINT `fk_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- Volcando datos para la tabla ecommerce.scores: ~0 rows (aproximadamente)
+
 -- Volcando estructura para tabla ecommerce.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -187,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
--- Volcando datos para la tabla ecommerce.users: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla ecommerce.users: ~0 rows (aproximadamente)
 INSERT INTO `users` (`id`, `name`, `lastname`, `username`, `email`, `phone`, `profile_img`) VALUES
 	(1, 'Facundo', 'Magnin', 'facu', 'facu@example.com', '099000000', '../img/user-icon/user.png');
 
