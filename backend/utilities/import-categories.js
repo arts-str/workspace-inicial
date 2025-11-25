@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const pool = require("./db"); // Your MariaDB pool
+const pool = require("../db"); // Your MariaDB pool
 
 const importProducts = async () => {
   const directory = path.join(__dirname, "data", "cats");

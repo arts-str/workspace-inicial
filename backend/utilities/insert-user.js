@@ -1,4 +1,4 @@
-const pool = require("./db");
+const pool = require("../db");
 
 const insertUser = async () => {
   const conn = await pool.getConnection();

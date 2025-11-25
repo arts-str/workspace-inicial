@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const pool = require("./db"); // Your MariaDB pool
+const pool = require("../db"); // Your MariaDB pool
 
 const importProducts = async () => {
   const directory = path.join(__dirname, "data", "productsComments");
@@ -8,7 +8,7 @@ const importProducts = async () => {
 
   // Read all JSON files
   const comments = files.map(f => {
-    const raw = fs.readFileSync(path.join(directory, f), "utf8");
+    const raw = fs.readFileSync(path.join(directory, f), "utf8");cd
     return JSON.parse(raw);
   });
 

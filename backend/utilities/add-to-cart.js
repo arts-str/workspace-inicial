@@ -1,4 +1,4 @@
-const pool = require("./db");
+const pool = require("../db");
 
 const insertCartItems = async (userId, items) => {
   const conn = await pool.getConnection();
