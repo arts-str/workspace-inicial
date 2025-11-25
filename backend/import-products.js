@@ -17,17 +17,17 @@ const importProducts = async () => {
   try {
     await conn.beginTransaction();
 
-    // 1️⃣ Insert all products first
+    // Insert all products first
     for (const p of products) {
       await conn.query(
-        `INSERT INTO products (id, name, description, cost, currency, sold_count, category)
-         VALUES (?, ?, ?, ?, ?, ?, ?)
+        `INSERT INTO products (id, name, description, cost, currency, sold_count, category_id)
+         VALUES (?, ?, ?, ?, ?, ?, (SELECT id FROM categories WHERE name=?))
          ON DUPLICATE KEY UPDATE name = VALUES(name)`,
         [p.id, p.name, p.description, p.cost, p.currency, p.soldCount, p.category]
       );
     }
 
-    // 2️⃣ Insert all product images
+    //  Insert all product images
     for (const p of products) {
       for (const img of p.images) {
         await conn.query(
@@ -39,7 +39,7 @@ const importProducts = async () => {
       }
     }
 
-    // 3️⃣ Insert all related products
+    //  Insert all related products
     for (const p of products) {
       for (const rel of p.relatedProducts) {
         // Only insert if the related product actually exists
@@ -61,11 +61,11 @@ const importProducts = async () => {
     }
 
     await conn.commit();
-    console.log("✅ All products, images, and related products imported successfully!");
+    console.log("All products, images, and related products imported successfully!");
 
   } catch (err) {
     await conn.rollback();
-    console.error("❌ Import failed:", err);
+    console.error("Import failed:", err);
   } finally {
     if (conn) conn.release();
   }

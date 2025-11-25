@@ -41,11 +41,11 @@ const importRelatedProducts = async() => {
     }
 
     await conn.commit();
-    console.log("✅ Related products imported successfully!");
+    console.log("Related products imported successfully!");
 
   } catch (err) {
     await conn.rollback();
-    console.error("❌ Import failed:", err);
+    console.error("Import failed:", err);
   } finally {
     if (conn) conn.release();
   }
